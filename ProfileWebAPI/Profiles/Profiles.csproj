@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Addresses\**" />
+    <EmbeddedResource Remove="Addresses\**" />
+    <None Remove="Addresses\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ProfileManager_old.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="JsonData\Profiles.json" />
+    <None Remove="JsonData\Profiles.json_bak" />
+    <None Remove="JsonData\States.json" />
+    <None Remove="JsonData\States.json_bak" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="JsonData\Profiles.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="JsonData\Profiles.json_bak" />
+    <Content Include="JsonData\States.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="JsonData\States.json_bak" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

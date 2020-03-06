@@ -1,0 +1,17 @@
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.csprojAssemblyReference.cache
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.csproj.CoreCompileInputs.cache
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.RazorAssemblyInfo.cache
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.RazorAssemblyInfo.cs
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.AssemblyInfoInputs.cache
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.AssemblyInfo.cs
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\ProfileWebAPI.deps.json
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\ProfileWebAPI.runtimeconfig.json
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\ProfileWebAPI.runtimeconfig.dev.json
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\ProfileWebAPI.dll
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\ProfileWebAPI.pdb
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\Profiles.dll
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\bin\Debug\netcoreapp2.1\Profiles.pdb
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.RazorTargetAssemblyInfo.cache
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.csproj.CopyComplete
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.dll
+D:\WebAPICode\ProfileWebAPI\ProfileWebAPI\obj\Debug\netcoreapp2.1\ProfileWebAPI.pdb

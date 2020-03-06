@@ -1,0 +1,12 @@
+D:\WebAPICode\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Profiles.deps.json
+D:\WebAPICode\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Profiles.dll
+D:\WebAPICode\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Profiles.pdb
+D:\WebAPICode\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+D:\WebAPICode\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csproj.CoreCompileInputs.cache
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.AssemblyInfoInputs.cache
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.AssemblyInfo.cs
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csproj.CopyComplete
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.dll
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.pdb
+D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csprojAssemblyReference.cache
