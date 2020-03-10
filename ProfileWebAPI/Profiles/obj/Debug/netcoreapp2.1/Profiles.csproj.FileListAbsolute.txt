@@ -10,3 +10,15 @@ D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csproj.Cop
 D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.dll
 D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.pdb
 D:\WebAPICode\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csprojAssemblyReference.cache
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Profiles.deps.json
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Profiles.dll
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Profiles.pdb
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csprojAssemblyReference.cache
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csproj.CoreCompileInputs.cache
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.AssemblyInfoInputs.cache
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.AssemblyInfo.cs
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.csproj.CopyComplete
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.dll
+D:\ProjectsSampleCode\WebAPI\ProfileWebAPI\Profiles\obj\Debug\netcoreapp2.1\Profiles.pdb
