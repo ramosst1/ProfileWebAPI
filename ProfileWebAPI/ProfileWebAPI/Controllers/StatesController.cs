@@ -26,14 +26,33 @@ namespace ProfileWebAPI.Controllers
 
         // GET: api/States
         [HttpGet] 
-        public ActionResult<StatesResponseDto>  Get()
+        public ActionResult <List <IState>>  Get()
         {
-            IStatesResponse AResponse = new StatesResponseDto();
+            try
+            {
 
-            AResponse.States = _StateManager.GetAllStates();
-            AResponse.Success = true;
+                return _StateManager.GetAllStates();
 
-            return (StatesResponseDto)AResponse;
+            }
+            catch (Exception ex) {
+
+                var ErrorList = new List<ErrorMessageDto>();
+
+                ErrorList.Add(new ErrorMessageDto()
+                {
+                    StatusCode = "500",
+                     Message = "An unexpected error occured"
+                });
+
+                return BadRequest( ErrorList);
+            }
+
+            //IStatesResponse AResponse = new StatesResponseDto();
+
+            //AResponse.States = _StateManager.GetAllStates();
+            //AResponse.Success = true;
+
+            //return (StatesResponseDto)AResponse;
 
         }
 
