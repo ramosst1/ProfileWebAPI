@@ -47,13 +47,6 @@ namespace ProfileWebAPI.Controllers
                 return BadRequest( ErrorList);
             }
 
-            //IStatesResponse AResponse = new StatesResponseDto();
-
-            //AResponse.States = _StateManager.GetAllStates();
-            //AResponse.Success = true;
-
-            //return (StatesResponseDto)AResponse;
-
         }
 
     }
