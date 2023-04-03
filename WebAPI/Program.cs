@@ -16,8 +16,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMvc();
 
-// builder.Services.AddValidatorsFromAssemblyContaining<ProfileAddressNewValidator>();
-
 builder.Services.AddControllers()
                 .AddFluentValidation(options =>
                 {

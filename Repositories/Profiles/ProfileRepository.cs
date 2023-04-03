@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Repositories.Models.Profiles;
+﻿using Repositories.Models.Profiles;
 using Repositories.Util;
 using Services.Util;
 

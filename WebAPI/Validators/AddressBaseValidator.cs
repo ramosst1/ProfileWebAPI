@@ -11,6 +11,7 @@ namespace WebAPI.Validators
             RuleFor(field => field.Address1).NotEmpty().WithMessage("{PropertyName} is required.");
             RuleFor(field => field.Address1)
                 .MaximumLength(50).WithMessage("{PropertyName} can not exceed {MaxLength}.");
+
             RuleFor(field => field.Address2)
                 .MaximumLength(50).WithMessage("{PropertyName} can not exceed {MaxLength}.");
 
