@@ -16,6 +16,31 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMvc();
 
+//builder.Services.AddCors(options =>
+//{
+
+//    options.AddDefaultPolicy(
+//        policy =>
+//        {
+////            policy.WithOrigins("http://localhost:4200")
+//            policy.WithOrigins("*")
+//                .AllowAnyOrigin()
+//                .AllowAnyHeader()
+//                .AllowAnyMethod();
+//        });
+//});
+
+builder.Services.AddCors(policy => 
+        policy.AddPolicy(name: "Mypolicy",
+        policy =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+        }
+    )
+    );
+
 builder.Services.AddControllers()
                 .AddFluentValidation(options =>
                 {
@@ -43,6 +68,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("Mypolicy");
 app.UseAuthorization();
 
 app.MapControllers();

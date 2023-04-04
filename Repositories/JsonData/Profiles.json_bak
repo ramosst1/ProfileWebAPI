@@ -9,7 +9,7 @@
         "StateAbrev": "NY",
         "ZipCode": "12345",
         "AddressId": 11,
-        "IsPrimary": false,
+        "IsPrimary": true,
         "IsSecondary": false,
         "ProfileId": 1,
         "AddressType": 1
@@ -29,7 +29,7 @@
         "StateAbrev": "NY",
         "ZipCode": "10111",
         "AddressId": 12,
-        "IsPrimary": false,
+        "IsPrimary": true,
         "IsSecondary": false,
         "ProfileId": 2,
         "AddressType": 1
@@ -69,7 +69,7 @@
         "StateAbrev": "DC",
         "ZipCode": "20024",
         "AddressId": 14,
-        "IsPrimary": false,
+        "IsPrimary": true,
         "IsSecondary": false,
         "ProfileId": 4,
         "AddressType": 1

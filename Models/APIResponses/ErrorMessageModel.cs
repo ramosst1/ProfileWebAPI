@@ -1,7 +1,7 @@
 ﻿
 namespace Models.APIResponses
 {
-    public class ErrorMessage
+    public class ErrorMessageModel
     {
         public string InternalMessage { get; set; }
         public string ExternalMessage { get; set; }
