@@ -1,5 +1,4 @@
 ﻿
-using Models.Profiles;
 using Models.States;
 using Profiles.Models.APIResponses;
 

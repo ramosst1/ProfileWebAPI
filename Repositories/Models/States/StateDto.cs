@@ -3,8 +3,8 @@ namespace Models.States
 {
     public class StateDto
     {
-        public string StateName { get; set; }
-        public string StateAbrev { get; set; }
+        public string StateName { get; set; } = string.Empty;
+        public string StateAbrev { get; set; } = string.Empty;
 
     }
 }

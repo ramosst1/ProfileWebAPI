@@ -5,6 +5,10 @@ using Profiles;
 using Repositories.States;
 using Services.Profiles;
 using Services.States;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using WebAPI.Model;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,19 +20,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMvc();
 
-//builder.Services.AddCors(options =>
-//{
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e =>  new ErrorMessageModel() { 
+                    Message = e.ErrorMessage,
+                    StatusCode = "400"
+                });
 
-//    options.AddDefaultPolicy(
-//        policy =>
-//        {
-////            policy.WithOrigins("http://localhost:4200")
-//            policy.WithOrigins("*")
-//                .AllowAnyOrigin()
-//                .AllowAnyHeader()
-//                .AllowAnyMethod();
-//        });
-//});
+            return new BadRequestObjectResult(errors);
+        };
+    });
 
 builder.Services.AddCors(policy => 
         policy.AddPolicy(name: "Mypolicy",
