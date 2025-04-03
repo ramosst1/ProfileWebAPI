@@ -1,5 +1,4 @@
-﻿using Models.APIResponses.Profiles;
-using Models.Profiles;
+﻿using Models.Profiles;
 using Profiles.Models.APIResponses;
 
 namespace Profiles
@@ -7,16 +6,15 @@ namespace Profiles
     public interface IProfileService
     {
 
-        Task <ProfileResponse> CreateProfileAsync(ProfileCreateModel aProfile);
+        Task<ApiResponse<ProfileModel>> CreateProfileAsync(ProfileCreateModel aProfile);
 
         Task <ApiResponse> DeleteProfilesAsync(int profileIds);
 
-       Task<ProfileResponse> GetProfileByIdAsync(int profileId);
+        Task<ApiResponse<ProfileModel>> GetProfileByIdAsync(int profileId);
 
-        Task<ProfilesResponse> GetProfilesAsync();
+        Task<ApiResponse<List<ProfileModel>>> GetProfilesAsync();
 
-        Task<ProfileResponse> UpdateProfileAsync(ProfileUpdateModel aProfile);
-
+        Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfile);
 
     }
 }

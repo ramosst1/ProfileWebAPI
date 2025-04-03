@@ -60,7 +60,7 @@ namespace UnitTests.Services.States
 
             Assert.AreEqual(actualResults.Messages.Any(), false);
             Assert.AreEqual(actualResults.Success, true);
-            Assert.AreEqual(actualResults.States.Any(), false);
+            Assert.AreEqual(actualResults.data.Any(), false);
 
         }
 
@@ -77,7 +77,7 @@ namespace UnitTests.Services.States
             var actualResults = statesServices.GetAllStatesAsync().Result;
 
             Assert.AreEqual(actualResults.Success, false);
-            Assert.AreEqual(actualResults.States.Any(), false);
+            Assert.AreEqual(actualResults.data, null);
             Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
             Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
         }

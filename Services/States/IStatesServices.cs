@@ -1,9 +1,10 @@
-﻿using Models.APIResponses.States;
+﻿using Models.States;
+using Profiles.Models.APIResponses;
 
 namespace Services.States
 {
     public interface IStatesServices
     {
-        Task<StatesResponse> GetAllStatesAsync();
+        Task<ApiResponse<List<StateModel>>> GetAllStatesAsync();
     }
 }

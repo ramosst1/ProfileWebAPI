@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Models.APIResponses.Profiles;
 using Models.Profiles;
 using Profiles;
 using Profiles.Models.APIResponses;
@@ -19,39 +18,51 @@ namespace WebAPI.Controllers
 
         // GET api/v1/profiles
         [HttpGet()]
-        public async Task<ActionResult<ProfilesResponse>> ProfilesAsync()
+        public async Task<ActionResult> ProfilesAsync()
         {
 
             var response = await _profileService.GetProfilesAsync();
 
-            return response;
+            if(response.Success)
+                return Ok(response.data);
+
+            return BadRequest(response.Messages);
         }
 
         // GET api/v1/profiles/5
         [HttpGet("{profileId}")]
-        public async Task<ActionResult<ProfileResponse>> GetAsync(int profileId)
+        public async Task<ActionResult> GetAsync(int profileId)
         {
             var response = await _profileService.GetProfileByIdAsync(profileId);
 
-            return response;
+            if (response.Success)
+                return Ok(response.data);
+
+            return BadRequest(response.Messages);
         }
 
         // POST api/v1/profiles
         [HttpPost]
-        public async Task<ActionResult<ProfileResponse>> PostAsync([FromBody] ProfileCreateModel profile)
+        public async Task<ActionResult> PostAsync([FromBody] ProfileCreateModel profile)
         {
             var response = await _profileService.CreateProfileAsync(profile);
 
-            return response;
+            if (response.Success)
+                return Ok(response.data);
+
+            return BadRequest(response.Messages);
         }
 
         // PUT api/v1/profile/Profile
         [HttpPut]
-        public async Task<ActionResult<ProfileResponse>> PutAsync(ProfileUpdateModel profile)
+        public async Task<ActionResult> PutAsync(ProfileUpdateModel profile)
         {
             var response = await _profileService.UpdateProfileAsync(profile);
 
-            return response;
+            if (response.Success)
+                return Ok(response.data);
+
+            return Ok(response);
         }
 
         // Delete api/v1/profiles/5
@@ -60,8 +71,14 @@ namespace WebAPI.Controllers
         {
             var response = await _profileService.DeleteProfilesAsync(profileId);
 
-            return response;
+            if (response.Success)
+                return Ok(response);
+
+            return BadRequest(response.Messages);
         }
 
     }
 }
+
+
+

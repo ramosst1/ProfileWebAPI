@@ -1,6 +1,7 @@
 ﻿
 using Models.APIResponses;
-using Models.APIResponses.States;
+using Models.States;
+using Profiles.Models.APIResponses;
 using Repositories.States;
 using Services.Util;
 
@@ -15,14 +16,14 @@ namespace Services.States
             _statesRepository = statesRepository;
         }
 
-        public async Task<StatesResponse> GetAllStatesAsync()
+        public async Task<ApiResponse<List<StateModel>>> GetAllStatesAsync()
         {
-            var response = new StatesResponse();
+            var response = new ApiResponse<List<StateModel>>();
 
             try
             {
                 var profiles = await _statesRepository.GetAllStatesAsync();
-                response.States = StatesConverter.Convert(profiles);
+                response.data = StatesConverter.Convert(profiles);
                 response.Success = true;
             }
             catch (Exception ex)

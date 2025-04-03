@@ -61,17 +61,17 @@ namespace UnitTests.Services.Profiles
             Assert.AreEqual(actualResults.Success, true);
             Assert.AreEqual(actualResults.Messages.Any(), false);
 
-            Assert.AreEqual(actualResults.Profile.ProfileId, 1);
-            Assert.AreEqual(actualResults.Profile.FirstName, profileToCreate.FirstName);
-            Assert.AreEqual(actualResults.Profile.LastName, profileToCreate.LastName);
-            Assert.AreEqual(actualResults.Profile.Active, profileToCreate.Active);
+            Assert.AreEqual(actualResults.data.ProfileId, 1);
+            Assert.AreEqual(actualResults.data.FirstName, profileToCreate.FirstName);
+            Assert.AreEqual(actualResults.data.LastName, profileToCreate.LastName);
+            Assert.AreEqual(actualResults.data.Active, profileToCreate.Active);
 
-            Assert.AreEqual(actualResults.Profile.Addresses[0].AddressId, 10);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].Address1, profileToCreate.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].Address2, profileToCreate.Addresses[0].Address2);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].City, profileToCreate.Addresses[0].City);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].StateAbrev, profileToCreate.Addresses[0].StateAbrev);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].ZipCode, profileToCreate.Addresses[0].ZipCode);
+            Assert.AreEqual(actualResults.data.Addresses[0].AddressId, 10);
+            Assert.AreEqual(actualResults.data.Addresses[0].Address1, profileToCreate.Addresses[0].Address1);
+            Assert.AreEqual(actualResults.data.Addresses[0].Address2, profileToCreate.Addresses[0].Address2);
+            Assert.AreEqual(actualResults.data.Addresses[0].City, profileToCreate.Addresses[0].City);
+            Assert.AreEqual(actualResults.data.Addresses[0].StateAbrev, profileToCreate.Addresses[0].StateAbrev);
+            Assert.AreEqual(actualResults.data.Addresses[0].ZipCode, profileToCreate.Addresses[0].ZipCode);
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.CreateProfileAsync(new ProfileCreateModel()).Result;
 
             Assert.AreEqual(actualResults.Success, false);
-            Assert.AreEqual(actualResults.Profile, null);
+            Assert.AreEqual(actualResults.data, null);
             Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
             Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
         }

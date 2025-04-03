@@ -8,6 +8,7 @@ using Services.States;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using WebAPI.Model;
+using System.Runtime.Serialization;
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -79,4 +80,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+
 app.Run();
+

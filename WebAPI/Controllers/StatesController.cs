@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Models.APIResponses.States;
 using Services.States;
 
 namespace WebAPI.Controllers
@@ -16,10 +15,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<StatesResponse>> Get()
+        public async Task<ActionResult> Get()
         {
 
-            return await _statesServices.GetAllStatesAsync();
+            var response = await _statesServices.GetAllStatesAsync();
+
+            if (response.Success)
+                return Ok(response.data);
+
+            return BadRequest(response.Messages);
         }
      }
  }

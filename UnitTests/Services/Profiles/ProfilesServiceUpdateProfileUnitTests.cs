@@ -60,17 +60,17 @@ namespace UnitTests.Services.Profiles
             Assert.AreEqual(actualResults.Success, true);
             Assert.AreEqual(actualResults.Messages.Any(), false);
 
-            Assert.AreEqual(actualResults.Profile.ProfileId, profileToUpdate.ProfileId);
-            Assert.AreEqual(actualResults.Profile.FirstName, profileToUpdate.FirstName);
-            Assert.AreEqual(actualResults.Profile.LastName, profileToUpdate.LastName);
-            Assert.AreEqual(actualResults.Profile.Active, profileToUpdate.Active);
+            Assert.AreEqual(actualResults.data.ProfileId, profileToUpdate.ProfileId);
+            Assert.AreEqual(actualResults.data.FirstName, profileToUpdate.FirstName);
+            Assert.AreEqual(actualResults.data.LastName, profileToUpdate.LastName);
+            Assert.AreEqual(actualResults.data.Active, profileToUpdate.Active);
 
-            Assert.AreEqual(actualResults.Profile.Addresses[0].AddressId, profileToUpdate.Addresses[0].AddressId);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].Address1, profileToUpdate.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].Address2, profileToUpdate.Addresses[0].Address2);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].City, profileToUpdate.Addresses[0].City);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].StateAbrev, profileToUpdate.Addresses[0].StateAbrev);
-            Assert.AreEqual(actualResults.Profile.Addresses[0].ZipCode, profileToUpdate.Addresses[0].ZipCode);
+            Assert.AreEqual(actualResults.data.Addresses[0].AddressId, profileToUpdate.Addresses[0].AddressId);
+            Assert.AreEqual(actualResults.data.Addresses[0].Address1, profileToUpdate.Addresses[0].Address1);
+            Assert.AreEqual(actualResults.data.Addresses[0].Address2, profileToUpdate.Addresses[0].Address2);
+            Assert.AreEqual(actualResults.data.Addresses[0].City, profileToUpdate.Addresses[0].City);
+            Assert.AreEqual(actualResults.data.Addresses[0].StateAbrev, profileToUpdate.Addresses[0].StateAbrev);
+            Assert.AreEqual(actualResults.data.Addresses[0].ZipCode, profileToUpdate.Addresses[0].ZipCode);
 
         }
 
@@ -104,7 +104,7 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.UpdateProfileAsync(new ProfileUpdateModel()).Result;
 
             Assert.AreEqual(actualResults.Success, false);
-            Assert.AreEqual(actualResults.Profile, null);
+            Assert.AreEqual(actualResults.data, null);
             Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
             Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
         }

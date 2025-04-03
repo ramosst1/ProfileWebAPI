@@ -1,5 +1,4 @@
 ﻿using Models.APIResponses;
-using Models.APIResponses.Profiles;
 using Models.Profiles;
 using Profiles;
 using Profiles.Models.APIResponses;
@@ -17,17 +16,17 @@ namespace Services.Profiles
         {
             _profileRepository = profileRepository;
         }
-        public async Task<ProfilesResponse> GetProfilesAsync()
+        public async Task<ApiResponse<List<ProfileModel>>> GetProfilesAsync()
         {
 
-            var response = new ProfilesResponse();
+            var response = new ApiResponse<List<ProfileModel>>();
 
             try
             {
 
                 var profiles = await _profileRepository.GetProfilesAsync();
 
-                response.Profiles = ProfileConverter.Convert(profiles);
+                response.data = ProfileConverter.Convert(profiles);
                 response.Success = true;
             }
             catch (Exception ex) {
@@ -44,10 +43,10 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<ProfileResponse> GetProfileByIdAsync(int profileId)
+        public async Task<ApiResponse<ProfileModel>> GetProfileByIdAsync(int profileId)
         {
 
-            var response = new ProfileResponse();
+            var response = new ApiResponse<ProfileModel>();
 
             try
             {
@@ -59,7 +58,7 @@ namespace Services.Profiles
                     response.Success = false;
                 }
                 else {
-                    response.Profile = ProfileConverter.Convert(profile);
+                    response.data = ProfileConverter.Convert(profile);
                     response.Success = true;
                 }
 
@@ -77,9 +76,9 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<ProfileResponse> CreateProfileAsync(ProfileCreateModel aProfile)
+        public async Task<ApiResponse<ProfileModel>> CreateProfileAsync(ProfileCreateModel aProfile)
         {
-            var response = new ProfileResponse();
+            var response = new ApiResponse<ProfileModel>();
             try
             {
                 var newProfile = Util.ProfileConverter.ConvertToNewDto(aProfile);
@@ -97,7 +96,7 @@ namespace Services.Profiles
                 }
                 else
                 {
-                    response.Profile = Util.ProfileConverter.Convert(newProfileCreated);
+                    response.data = Util.ProfileConverter.Convert(newProfileCreated);
                     response.Success = true;
                 }
             }
@@ -116,11 +115,10 @@ namespace Services.Profiles
             return response;
         }
 
-
-        public async Task<ProfileResponse> UpdateProfileAsync(ProfileUpdateModel aProfile)
+        public async Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfile)
         {
 
-            var response = new ProfileResponse();
+            var response = new ApiResponse<ProfileModel>();
             try
             {
                 var newProfile = Util.ProfileConverter.ConvertToUpdateDto(aProfile);
@@ -137,7 +135,7 @@ namespace Services.Profiles
                     });
                 }
                 else {
-                    response.Profile = Util.ProfileConverter.Convert(updatedProfileCreated);
+                    response.data = (Util.ProfileConverter.Convert(updatedProfileCreated));
                     response.Success = true;
                 }
             }
