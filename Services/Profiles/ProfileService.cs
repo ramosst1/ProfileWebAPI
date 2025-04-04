@@ -2,14 +2,15 @@
 using Models.Profiles;
 using Profiles;
 using Profiles.Models.APIResponses;
+using Repositories.Models.Profiles;
 using Repositories.Profiles;
-using Services.Util;
+using Utilities.Converters.ObjectConverter;
 
 namespace Services.Profiles
 {
     public class ProfileService : IProfileService
     {
-
+        
         private readonly IProfileRepository _profileRepository;
 
         public ProfileService(IProfileRepository profileRepository)
@@ -23,10 +24,10 @@ namespace Services.Profiles
 
             try
             {
-
                 var profiles = await _profileRepository.GetProfilesAsync();
 
-                response.data = ProfileConverter.Convert(profiles);
+                response.data = Convert<List<ProfileDto>, List<ProfileModel>>(profiles);
+
                 response.Success = true;
             }
             catch (Exception ex) {
@@ -58,7 +59,8 @@ namespace Services.Profiles
                     response.Success = false;
                 }
                 else {
-                    response.data = ProfileConverter.Convert(profile);
+                    response.data = Convert<ProfileDto, ProfileModel>(profile);
+
                     response.Success = true;
                 }
 
@@ -81,7 +83,7 @@ namespace Services.Profiles
             var response = new ApiResponse<ProfileModel>();
             try
             {
-                var newProfile = Util.ProfileConverter.ConvertToNewDto(aProfile);
+                var newProfile = Convert<ProfileCreateModel, ProfileCreateDto>(aProfile);
 
                 var newProfileCreated = await _profileRepository.CreateProfileAsync(newProfile);
 
@@ -96,7 +98,8 @@ namespace Services.Profiles
                 }
                 else
                 {
-                    response.data = Util.ProfileConverter.Convert(newProfileCreated);
+                    response.data = Convert<ProfileDto, ProfileModel>(newProfileCreated);
+
                     response.Success = true;
                 }
             }
@@ -121,7 +124,7 @@ namespace Services.Profiles
             var response = new ApiResponse<ProfileModel>();
             try
             {
-                var newProfile = Util.ProfileConverter.ConvertToUpdateDto(aProfile);
+                var newProfile = Convert<ProfileUpdateModel, ProfileUpdateDto>(aProfile);
 
                 var updatedProfileCreated = await _profileRepository.UpdateProfileAsync(newProfile);
 
@@ -135,7 +138,9 @@ namespace Services.Profiles
                     });
                 }
                 else {
-                    response.data = (Util.ProfileConverter.Convert(updatedProfileCreated));
+
+                    response.data = Convert<ProfileDto, ProfileModel>(updatedProfileCreated);
+
                     response.Success = true;
                 }
             }
@@ -183,6 +188,13 @@ namespace Services.Profiles
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting
                 });
             }
+
+            return response;
+        }
+
+        private static TTarget Convert<TSource, TTarget>(TSource source)
+        {
+            var response = DataMapperConverter.Convert<TSource, TTarget>(source);
 
             return response;
         }

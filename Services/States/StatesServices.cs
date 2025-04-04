@@ -1,9 +1,8 @@
-﻿
-using Models.APIResponses;
+﻿using Models.APIResponses;
 using Models.States;
 using Profiles.Models.APIResponses;
 using Repositories.States;
-using Services.Util;
+using Utilities.Converters.ObjectConverter; 
 
 namespace Services.States
 {
@@ -22,8 +21,10 @@ namespace Services.States
 
             try
             {
-                var profiles = await _statesRepository.GetAllStatesAsync();
-                response.data = StatesConverter.Convert(profiles);
+                var states = await _statesRepository.GetAllStatesAsync();
+
+                response.data = Convert<List<StateDto>, List<StateModel>>(states);
+
                 response.Success = true;
             }
             catch (Exception ex)
@@ -39,5 +40,12 @@ namespace Services.States
             }
             return response;
         }
+        private static TTarget Convert<TSource, TTarget>(TSource source)
+        {
+            var response = DataMapperConverter.Convert<TSource, TTarget>(source);
+
+            return response;
+        }
+
     }
 }
