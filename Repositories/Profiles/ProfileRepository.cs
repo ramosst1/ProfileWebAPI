@@ -1,6 +1,6 @@
 ﻿using Repositories.Models.Profiles;
-using Repositories.Util;
-using Services.Util;
+using Utilities.Converters.JsonObjectConverter;
+using Utilities.Converters.ObjectConverter;
 
 namespace Repositories.Profiles
 {
@@ -41,7 +41,7 @@ namespace Repositories.Profiles
             newProfile.LastName = aProfile.LastName;
             newProfile.Active = aProfile.Active;
 
-            var newAddresses = ProfileAddressConverter.Convert(aProfile.Addresses);
+            var newAddresses = Convert<List<ProfileAddressCreateDto>, List<ProfileAddressDto>>(aProfile.Addresses);
 
             var addressMaxId = GetMaxAddressId(profileList);
 
@@ -57,7 +57,7 @@ namespace Repositories.Profiles
 
             profileList.Add(newProfile);
 
-            var profileNewList = JsonObjectConverter.ConvertToJson(profileList);
+            var profileNewList = ConvertToJson<List<ProfileDto>>(profileList);
 
             await _profileDataSource.WriteJsonToFileAsync(profileNewList);
 
@@ -71,7 +71,7 @@ namespace Repositories.Profiles
             var profileListNew = profilesList.Where(existProfile => profileId != existProfile.ProfileId)
                 .ToList();
 
-            await _profileDataSource.WriteJsonToFileAsync(JsonObjectConverter.ConvertToJson(profileListNew));
+            await _profileDataSource.WriteJsonToFileAsync(ConvertToJson<List<ProfileDto>>(profileListNew));
 
             return true;
         }
@@ -89,16 +89,14 @@ namespace Repositories.Profiles
             currentProfile.LastName = profile.LastName;
             currentProfile.Active = profile.Active;
 
-            currentProfile.Addresses = ProfileAddressConverter.Convert(profile.Addresses);
+            currentProfile.Addresses = Convert<List<ProfileAddressUpdateDto>, List<ProfileAddressDto>>(profile.Addresses);
 
-            var profileUpdateList = JsonObjectConverter.ConvertToJson(profileList);
+            var profileUpdateList = ConvertToJson<List<ProfileDto>>(profileList);
 
             await _profileDataSource.WriteJsonToFileAsync(profileUpdateList);
 
             return currentProfile;
-
         }
-
 
         private static int GetMaxAddressId(List<ProfileDto> profiles) {
 
@@ -106,5 +104,20 @@ namespace Repositories.Profiles
                 
             return nextAddressId;
         }
+
+        private static TTarget Convert<TSource, TTarget>(TSource source)
+        {
+            var response = DataMapperConverter.Convert<TSource, TTarget>(source);
+
+            return response;
+        }
+
+        private static string ConvertToJson<TObject>(TObject source)
+        {
+            var response = JsonConverter.Convert<TObject>(source);
+
+            return response;
+        }
+
     }
 }
