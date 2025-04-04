@@ -1,7 +1,4 @@
-﻿using Moq;
-using Utilities.Converters.ObjectConverter;
-using System.Data;
-using System.Runtime.Serialization;
+﻿using Utilities.Converters.ObjectConverter;
 
 namespace UnitTests.Utilities.Converters.ObjectConverter
 {

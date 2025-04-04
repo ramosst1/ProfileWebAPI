@@ -5,7 +5,8 @@ using Repositories.Profiles;
 namespace UnitTests.Repositories.Profiles
 {
 
-    [TestClass]public class ProfilesRepositoryProfileDeleteUnitTests
+    [TestClass]
+    public class ProfilesRepositoryProfileDeleteUnitTests
     {
         const string ExceptionErrorMessage = "One or more errors occurred. (Exception of type 'System.Exception' was thrown.)";
 
