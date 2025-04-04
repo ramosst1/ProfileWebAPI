@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Util\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 

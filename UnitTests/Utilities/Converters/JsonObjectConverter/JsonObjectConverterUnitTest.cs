@@ -1,6 +1,6 @@
 ﻿using Utilities.Converters.JsonObjectConverter;
 
-namespace UnitTests.Utilities.JsonObjectConverter
+namespace UnitTests.Utilities.Converters.JsonObjectConverter
 {
     [TestClass]
     public class JsonObjectConverterUnitTest
@@ -19,7 +19,7 @@ namespace UnitTests.Utilities.JsonObjectConverter
             string expected = "{\"Id\":1,\"Name\":\"test\"}";
 
 
-            var actual = JsonConverter.Convert<TestClassModel>(source);
+            var actual = JsonConverter.Convert(source);
 
             Assert.AreEqual(actual, expected);
 
@@ -44,7 +44,7 @@ namespace UnitTests.Utilities.JsonObjectConverter
 
             string expected = "[{\"Id\":1,\"Name\":\"test1\"},{\"Id\":2,\"Name\":\"test2\"}]";
 
-            var actual = JsonConverter.Convert<List<TestClassModel>>(sources);
+            var actual = JsonConverter.Convert(sources);
 
             Assert.AreEqual(actual, expected);
 
