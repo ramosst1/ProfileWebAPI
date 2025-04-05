@@ -1,12 +1,14 @@
 ﻿
+using Models.Profiles.interfaces;
+
 namespace Models.Profiles
 {
-    public class ProfileUpdateModel: ProfileBase
+    public class ProfileUpdateModel : ProfileBase, IProfileUpdateModel
     {
 
         public int ProfileId { get; set; }
- 
-        public List<ProfileAddressUpdateModel> Addresses { get; set; } = new List<ProfileAddressUpdateModel>();
+
+        public List<IProfileAddressUpdateModel> Addresses { get; set; } = new List<IProfileAddressUpdateModel>();
 
     }
 }

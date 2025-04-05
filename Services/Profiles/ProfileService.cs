@@ -1,5 +1,7 @@
 ﻿using Models.APIResponses;
+using Models.APIResponses.interfaces;
 using Models.Profiles;
+using Models.Profiles.interfaces;
 using Profiles;
 using Profiles.Models.APIResponses;
 using Repositories.Models.Profiles;
@@ -10,23 +12,23 @@ namespace Services.Profiles
 {
     public class ProfileService : IProfileService
     {
-        
+
         private readonly IProfileRepository _profileRepository;
 
         public ProfileService(IProfileRepository profileRepository)
         {
             _profileRepository = profileRepository;
         }
-        public async Task<ApiResponse<List<ProfileModel>>> GetProfilesAsync()
+        public async Task<IApiResponse<List<IProfileModel>>> GetProfilesAsync()
         {
 
-            var response = new ApiResponse<List<ProfileModel>>();
+            IApiResponse<List<IProfileModel>> response = new ApiResponse<List<IProfileModel>>();
 
             try
             {
                 var profiles = await _profileRepository.GetProfilesAsync();
 
-                response.data = Convert<List<ProfileDto>, List<ProfileModel>>(profiles);
+                response.data = Convert<List<ProfileDto>, List<IProfileModel>>(profiles);
 
                 response.Success = true;
             }
@@ -44,10 +46,10 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<ApiResponse<ProfileModel>> GetProfileByIdAsync(int profileId)
+        public async Task<IApiResponse<IProfileModel>> GetProfileByIdAsync(int profileId)
         {
 
-            var response = new ApiResponse<ProfileModel>();
+            IApiResponse<IProfileModel> response = new ApiResponse<IProfileModel>();
 
             try
             {
@@ -59,7 +61,7 @@ namespace Services.Profiles
                     response.Success = false;
                 }
                 else {
-                    response.data = Convert<ProfileDto, ProfileModel>(profile);
+                    response.data = Convert<ProfileDto, IProfileModel>(profile);
 
                     response.Success = true;
                 }
@@ -78,12 +80,12 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<ApiResponse<ProfileModel>> CreateProfileAsync(ProfileCreateModel aProfile)
+        public async Task<IApiResponse<IProfileModel>> CreateProfileAsync(IProfileCreateModel aProfile)
         {
-            var response = new ApiResponse<ProfileModel>();
+            IApiResponse<IProfileModel> response = new ApiResponse<IProfileModel>();
             try
             {
-                var newProfile = Convert<ProfileCreateModel, ProfileCreateDto>(aProfile);
+                var newProfile = Convert<IProfileCreateModel, ProfileCreateDto>(aProfile);
 
                 var newProfileCreated = await _profileRepository.CreateProfileAsync(newProfile);
 
@@ -98,6 +100,7 @@ namespace Services.Profiles
                 }
                 else
                 {
+
                     response.data = Convert<ProfileDto, ProfileModel>(newProfileCreated);
 
                     response.Success = true;
@@ -118,13 +121,13 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfile)
+        public async Task<IApiResponse<IProfileModel>> UpdateProfileAsync(IProfileUpdateModel aProfile)
         {
 
-            var response = new ApiResponse<ProfileModel>();
+            IApiResponse<IProfileModel> response = new ApiResponse<IProfileModel>();
             try
             {
-                var newProfile = Convert<ProfileUpdateModel, ProfileUpdateDto>(aProfile);
+                var newProfile = Convert<IProfileUpdateModel, ProfileUpdateDto>(aProfile);
 
                 var updatedProfileCreated = await _profileRepository.UpdateProfileAsync(newProfile);
 
@@ -159,13 +162,13 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<ApiResponse> DeleteProfilesAsync(int profileId)
+        public async Task<IApiResponse> DeleteProfilesAsync(int profileId)
         {
-            var response = new ApiResponse();
+            IApiResponse response = new ApiResponse();
 
             try
             {
-                var result = await  _profileRepository.DeleteProfileAsync(profileId);
+                var result = await _profileRepository.DeleteProfileAsync(profileId);
                 response.Success = result;
 
                 if (!result) {

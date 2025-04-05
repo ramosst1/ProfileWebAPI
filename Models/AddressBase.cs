@@ -2,6 +2,7 @@
 {
     public abstract class AddressBase
     {
+        private protected AddressBase() { }
 
         public string Address1 { get; set; } = string.Empty;
         public string Address2 { get; set; } = string.Empty;

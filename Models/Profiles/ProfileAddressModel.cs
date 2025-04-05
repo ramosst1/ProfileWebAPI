@@ -1,7 +1,9 @@
 ﻿
+using Models.Profiles.interfaces;
+
 namespace Models.Profiles
 {
-    public class ProfileAddressModel : AddressBase
+    public class ProfileAddressModel : AddressBase, IProfileAddressModel
     {
 
         public int ProfileId { get; set; }

@@ -8,8 +8,7 @@ namespace WebAPI.Validators
         public ProfileCreateValidator()
         {
             Include(new ProfileBaseValidator());
-         //   RuleFor(x => x.Addresses.Count).GreaterThan(0).WithMessage("An Address is required.");
-            RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressCreateValidator());
+//            RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressCreateValidator());
         }
     }
 }

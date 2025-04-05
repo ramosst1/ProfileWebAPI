@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Models;
 using Models.Profiles;
+using Models.Profiles.interfaces;
 
 namespace WebAPI.Validators
 {
@@ -15,7 +16,7 @@ namespace WebAPI.Validators
 
         }
 
-        protected bool IsPrimaryOrSecondary(ProfileAddressCreateModel aAddress)
+        protected bool IsPrimaryOrSecondary(IProfileAddressCreateModel aAddress)
         {
 
             if (aAddress.IsPrimary == aAddress.IsSecondary)

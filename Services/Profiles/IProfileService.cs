@@ -1,20 +1,21 @@
-﻿using Models.Profiles;
-using Profiles.Models.APIResponses;
+﻿using Models.APIResponses.interfaces;
+using Models.Profiles;
+using Models.Profiles.interfaces;
 
 namespace Profiles
 {
     public interface IProfileService
     {
 
-        Task<ApiResponse<ProfileModel>> CreateProfileAsync(ProfileCreateModel aProfile);
+        Task<IApiResponse<global::Models.Profiles.interfaces.IProfileModel>> CreateProfileAsync(IProfileCreateModel aProfile);
 
-        Task <ApiResponse> DeleteProfilesAsync(int profileIds);
+        Task <IApiResponse> DeleteProfilesAsync(int profileIds);
 
-        Task<ApiResponse<ProfileModel>> GetProfileByIdAsync(int profileId);
+        Task<IApiResponse<global::Models.Profiles.interfaces.IProfileModel>> GetProfileByIdAsync(int profileId);
 
-        Task<ApiResponse<List<ProfileModel>>> GetProfilesAsync();
+        Task<IApiResponse<List<global::Models.Profiles.interfaces.IProfileModel>>> GetProfilesAsync();
 
-        Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfile);
+        Task<IApiResponse<global::Models.Profiles.interfaces.IProfileModel>> UpdateProfileAsync(IProfileUpdateModel aProfile);
 
     }
 }

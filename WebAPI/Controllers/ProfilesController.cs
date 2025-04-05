@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models.APIResponses.interfaces;
 using Models.Profiles;
 using Profiles;
-using Profiles.Models.APIResponses;
 
 namespace WebAPI.Controllers
 {
@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
 
         // Delete api/v1/profiles/5
         [HttpDelete("{profileId}")]
-        public async Task<ActionResult<ApiResponse>> DeleteAsync(int profileId)
+        public async Task<ActionResult<IApiResponse>> DeleteAsync(int profileId)
         {
             var response = await _profileService.DeleteProfilesAsync(profileId);
 
