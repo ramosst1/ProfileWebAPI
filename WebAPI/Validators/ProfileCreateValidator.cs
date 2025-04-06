@@ -8,7 +8,7 @@ namespace WebAPI.Validators
         public ProfileCreateValidator()
         {
             Include(new ProfileBaseValidator());
-//            RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressCreateValidator());
+            RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressCreateValidator());
         }
     }
 }
