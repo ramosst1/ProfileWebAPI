@@ -6,10 +6,12 @@
 
         public static string Convert<TObject>(TObject source)
         {
+            return System.Text.Json.JsonSerializer.Serialize(source);
+        }
 
-            string result = System.Text.Json.JsonSerializer.Serialize(source);
-
-            return result;
+        public static TObject Convert<TObject>(string json)
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<TObject>(json);
         }
     }
 }

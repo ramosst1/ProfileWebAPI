@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Repositories.Models.Profiles;
+﻿using Repositories.Models.Profiles;
+using Utilities.Converters.JsonObjectConverter;
 
 namespace Repositories.Profiles
 {
@@ -26,7 +26,7 @@ namespace Repositories.Profiles
             using (StreamReader r = new StreamReader(JSON_DATASOURCE))
             {
                 string json = r.ReadToEnd();
-                var ProfileJson = JsonConvert.DeserializeObject<List<ProfileDto>>(json);
+                var ProfileJson = ConvertJsonToObject<List<ProfileDto>>(json);
 
                 profileList = ProfileJson.Cast<ProfileDto>().OrderBy(aItem => $"{aItem.LastName}{aItem.FirstName}").ToList();
 
@@ -46,6 +46,13 @@ namespace Repositories.Profiles
         {
 
             System.IO.File.WriteAllText(JSON_DATASOURCE, jsonContent);
+        }
+
+        private static TObject ConvertJsonToObject<TObject>(string json)
+        {
+            var response = JsonConverter.Convert<TObject>(json);
+
+            return response;
         }
 
     }

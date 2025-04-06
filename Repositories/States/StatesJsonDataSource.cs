@@ -1,5 +1,5 @@
 ﻿using Models.States;
-using Newtonsoft.Json;
+using Utilities.Converters.JsonObjectConverter;
 
 namespace Repositories.States
 {
@@ -17,13 +17,20 @@ namespace Repositories.States
                 {
                     string json = r.ReadToEnd();
 
-                    var states = JsonConvert.DeserializeObject<List<StateDto>>(json);
+                    var states = ConvertJsonToObject<List<StateDto>>(json);
 
                     statesList = states.Cast<StateDto>().ToList();
                 }
             });
 
             return statesList;
+        }
+
+        private static TObject ConvertJsonToObject<TObject>(string json)
+        {
+            var response = JsonConverter.Convert<TObject>(json);
+
+            return response;
         }
 
     }
