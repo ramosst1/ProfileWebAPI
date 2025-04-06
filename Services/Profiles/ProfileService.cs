@@ -33,7 +33,7 @@ namespace Services.Profiles
             catch (Exception ex) {
 
                 response.Success = false;
-                response.Messages.Add(new ErrorMessageModel()
+                response.ErrorMessages.Add(new ErrorMessageModel()
                 {
                     ExternalMessage = ex.Message,
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting
@@ -68,7 +68,7 @@ namespace Services.Profiles
             catch (Exception ex)
             {
                 response.Success = false;
-                response.Messages.Add(new ErrorMessageModel()
+                response.ErrorMessages.Add(new ErrorMessageModel()
                 {
                     ExternalMessage = ex.Message,
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting
@@ -90,7 +90,7 @@ namespace Services.Profiles
                 if (newProfileCreated == null)
                 {
                     response.Success = false;
-                    response.Messages.Add(new ErrorMessageModel()
+                    response.ErrorMessages.Add(new ErrorMessageModel()
                     {
                         ExternalMessage = "Unable to create the profile",
                         InternalMessage = "Unable to create the profile"
@@ -108,7 +108,7 @@ namespace Services.Profiles
             {
 
                 response.Success = false;
-                response.Messages.Add(new ErrorMessageModel()
+                response.ErrorMessages.Add(new ErrorMessageModel()
                 {
                     ExternalMessage = ex.Message,
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting
@@ -133,7 +133,7 @@ namespace Services.Profiles
                 if (updatedProfileCreated == null)
                 {
                     response.Success = false;
-                    response.Messages.Add(new ErrorMessageModel()
+                    response.ErrorMessages.Add(new ErrorMessageModel()
                     {
                         ExternalMessage = "Unable to update the profile",
                         InternalMessage = "Unable to update the profile"
@@ -150,7 +150,7 @@ namespace Services.Profiles
             {
 
                 response.Success = false;
-                response.Messages.Add(new ErrorMessageModel()
+                response.ErrorMessages.Add(new ErrorMessageModel()
                 {
                     ExternalMessage = ex.Message,
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting
@@ -171,7 +171,7 @@ namespace Services.Profiles
                 response.Success = result;
 
                 if (!result) {
-                    response.Messages.Add(new ErrorMessageModel()
+                    response.ErrorMessages.Add(new ErrorMessageModel()
                     {
                         ExternalMessage = "Unable to delete the profile",
                         InternalMessage = "Unable to delete the profile"
@@ -184,7 +184,7 @@ namespace Services.Profiles
             {
 
                 response.Success = false;
-                response.Messages.Add(new ErrorMessageModel()
+                response.ErrorMessages.Add(new ErrorMessageModel()
                 {
                     ExternalMessage = ex.Message,
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting

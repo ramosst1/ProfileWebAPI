@@ -1,7 +1,7 @@
 ﻿
 namespace Models.Profiles
 {
-    public class ProfileModel: ProfileBase
+    public class ProfileModel: ProfileModelBase
     {
 
         public int ProfileId { get; set; }

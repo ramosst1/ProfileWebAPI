@@ -7,7 +7,7 @@ namespace WebAPI.Validators
     {
         public ProfileUpdateValidator()
         {
-            Include(new ProfileBaseValidator());
+            Include(new ProfileModelBaseValidator());
 
             RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a valid id.");
             RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressUpdateValidator());

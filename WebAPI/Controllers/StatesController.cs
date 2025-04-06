@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
             if (response.Success)
                 return Ok(response.data);
 
-            return BadRequest(response.Messages);
+            return BadRequest(response.ErrorMessages);
         }
      }
  }

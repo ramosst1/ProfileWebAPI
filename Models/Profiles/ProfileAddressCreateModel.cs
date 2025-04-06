@@ -1,7 +1,7 @@
 ﻿
 namespace Models.Profiles
 {
-    public class ProfileAddressCreateModel : AddressBase
+    public class ProfileAddressCreateModel : AddressModelBase
     {
         public int AddressId { get; set; }
 

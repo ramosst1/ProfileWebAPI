@@ -3,10 +3,10 @@ using Models;
 
 namespace WebAPI.Validators
 {
-    public class AddressBaseValidator : AbstractValidator<AddressBase>
+    public class AddressModelBaseValidator : AbstractValidator<AddressModelBase>
     {
 
-        public AddressBaseValidator()
+        public AddressModelBaseValidator()
         {
             RuleFor(field => field.Address1).NotEmpty().WithMessage("{PropertyName} is required.");
             RuleFor(field => field.Address1)

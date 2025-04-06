@@ -59,7 +59,7 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.CreateProfileAsync(profileToCreate).Result;
 
             Assert.AreEqual(actualResults.Success, true);
-            Assert.AreEqual(actualResults.Messages.Any(), false);
+            Assert.AreEqual(actualResults.ErrorMessages.Any(), false);
 
             Assert.AreEqual(actualResults.data.ProfileId, 1);
             Assert.AreEqual(actualResults.data.FirstName, profileToCreate.FirstName);
@@ -88,8 +88,8 @@ namespace UnitTests.Services.Profiles
 
             Assert.AreEqual(actualResults.Success, false);
             Assert.AreEqual(actualResults.data, null);
-            Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
-            Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, InternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, ExternalErrorMessage);
         }
 
     }

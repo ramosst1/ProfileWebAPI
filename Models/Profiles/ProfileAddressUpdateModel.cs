@@ -1,6 +1,6 @@
 ﻿namespace Models.Profiles
 {
-    public class ProfileAddressUpdateModel : AddressBase
+    public class ProfileAddressUpdateModel : AddressModelBase
     {
         public int ProfileId { get; set; }
         public int AddressId { get; set; }

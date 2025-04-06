@@ -9,7 +9,7 @@ namespace WebAPI.Validators
         public ProfileAddressValidator()
         {
 
-            Include(new AddressBaseValidator());
+            Include(new AddressModelBaseValidator());
             RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a valid id.");
 
             RuleFor(field => field.AddressId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper address id.");

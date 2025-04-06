@@ -23,7 +23,7 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.DeleteProfilesAsync(2).Result;
 
             Assert.AreEqual(actualResults.Success, true);
-            Assert.AreEqual(actualResults.Messages.Any(), false);
+            Assert.AreEqual(actualResults.ErrorMessages.Any(), false);
         }
 
         [TestMethod]
@@ -39,8 +39,8 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.DeleteProfilesAsync(3).Result;
 
             Assert.AreEqual(actualResults.Success, false);
-            Assert.AreEqual(actualResults.Messages[0].InternalMessage, "Unable to delete the profile");
-            Assert.AreEqual(actualResults.Messages[0].ExternalMessage, "Unable to delete the profile");
+            Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, "Unable to delete the profile");
+            Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, "Unable to delete the profile");
         }
 
         [TestMethod]
@@ -56,8 +56,8 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.DeleteProfilesAsync(2).Result;
 
             Assert.AreEqual(actualResults.Success, false);
-            Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
-            Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, InternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, ExternalErrorMessage);
 
         }
     }

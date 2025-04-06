@@ -32,7 +32,7 @@ namespace Services.States
             {
 
                 response.Success = false;
-                response.Messages.Add(new ErrorMessageModel()
+                response.ErrorMessages.Add(new ErrorMessageModel()
                 {
                     ExternalMessage = ex.Message,
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting

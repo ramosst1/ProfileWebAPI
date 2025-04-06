@@ -37,7 +37,7 @@ namespace UnitTests.Services.States
             var actualResults = statesServices.GetAllStatesAsync().Result;
 
             Assert.AreEqual(actualResults.Success, true);
-            Assert.AreEqual(actualResults.Messages.Any(), false);
+            Assert.AreEqual(actualResults.ErrorMessages.Any(), false);
 
             for (var i = 0; i < actualStates.Count; i++)
             {
@@ -58,7 +58,7 @@ namespace UnitTests.Services.States
             var actualResults = statesServices.GetAllStatesAsync().Result;
 
 
-            Assert.AreEqual(actualResults.Messages.Any(), false);
+            Assert.AreEqual(actualResults.ErrorMessages.Any(), false);
             Assert.AreEqual(actualResults.Success, true);
             Assert.AreEqual(actualResults.data.Any(), false);
 
@@ -78,8 +78,8 @@ namespace UnitTests.Services.States
 
             Assert.AreEqual(actualResults.Success, false);
             Assert.AreEqual(actualResults.data, null);
-            Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
-            Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, InternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, ExternalErrorMessage);
         }
 
     }

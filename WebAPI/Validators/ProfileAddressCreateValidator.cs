@@ -8,7 +8,7 @@ namespace WebAPI.Validators
 
         public ProfileAddressCreateValidator()
         {
-            Include(new AddressBaseValidator());
+            Include(new AddressModelBaseValidator());
 
             RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
 

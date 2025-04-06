@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
             if(response.Success)
                 return Ok(response.data);
 
-            return BadRequest(response.Messages);
+            return BadRequest(response.ErrorMessages);
         }
 
         // GET api/v1/profiles/5
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             if (response.Success)
                 return Ok(response.data);
 
-            return BadRequest(response.Messages);
+            return BadRequest(response.ErrorMessages);
         }
 
         // POST api/v1/profiles
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
             if (response.Success)
                 return Ok(response.data);
 
-            return BadRequest(response.Messages);
+            return BadRequest(response.ErrorMessages);
         }
 
         // PUT api/v1/profile/Profile
@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
             if (response.Success)
                 return Ok(response);
 
-            return BadRequest(response.Messages);
+            return BadRequest(response.ErrorMessages);
         }
 
     }

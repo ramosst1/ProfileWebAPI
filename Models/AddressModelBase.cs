@@ -1,8 +1,8 @@
 ﻿namespace Models
 {
-    public abstract class AddressBase
+    public abstract class AddressModelBase
     {
-        private protected AddressBase() { }
+        private protected AddressModelBase() { }
 
         public string Address1 { get; set; } = string.Empty;
         public string Address2 { get; set; } = string.Empty;

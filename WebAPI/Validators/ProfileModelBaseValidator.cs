@@ -3,9 +3,9 @@ using Models.Profiles;
 
 namespace WebAPI.Validators
 {
-    public class ProfileBaseValidator : AbstractValidator<ProfileBase>
+    public class ProfileModelBaseValidator : AbstractValidator<ProfileModelBase>
     {
-        public ProfileBaseValidator()
+        public ProfileModelBaseValidator()
         {
 
             RuleFor(field => field.FirstName).NotEmpty().WithMessage("{PropertyName} is required.")

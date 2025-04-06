@@ -58,7 +58,7 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.UpdateProfileAsync(profileToUpdate).Result;
 
             Assert.AreEqual(actualResults.Success, true);
-            Assert.AreEqual(actualResults.Messages.Any(), false);
+            Assert.AreEqual(actualResults.ErrorMessages.Any(), false);
 
             Assert.AreEqual(actualResults.data.ProfileId, profileToUpdate.ProfileId);
             Assert.AreEqual(actualResults.data.FirstName, profileToUpdate.FirstName);
@@ -87,8 +87,8 @@ namespace UnitTests.Services.Profiles
             var actualResults = profileService.UpdateProfileAsync(new ProfileUpdateModel()).Result;
 
             Assert.AreEqual(actualResults.Success, false);
-            Assert.AreEqual(actualResults.Messages[0].InternalMessage, "Unable to update the profile");
-            Assert.AreEqual(actualResults.Messages[0].ExternalMessage, "Unable to update the profile");
+            Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, "Unable to update the profile");
+            Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, "Unable to update the profile");
         }
 
         [TestMethod]
@@ -105,8 +105,8 @@ namespace UnitTests.Services.Profiles
 
             Assert.AreEqual(actualResults.Success, false);
             Assert.AreEqual(actualResults.data, null);
-            Assert.AreEqual(actualResults.Messages[0].InternalMessage, InternalErrorMessage);
-            Assert.AreEqual(actualResults.Messages[0].ExternalMessage, ExternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, InternalErrorMessage);
+            Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, ExternalErrorMessage);
         }
     }
 }
