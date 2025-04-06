@@ -1,7 +1,7 @@
 ﻿using Models.States;
 using Profiles.Models.APIResponses;
 
-namespace Services.States
+namespace Services.States.Interfaces
 {
     public interface IStatesServices
     {

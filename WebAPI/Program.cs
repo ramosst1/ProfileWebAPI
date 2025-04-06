@@ -1,7 +1,6 @@
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using Repositories.Profiles;
-using Profiles;
 using Repositories.States;
 using Services.Profiles;
 using Services.States;
@@ -9,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using WebAPI.Model;
 using System.Runtime.Serialization;
+using Services.Profiles.Interfaces;
+using Services.States.Interfaces;
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);

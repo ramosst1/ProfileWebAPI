@@ -1,10 +1,8 @@
 ﻿
-using Models.Profiles.interfaces;
-
 namespace Models.Profiles
 {
-    public class ProfileCreateModel : ProfileBase, IProfileCreateModel
+    public class ProfileCreateModel : ProfileBase
     {
-        public List<IProfileAddressCreateModel> Addresses { get; set; } = new List<IProfileAddressCreateModel>();
+        public List<ProfileAddressCreateModel> Addresses { get; set; } = new List<ProfileAddressCreateModel>();
     }
 }

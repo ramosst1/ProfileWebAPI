@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.States;
+using Services.States.Interfaces;
 
 namespace WebAPI.Controllers
 {

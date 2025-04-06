@@ -2,6 +2,7 @@
 using Models.States;
 using Profiles.Models.APIResponses;
 using Repositories.States;
+using Services.States.Interfaces;
 using Utilities.Converters.ObjectConverter; 
 
 namespace Services.States

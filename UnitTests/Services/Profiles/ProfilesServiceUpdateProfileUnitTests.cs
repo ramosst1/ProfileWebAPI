@@ -1,5 +1,4 @@
 ﻿using Models.Profiles;
-using Models.Profiles.interfaces;
 using Moq;
 using Repositories.Models.Profiles;
 using Repositories.Profiles;
@@ -40,7 +39,7 @@ namespace UnitTests.Services.Profiles
                 LastName = "Update Last Name",
                 Active = true,
                 Addresses =
-                    new List<IProfileAddressUpdateModel>(){ new ProfileAddressUpdateModel() {
+                    new List<ProfileAddressUpdateModel>(){ new ProfileAddressUpdateModel() {
                         AddressId = 10,
                         Address1 = "Updated Address 1",
                         Address2 = "Updated Address 2",

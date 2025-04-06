@@ -1,5 +1,4 @@
 ﻿using Models.Profiles;
-using Models.Profiles.interfaces;
 using Moq;
 using Repositories.Models.Profiles;
 using Repositories.Profiles;
@@ -36,13 +35,13 @@ namespace UnitTests.Services.Profiles
                     }}
             };
 
-            IProfileCreateModel profileToCreate = new ProfileCreateModel
+            var profileToCreate = new ProfileCreateModel
             {
                 FirstName = "My First Name",
                 LastName = "My Last Name",
                 Active = true,
                 Addresses =
-                    new List<IProfileAddressCreateModel>(){ new ProfileAddressCreateModel() {
+                    new List<ProfileAddressCreateModel>(){ new ProfileAddressCreateModel() {
                         Address1 = "My Address 1",
                         Address2 = "My Address 2",
                         City = "My City",

@@ -1,22 +1,18 @@
-﻿using Models.APIResponses.interfaces;
+﻿using Models.APIResponses;
 
 namespace Profiles.Models.APIResponses
 {
-    public abstract class ApiResponseBase {
-
-        private protected ApiResponseBase(){}
-
+    public class ApiResponse
+    {
         public bool Success { get; set; }
-
-        public List<IErrorMessageModel> Messages { get; set; } = new List<IErrorMessageModel>();
+        public List<ErrorMessageModel> Messages { get; set; } = new List<ErrorMessageModel>();
     }
 
-    public class ApiResponse : ApiResponseBase, IApiResponse
+    public class ApiResponse<TResponse>
     {
-    }
+        public bool Success { get; set; }
+        public List<ErrorMessageModel> Messages { get; set; } = new List<ErrorMessageModel>();
 
-    public class ApiResponse<TResponse>: ApiResponseBase, IApiResponse<TResponse>
-    {
         public TResponse? data { get; set; }
     }
 

@@ -1,11 +1,9 @@
 ﻿using Models.APIResponses;
-using Models.APIResponses.interfaces;
 using Models.Profiles;
-using Models.Profiles.interfaces;
-using Profiles;
 using Profiles.Models.APIResponses;
 using Repositories.Models.Profiles;
 using Repositories.Profiles;
+using Services.Profiles.Interfaces;
 using Utilities.Converters.ObjectConverter;
 
 namespace Services.Profiles
@@ -19,16 +17,16 @@ namespace Services.Profiles
         {
             _profileRepository = profileRepository;
         }
-        public async Task<IApiResponse<List<IProfileModel>>> GetProfilesAsync()
+        public async Task<ApiResponse<List<ProfileModel>>> GetProfilesAsync()
         {
 
-            IApiResponse<List<IProfileModel>> response = new ApiResponse<List<IProfileModel>>();
+            var response = new ApiResponse<List<ProfileModel>>();
 
             try
             {
                 var profiles = await _profileRepository.GetProfilesAsync();
 
-                response.data = Convert<List<ProfileDto>, List<IProfileModel>>(profiles);
+                response.data = Convert<List<ProfileDto>, List<ProfileModel>>(profiles);
 
                 response.Success = true;
             }
@@ -46,10 +44,10 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<IApiResponse<IProfileModel>> GetProfileByIdAsync(int profileId)
+        public async Task<ApiResponse<ProfileModel>> GetProfileByIdAsync(int profileId)
         {
 
-            IApiResponse<IProfileModel> response = new ApiResponse<IProfileModel>();
+            var response = new ApiResponse<ProfileModel>();
 
             try
             {
@@ -61,7 +59,7 @@ namespace Services.Profiles
                     response.Success = false;
                 }
                 else {
-                    response.data = Convert<ProfileDto, IProfileModel>(profile);
+                    response.data = Convert<ProfileDto, ProfileModel>(profile);
 
                     response.Success = true;
                 }
@@ -80,12 +78,12 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<IApiResponse<IProfileModel>> CreateProfileAsync(IProfileCreateModel aProfile)
+        public async Task<ApiResponse<ProfileModel>> CreateProfileAsync(ProfileCreateModel aProfile)
         {
-            IApiResponse<IProfileModel> response = new ApiResponse<IProfileModel>();
+            var response = new ApiResponse<ProfileModel>();
             try
             {
-                var newProfile = Convert<IProfileCreateModel, ProfileCreateDto>(aProfile);
+                var newProfile = Convert<ProfileCreateModel, ProfileCreateDto>(aProfile);
 
                 var newProfileCreated = await _profileRepository.CreateProfileAsync(newProfile);
 
@@ -121,13 +119,14 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<IApiResponse<IProfileModel>> UpdateProfileAsync(IProfileUpdateModel aProfile)
+        public async Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfile)
         {
 
-            IApiResponse<IProfileModel> response = new ApiResponse<IProfileModel>();
+            var response = new ApiResponse<ProfileModel>();
+
             try
             {
-                var newProfile = Convert<IProfileUpdateModel, ProfileUpdateDto>(aProfile);
+                var newProfile = Convert<ProfileUpdateModel, ProfileUpdateDto>(aProfile);
 
                 var updatedProfileCreated = await _profileRepository.UpdateProfileAsync(newProfile);
 
@@ -162,9 +161,9 @@ namespace Services.Profiles
             return response;
         }
 
-        public async Task<IApiResponse> DeleteProfilesAsync(int profileId)
+        public async Task<ApiResponse> DeleteProfilesAsync(int profileId)
         {
-            IApiResponse response = new ApiResponse();
+            var response = new ApiResponse();
 
             try
             {
