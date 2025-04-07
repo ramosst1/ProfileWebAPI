@@ -24,7 +24,7 @@ namespace Services.States
             {
                 var states = await _statesRepository.GetAllStatesAsync();
 
-                response.data = states.MapData();
+                response.data = states.MapDataAsStateModel();
 
                 response.Success = true;
             }

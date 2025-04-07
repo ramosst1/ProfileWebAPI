@@ -6,28 +6,28 @@ namespace Services.Profiles.DataMapper
     public static class ProfileAddressModelDataMapper
     {
 
-        public static  List<ProfileAddressModel> MapData(this List<ProfileAddressDto> profileAddress)
+        public static  List<ProfileAddressModel> MapDataAsProfileAddressModel(this List<ProfileAddressDto> profileAddress)
         {
             var results = new List<ProfileAddressModel>();
 
             results.AddRange(
-                profileAddress.Select(item => MapData(item))
+                profileAddress.Select(item => MapDataAsProfileAddressModel(item))
             );
 
             return results;
         }
 
-        public static List<ProfileAddressDto> MapData(this List<ProfileAddressModel> profileAddress)
+        public static List<ProfileAddressDto> MapDataAsProfileAddressDto(this List<ProfileAddressModel> profileAddress)
         {
             var results = new List<ProfileAddressDto>();
             results.AddRange(
-                profileAddress.Select(item => MapData(item))
+                profileAddress.Select(item => MapDataAsProfileAddressDto(item))
             );
 
             return results;
         }
 
-        private static ProfileAddressModel MapData(this ProfileAddressDto profileAddress)
+        private static ProfileAddressModel MapDataAsProfileAddressModel(this ProfileAddressDto profileAddress)
         {
 
             return new ProfileAddressModel()
@@ -44,7 +44,7 @@ namespace Services.Profiles.DataMapper
             };
         }
 
-        private static ProfileAddressDto MapData(this ProfileAddressModel profileAddress)
+        private static ProfileAddressDto MapDataAsProfileAddressDto(this ProfileAddressModel profileAddress)
         {
 
             return new ProfileAddressDto()

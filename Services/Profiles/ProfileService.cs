@@ -27,7 +27,7 @@ namespace Services.Profiles
             {
                 var profiles = await _profileRepository.GetProfilesAsync();
 
-                response.data = profiles.MapData();
+                response.data = profiles.MapDataAsProfileModel();
 
                 response.Success = true;
             }
@@ -84,7 +84,7 @@ namespace Services.Profiles
             var response = new ApiResponse<ProfileModel>();
             try
             {
-                var newProfile = aProfile.MapData();
+                var newProfile = aProfile.MapDataAsProfileCreateDto();
 
                 var newProfileCreated = await _profileRepository.CreateProfileAsync(newProfile);
 
@@ -99,7 +99,7 @@ namespace Services.Profiles
                 }
                 else
                 {
-                    response.data = newProfileCreated.MapData();
+                    response.data = newProfileCreated.MapDataAsProfileModel();
 
                     response.Success = true;
                 }
@@ -126,7 +126,7 @@ namespace Services.Profiles
 
             try
             {
-                var newProfile = aProfile.MapData();
+                var newProfile = aProfile.MapDataAsProfileUpdateDto();
 
                 var updatedProfileCreated = await _profileRepository.UpdateProfileAsync(newProfile);
 
@@ -141,7 +141,7 @@ namespace Services.Profiles
                 }
                 else {
 
-                    response.data = updatedProfileCreated.MapData();
+                    response.data = updatedProfileCreated.MapDataAsProfileModel();
 
                     response.Success = true;
                 }

@@ -6,18 +6,17 @@ namespace Services.Profiles.DataMapper
     public static class ProfileAddressCreateModelDataMapper
     {
 
-        public static List<ProfileAddressCreateDto> MapData(this List<ProfileAddressCreateModel> profile)
+        public static List<ProfileAddressCreateDto> MapDataAsProfileAddressCreateDto(this List<ProfileAddressCreateModel> profile)
         {
             var results = new List<ProfileAddressCreateDto>();
             results.AddRange(
-                profile.Select(item => MapData(item))
+                profile.Select(item => MapDataAsProfileAddressCreateDto(item))
             );
 
             return results;
         }
 
-
-        private static ProfileAddressCreateDto MapData(this ProfileAddressCreateModel profileAddress)
+        private static ProfileAddressCreateDto MapDataAsProfileAddressCreateDto(this ProfileAddressCreateModel profileAddress)
         {
 
             return new ProfileAddressCreateDto()

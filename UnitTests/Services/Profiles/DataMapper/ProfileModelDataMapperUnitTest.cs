@@ -143,7 +143,7 @@ namespace UnitTests.Services.Profiles.DataMapper
                 }
             };
 
-            List<ProfileDto> actual = source.MapData();
+            List<ProfileDto> actual = source.MapDataAsProfileDto();
 
             Assert.AreEqual(expecting.Count, actual.Count);
 

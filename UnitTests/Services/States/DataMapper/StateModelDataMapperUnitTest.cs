@@ -20,7 +20,7 @@ namespace UnitTests.Services.States.DataMapper
                 new () { StateAbrev = "CT", StateName = "Conneticult" }
             };
 
-            List<StateModel> actual = source.MapData();
+            List<StateModel> actual = source.MapDataAsStateModel();
 
             Assert.AreEqual(expecting.Count, actual.Count);
 

@@ -6,7 +6,7 @@ namespace Services.Profiles.DataMapper
     public static class ProfileCreateModelDataMapper
     {
 
-        public static ProfileCreateDto MapData(this ProfileCreateModel profile)
+        public static ProfileCreateDto MapDataAsProfileCreateDto(this ProfileCreateModel profile)
         {
 
             return new ProfileCreateDto()
@@ -14,7 +14,7 @@ namespace Services.Profiles.DataMapper
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Active = profile.Active,
-                Addresses = profile.Addresses.MapData()
+                Addresses = profile.Addresses.MapDataAsProfileAddressCreateDto()
             };
 
         }

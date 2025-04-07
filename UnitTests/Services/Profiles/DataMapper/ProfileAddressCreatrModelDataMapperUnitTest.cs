@@ -57,7 +57,7 @@ namespace UnitTests.Services.Profiles.DataMapper
                 }
             };
 
-            List<ProfileAddressCreateDto> actual = source.MapData();
+            List<ProfileAddressCreateDto> actual = source.MapDataAsProfileAddressCreateDto();
 
             Assert.AreEqual(expecting.Count, actual.Count);
 

@@ -5,28 +5,28 @@ namespace Services.Profiles.DataMapper
 {
     public static class ProfileModelDataMapper
     {
-        public static List<ProfileModel> MapData(this List<ProfileDto> profile)
+        public static List<ProfileModel> MapDataAsProfileModel(this List<ProfileDto> profile)
         {
             var results = new List<ProfileModel>();
 
             results.AddRange(
-                profile.Select(item => MapData(item))
+                profile.Select(item => MapDataAsProfileModel(item))
             );
 
             return results;
         }
 
-        public static List<ProfileDto> MapData(this List<ProfileModel> profile)
+        public static List<ProfileDto> MapDataAsProfileDto(this List<ProfileModel> profile)
         {
             var results = new List<ProfileDto>();
             results.AddRange(
-                profile.Select(item => MapData(item))
+                profile.Select(item => MapDataAsMapDataAsProfileDto(item))
             );
 
             return results;
         }
 
-        private static ProfileModel MapData(this ProfileDto profile)
+        private static ProfileModel MapDataAsProfileModel(this ProfileDto profile)
         {
 
             return new ProfileModel()
@@ -35,11 +35,11 @@ namespace Services.Profiles.DataMapper
                 LastName = profile.LastName,
                 Active = profile.Active,
                 ProfileId = profile.ProfileId,
-                Addresses = profile.Addresses.MapData()
+                Addresses = profile.Addresses.MapDataAsProfileAddressModel()
             };
         }
 
-        private static ProfileDto MapData(this ProfileModel profile)
+        private static ProfileDto MapDataAsMapDataAsProfileDto(this ProfileModel profile)
         {
 
             return new ProfileDto()
@@ -48,7 +48,7 @@ namespace Services.Profiles.DataMapper
                 LastName = profile.LastName,
                 Active = profile.Active,
                 ProfileId = profile.ProfileId,
-                Addresses = profile.Addresses.MapData()
+                Addresses = profile.Addresses.MapDataAsProfileAddressDto()
             };
         }
     }

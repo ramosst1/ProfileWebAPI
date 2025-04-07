@@ -5,17 +5,17 @@ namespace Services.States.DataMapper
 {
     public static class StateModelDataMapper
     {
-        public static List<StateModel> MapData(this List<StateDto> list)
+        public static List<StateModel> MapDataAsStateModel(this List<StateDto> list)
         {
             var results = new List<StateModel>();
             results.AddRange(
-                list.Select(item => MapData(item))
+                list.Select(item => MapDataAsStateModel(item))
             );
 
             return results;
         }
 
-        private static StateModel MapData(this StateDto address)
+        private static StateModel MapDataAsStateModel(this StateDto address)
         {
             return new StateModel()
             {

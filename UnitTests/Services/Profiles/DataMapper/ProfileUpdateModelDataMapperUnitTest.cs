@@ -75,7 +75,7 @@ namespace UnitTests.Services.Profiles.DataMapper
                     Addresses = expectedAddresses1
             };
 
-            ProfileUpdateDto actual = source.MapData();
+            ProfileUpdateDto actual = source.MapDataAsProfileUpdateDto();
 
             Assert.AreEqual(actual.ProfileId, expecting.ProfileId);
             Assert.AreEqual(actual.FirstName, expecting.FirstName);

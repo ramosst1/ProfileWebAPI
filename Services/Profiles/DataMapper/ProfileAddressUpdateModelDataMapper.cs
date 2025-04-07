@@ -6,18 +6,18 @@ namespace Services.Profiles.DataMapper
     public static class ProfileAddressUpdateModelDataMapper
     {
 
-        public static List<ProfileAddressUpdateDto> MapData(this List<ProfileAddressUpdateModel> profileAddress)
+        public static List<ProfileAddressUpdateDto> MapDataAsProfileAddressUpdateDto(this List<ProfileAddressUpdateModel> profileAddress)
         {
             var results = new List<ProfileAddressUpdateDto>();
 
             results.AddRange(
-                profileAddress.Select(item => MapData(item))
+                profileAddress.Select(item => MapDataAsProfileAddressUpdateDto(item))
             );
 
             return results;
         }
         
-        private static ProfileAddressUpdateDto MapData(this ProfileAddressUpdateModel profileAddress)
+        private static ProfileAddressUpdateDto MapDataAsProfileAddressUpdateDto(this ProfileAddressUpdateModel profileAddress)
         {
 
             return new ProfileAddressUpdateDto()

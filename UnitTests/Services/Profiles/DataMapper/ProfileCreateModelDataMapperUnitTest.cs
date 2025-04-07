@@ -69,7 +69,7 @@ namespace UnitTests.Services.Profiles.DataMapper
                     Addresses = expectedAddresses1
                 };
 
-            ProfileCreateDto actual = source.MapData();
+            ProfileCreateDto actual = source.MapDataAsProfileCreateDto();
 
             Assert.AreEqual(actual.FirstName, expecting.FirstName);
             Assert.AreEqual(actual.LastName, expecting.LastName);
