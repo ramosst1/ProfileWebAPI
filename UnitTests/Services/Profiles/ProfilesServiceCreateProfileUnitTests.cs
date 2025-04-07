@@ -27,10 +27,10 @@ namespace UnitTests.Services.Profiles
                 Addresses =
                     new List<ProfileAddressDto>(){ new ProfileAddressDto() {
                         AddressId = 10,
-                        AddressName1 = "My Address 1",
-                        AddressName2 = "My Address 2",
+                        Address1 = "My Address 1",
+                        Address2 = "My Address 2",
                         City = "My City",
-                        StateAbreviated = "CT", IsPrimary = true,
+                        StateAbrev = "CT", IsPrimary = true,
                         ZipCode = "54321"
                     }}
             };
@@ -42,10 +42,10 @@ namespace UnitTests.Services.Profiles
                 Active = true,
                 Addresses =
                     new List<ProfileAddressCreateModel>(){ new ProfileAddressCreateModel() {
-                        Address1 = "My Address 1",
-                        Address2 = "My Address 2",
+                        AddressName1 = "My Address 1",
+                        AddressName2 = "My Address 2",
                         City = "My City",
-                        StateAbrev = "CT", IsPrimary = true,
+                        StateAbreviation = "CT", IsPrimary = true,
                         ZipCode = "54321"
                     }}
             };
@@ -67,10 +67,10 @@ namespace UnitTests.Services.Profiles
             Assert.AreEqual(actualResults.data.Active, profileToCreate.Active);
 
             Assert.AreEqual(actualResults.data.Addresses[0].AddressId, 10);
-            Assert.AreEqual(actualResults.data.Addresses[0].Address1, profileToCreate.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.data.Addresses[0].Address2, profileToCreate.Addresses[0].Address2);
+            Assert.AreEqual(actualResults.data.Addresses[0].AddressName1, profileToCreate.Addresses[0].AddressName1);
+            Assert.AreEqual(actualResults.data.Addresses[0].AddressName2, profileToCreate.Addresses[0].AddressName2);
             Assert.AreEqual(actualResults.data.Addresses[0].City, profileToCreate.Addresses[0].City);
-            Assert.AreEqual(actualResults.data.Addresses[0].StateAbrev, profileToCreate.Addresses[0].StateAbrev);
+            Assert.AreEqual(actualResults.data.Addresses[0].StateAbreviation, profileToCreate.Addresses[0].StateAbreviation);
             Assert.AreEqual(actualResults.data.Addresses[0].ZipCode, profileToCreate.Addresses[0].ZipCode);
         }
 

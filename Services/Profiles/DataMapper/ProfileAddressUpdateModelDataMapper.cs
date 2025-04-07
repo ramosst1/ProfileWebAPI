@@ -22,10 +22,10 @@ namespace Services.Profiles.DataMapper
 
             return new ProfileAddressUpdateDto()
             {
-                AddressName1 = profileAddress.Address1,
-                AddressName2 = profileAddress.Address2,
+                Address1 = profileAddress.AddressName1,
+                Address2 = profileAddress.AddressName2,
                 City = profileAddress.City,
-                StateAbreviated = profileAddress.StateAbrev,
+                StateAbrev = profileAddress.StateAbreviation,
                 ZipCode = profileAddress.ZipCode,
                 ProfileId = profileAddress.ProfileId,
                 AddressId = profileAddress.AddressId,

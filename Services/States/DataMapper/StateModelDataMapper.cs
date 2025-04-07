@@ -19,8 +19,8 @@ namespace Services.States.DataMapper
         {
             return new StateModel()
             {
-                StateAbrev = address.StateAbrev,
-                StateName = address.StateFullName
+                StateAbreviation = address.StateAbrev,
+                StateName = address.StateName
             };
         }
     }

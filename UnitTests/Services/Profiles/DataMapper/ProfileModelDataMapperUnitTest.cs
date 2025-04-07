@@ -14,10 +14,10 @@ namespace UnitTests.Services.Profiles.DataMapper
 
             List<ProfileAddressDto> expectedAddresses1 = new (){
                 new (){
-                    AddressName1 = "My Address1 1",
-                    AddressName2 = "My Address2 1",
+                    Address1 = "My Address1 1",
+                    Address2 = "My Address2 1",
                     City = "My City 1",
-                    StateAbreviated = "My StateAbrev 1",
+                    StateAbrev = "My StateAbrev 1",
                     ZipCode = "12345678",
                     ProfileId = 1,
                     AddressId = 2,
@@ -25,10 +25,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                     IsSecondary = true
                 },
                 new (){
-                    AddressName1 = "My Address1 2",
-                    AddressName2 = "My Address2 2",
+                    Address1 = "My Address1 2",
+                    Address2 = "My Address2 2",
                     City = "My City 2",
-                    StateAbreviated = "My StateAbrev 2",
+                    StateAbrev = "My StateAbrev 2",
                     ZipCode = "87654321",
                     ProfileId = 3,
                     AddressId = 4,
@@ -39,10 +39,10 @@ namespace UnitTests.Services.Profiles.DataMapper
 
             List<ProfileAddressDto> expectedAddresses2 = new() {
                 new (){
-                    AddressName1 = "My Address1 3",
-                    AddressName2 = "My Address2 3",
+                    Address1 = "My Address1 3",
+                    Address2 = "My Address2 3",
                     City = "My City 4",
-                    StateAbreviated = "My StateAbrev 3",
+                    StateAbrev = "My StateAbrev 3",
                     ZipCode = "12345678",
                     ProfileId = 5,
                     AddressId = 6,
@@ -50,10 +50,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                     IsSecondary = true
                 },
                 new (){
-                    AddressName1 = "My Address1 4",
-                    AddressName2 = "My Address2 4",
+                    Address1 = "My Address1 4",
+                    Address2 = "My Address2 4",
                     City = "My City 4",
-                    StateAbreviated = "My StateAbrev 4",
+                    StateAbrev = "My StateAbrev 4",
                     ZipCode = "87654321",
                     ProfileId = 6,
                     AddressId = 7,
@@ -70,10 +70,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                     Active = true,
                     Addresses = new List<ProfileAddressModel>{
                         new (){
-                            Address1 = "My Address1 1",
-                            Address2 = "My Address2 1",
+                            AddressName1 = "My Address1 1",
+                            AddressName2 = "My Address2 1",
                             City = "My City 1",
-                            StateAbrev = "My StateAbrev 1",
+                            StateAbreviation = "My StateAbrev 1",
                             ZipCode = "12345678",
                             ProfileId = 1,
                             AddressId = 2,
@@ -81,10 +81,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                             IsSecondary = true
                         },
                         new (){
-                            Address1 = "My Address1 2",
-                            Address2 = "My Address2 2",
+                            AddressName1 = "My Address1 2",
+                            AddressName2 = "My Address2 2",
                             City = "My City 2",
-                            StateAbrev = "My StateAbrev 2",
+                            StateAbreviation = "My StateAbrev 2",
                             ZipCode = "87654321",
                             ProfileId = 3,
                             AddressId = 4,
@@ -101,10 +101,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                     Addresses = new List<ProfileAddressModel>
                     {
                         new (){
-                            Address1 = "My Address1 3",
-                            Address2 = "My Address2 3",
+                            AddressName1 = "My Address1 3",
+                            AddressName2 = "My Address2 3",
                             City = "My City 4",
-                            StateAbrev = "My StateAbrev 3",
+                            StateAbreviation = "My StateAbrev 3",
                             ZipCode = "12345678",
                             ProfileId = 5,
                             AddressId = 6,
@@ -112,10 +112,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                             IsSecondary = true
                         },
                         new (){
-                            Address1 = "My Address1 4",
-                            Address2 = "My Address2 4",
+                            AddressName1 = "My Address1 4",
+                            AddressName2 = "My Address2 4",
                             City = "My City 4",
-                            StateAbrev = "My StateAbrev 4",
+                            StateAbreviation = "My StateAbrev 4",
                             ZipCode = "87654321",
                             ProfileId = 6,
                             AddressId = 7,
@@ -155,10 +155,10 @@ namespace UnitTests.Services.Profiles.DataMapper
                 Assert.AreEqual(actual[i].Active, expecting[i].Active);
 
                 for (int j = 0; j < expecting.Count; j++) {
-                    Assert.AreEqual(actual[i].Addresses[j].AddressName1, expecting[i].Addresses[j].AddressName1);
-                    Assert.AreEqual(actual[i].Addresses[j].AddressName2, expecting[i].Addresses[j].AddressName2);
+                    Assert.AreEqual(actual[i].Addresses[j].Address1, expecting[i].Addresses[j].Address1);
+                    Assert.AreEqual(actual[i].Addresses[j].Address2, expecting[i].Addresses[j].Address2);
                     Assert.AreEqual(actual[i].Addresses[j].City, expecting[i].Addresses[j].City);
-                    Assert.AreEqual(actual[i].Addresses[j].StateAbreviated, expecting[i].Addresses[j].StateAbreviated);
+                    Assert.AreEqual(actual[i].Addresses[j].StateAbrev, expecting[i].Addresses[j].StateAbrev);
                     Assert.AreEqual(actual[i].Addresses[j].ZipCode, expecting[i].Addresses[j].ZipCode);
                     Assert.AreEqual(actual[i].Addresses[j].ProfileId, expecting[i].Addresses[j].ProfileId);
                     Assert.AreEqual(actual[i].Addresses[j].AddressId, expecting[i].Addresses[j].AddressId);

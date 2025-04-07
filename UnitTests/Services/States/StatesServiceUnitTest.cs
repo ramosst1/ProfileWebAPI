@@ -16,17 +16,17 @@ namespace UnitTests.Services.States
         public void Should_TheGetAllStatesAsync_ReturnsAListOfStates()
         {
             var expectedStates = new List<StateModel>() { 
-                new StateModel{ StateName = "New York", StateAbrev = "NY" },
-                new StateModel{ StateName = "New Jersey", StateAbrev = "NJ" },
-                new StateModel{ StateName = "Connecticut", StateAbrev = "CT" },
-                new StateModel{ StateName = "Main", StateAbrev = "ME" }
+                new StateModel{ StateName = "New York", StateAbreviation = "NY" },
+                new StateModel{ StateName = "New Jersey", StateAbreviation = "NJ" },
+                new StateModel{ StateName = "Connecticut", StateAbreviation = "CT" },
+                new StateModel{ StateName = "Main", StateAbreviation = "ME" }
             };
 
             var actualStates = new List<StateDto>() {
-                new StateDto{ StateFullName = "New York", StateAbrev = "NY" },
-                new StateDto{ StateFullName = "New Jersey", StateAbrev = "NJ" },
-                new StateDto{ StateFullName = "Connecticut", StateAbrev = "CT" },
-                new StateDto{ StateFullName = "Main", StateAbrev = "ME" }
+                new StateDto{ StateName = "New York", StateAbrev = "NY" },
+                new StateDto{ StateName = "New Jersey", StateAbrev = "NJ" },
+                new StateDto{ StateName = "Connecticut", StateAbrev = "CT" },
+                new StateDto{ StateName = "Main", StateAbrev = "ME" }
             };
 
             var statesRepository = new Mock<IStatesRepository>();
@@ -42,8 +42,8 @@ namespace UnitTests.Services.States
 
             for (var i = 0; i < actualStates.Count; i++)
             {
-                Assert.AreEqual(expectedStates[i].StateName, actualStates[i].StateFullName);
-                Assert.AreEqual(expectedStates[i].StateAbrev, actualStates[i].StateAbrev);
+                Assert.AreEqual(expectedStates[i].StateName, actualStates[i].StateName);
+                Assert.AreEqual(expectedStates[i].StateAbreviation, actualStates[i].StateAbrev);
             }
         }
 

@@ -8,17 +8,17 @@ namespace WebAPI.Validators
 
         public AddressModelBaseValidator()
         {
-            RuleFor(field => field.Address1).NotEmpty().WithMessage("{PropertyName} is required.");
-            RuleFor(field => field.Address1)
+            RuleFor(field => field.AddressName1).NotEmpty().WithMessage("{PropertyName} is required.");
+            RuleFor(field => field.AddressName1)
                 .MaximumLength(50).WithMessage("{PropertyName} can not exceed {MaxLength}.");
 
-            RuleFor(field => field.Address2)
+            RuleFor(field => field.AddressName2)
                 .MaximumLength(50).WithMessage("{PropertyName} can not exceed {MaxLength}.");
 
             RuleFor(field => field.City).NotEmpty().WithMessage("{PropertyName} is required.")
                 .MaximumLength(50).WithMessage("{PropertyName} can not exceed {MaxLength}.");
 
-            RuleFor(field => field.StateAbrev)
+            RuleFor(field => field.StateAbreviation)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .Length(2).WithMessage("{PropertyName} must contain 2 characters.");
 

@@ -32,10 +32,10 @@ namespace Services.Profiles.DataMapper
 
             return new ProfileAddressModel()
             {
-                Address1 = profileAddress.AddressName1,
-                Address2 = profileAddress.AddressName2,
+                AddressName1 = profileAddress.Address1,
+                AddressName2 = profileAddress.Address2,
                 City = profileAddress.City,
-                StateAbrev = profileAddress.StateAbreviated,  
+                StateAbreviation = profileAddress.StateAbrev,  
                 ZipCode = profileAddress.ZipCode,
                 ProfileId = profileAddress.ProfileId,
                 AddressId = profileAddress.AddressId,
@@ -49,10 +49,10 @@ namespace Services.Profiles.DataMapper
 
             return new ProfileAddressDto()
             {
-                AddressName1 = profileAddress.Address1,
-                AddressName2 = profileAddress.Address2,
+                Address1 = profileAddress.AddressName1,
+                Address2 = profileAddress.AddressName2,
                 City = profileAddress.City,
-                StateAbreviated = profileAddress.StateAbrev,
+                StateAbrev = profileAddress.StateAbreviation,
                 ZipCode = profileAddress.ZipCode,
                 ProfileId = profileAddress.ProfileId,
                 AddressId = profileAddress.AddressId,
