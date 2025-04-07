@@ -31,7 +31,7 @@ namespace UnitTests.Services.States
 
             var statesRepository = new Mock<IStatesRepository>();
 
-            var statesServices = new StatesServices(statesRepository.Object);
+            var statesServices = new StatesService(statesRepository.Object);
 
             statesRepository.Setup(x => x.GetAllStatesAsync()).ReturnsAsync(actualStates);
 
@@ -52,7 +52,7 @@ namespace UnitTests.Services.States
         {
             var statesRepository = new Mock<IStatesRepository>();
 
-            var statesServices = new StatesServices(statesRepository.Object);
+            var statesServices = new StatesService(statesRepository.Object);
 
             statesRepository.Setup(x => x.GetAllStatesAsync()).ReturnsAsync(new List<StateDto>());
 
@@ -70,7 +70,7 @@ namespace UnitTests.Services.States
         {
             var statesRepository = new Mock<IStatesRepository>();
 
-            var statesServices = new StatesServices(statesRepository.Object);
+            var statesServices = new StatesService(statesRepository.Object);
 
             statesRepository.Setup(x => x.GetAllStatesAsync())
                 .Throws<Exception>();

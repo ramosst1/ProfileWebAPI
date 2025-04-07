@@ -62,7 +62,7 @@ builder.Services.AddControllers()
 
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
-builder.Services.AddScoped<IStatesServices, StatesServices>();
+builder.Services.AddScoped<IStatesServices, StatesService>();
 builder.Services.AddScoped<IStatesRepository, StatesRepository>();
 builder.Services.AddScoped<IStatesDataSource, StatesJsonDataSource>();
 builder.Services.AddScoped<IProfileDataSource, ProfileDataJsonSource>();

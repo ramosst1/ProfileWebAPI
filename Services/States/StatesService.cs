@@ -7,11 +7,11 @@ using Services.States.Interfaces;
 
 namespace Services.States
 {
-    public class StatesServices : IStatesServices
+    public class StatesService : IStatesServices
     {
         private readonly IStatesRepository _statesRepository;
 
-        public StatesServices(IStatesRepository statesRepository)
+        public StatesService(IStatesRepository statesRepository)
         {
             _statesRepository = statesRepository;
         }
