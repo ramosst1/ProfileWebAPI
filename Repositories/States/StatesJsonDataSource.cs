@@ -13,17 +13,21 @@ namespace Repositories.States
 
             await Task.Run(() =>
             {
-                using (StreamReader r = new StreamReader(JSON_STATES_DATASOURCE))
-                {
-                    string json = r.ReadToEnd();
+                string statesJson = ReadFromStreamReader(JSON_STATES_DATASOURCE);
 
-                    var states = ConvertJsonToObject<List<StateDto>>(json);
+                var states = ConvertJsonToObject<List<StateDto>>(statesJson);
 
-                    statesList = states.Cast<StateDto>().ToList();
-                }
+                statesList = states.Cast<StateDto>().ToList();
             });
 
             return statesList;
+        }
+
+        private static string ReadFromStreamReader(string filePathSource) {
+            using (StreamReader r = new StreamReader(filePathSource))
+            {
+                 return r.ReadToEnd();
+            }
         }
 
         private static TObject ConvertJsonToObject<TObject>(string json)

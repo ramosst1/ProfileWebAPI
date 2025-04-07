@@ -23,14 +23,11 @@ namespace Repositories.Profiles
         {
             List<ProfileDto> profileList = new List<ProfileDto>();
 
-            using (StreamReader r = new StreamReader(JSON_DATASOURCE))
-            {
-                string json = r.ReadToEnd();
-                var ProfileJson = ConvertJsonToObject<List<ProfileDto>>(json);
+            var profilesJson = ReadFromStreamReader(JSON_DATASOURCE);
 
-                profileList = ProfileJson.Cast<ProfileDto>().OrderBy(aItem => $"{aItem.LastName}{aItem.FirstName}").ToList();
-
-            }
+            profileList = ConvertJsonToObject<List<ProfileDto>>(profilesJson)
+                .OrderBy(aItem => $"{aItem.LastName}{aItem.FirstName}")
+                .ToList();
 
             return profileList;
         }
@@ -41,6 +38,15 @@ namespace Repositories.Profiles
                 WriteJsonToFile(jsonContent);
             });
         }
+
+        private static string ReadFromStreamReader(string filePathSource)
+        {
+            using (StreamReader r = new StreamReader(filePathSource))
+            {
+                return r.ReadToEnd();
+            }
+        }
+
 
         private static void WriteJsonToFile(string jsonContent)
         {
