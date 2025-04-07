@@ -1,4 +1,4 @@
-﻿using Models.States;
+﻿using Repositories.Models.States;
 using Utilities.Converters.JsonObjectConverter;
 
 namespace Repositories.States

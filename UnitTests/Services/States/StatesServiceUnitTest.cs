@@ -2,6 +2,7 @@ using Moq;
 using Models.States;
 using Repositories.States;
 using Services.States;
+using Repositories.Models.States;
 
 namespace UnitTests.Services.States
 {
@@ -22,10 +23,10 @@ namespace UnitTests.Services.States
             };
 
             var actualStates = new List<StateDto>() {
-                new StateDto{ StateName = "New York", StateAbrev = "NY" },
-                new StateDto{ StateName = "New Jersey", StateAbrev = "NJ" },
-                new StateDto{ StateName = "Connecticut", StateAbrev = "CT" },
-                new StateDto{ StateName = "Main", StateAbrev = "ME" }
+                new StateDto{ StateFullName = "New York", StateAbrev = "NY" },
+                new StateDto{ StateFullName = "New Jersey", StateAbrev = "NJ" },
+                new StateDto{ StateFullName = "Connecticut", StateAbrev = "CT" },
+                new StateDto{ StateFullName = "Main", StateAbrev = "ME" }
             };
 
             var statesRepository = new Mock<IStatesRepository>();
@@ -41,7 +42,7 @@ namespace UnitTests.Services.States
 
             for (var i = 0; i < actualStates.Count; i++)
             {
-                Assert.AreEqual(expectedStates[i].StateName, actualStates[i].StateName);
+                Assert.AreEqual(expectedStates[i].StateName, actualStates[i].StateFullName);
                 Assert.AreEqual(expectedStates[i].StateAbrev, actualStates[i].StateAbrev);
             }
         }

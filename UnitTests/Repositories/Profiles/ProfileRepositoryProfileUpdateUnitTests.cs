@@ -25,10 +25,10 @@ namespace UnitTests.Repositories.Profiles
                         Addresses =
                             new List<ProfileAddressDto>(){ new ProfileAddressDto() {
                                 AddressId = 11,
-                                Address1 = "My Address 1",
-                                Address2 = "My Address 2",
+                                AddressName1 = "My Address 1",
+                                AddressName2 = "My Address 2",
                                 City = "My City",
-                                StateAbrev = "NY", IsPrimary = true,
+                                StateAbreviated = "NY", IsPrimary = true,
                                 ZipCode = "54321"
                             }}
 
@@ -44,10 +44,10 @@ namespace UnitTests.Repositories.Profiles
                 Addresses =
                             new List<ProfileAddressDto>(){ new ProfileAddressDto() {
                                 AddressId = 11,
-                                Address1 = "My Updated Address 1",
-                                Address2 = "My Update Address 2",
+                                AddressName1 = "My Updated Address 1",
+                                AddressName2 = "My Update Address 2",
                                 City = "My Update City",
-                                StateAbrev = "CT", IsPrimary = true,
+                                StateAbreviated = "CT", IsPrimary = true,
                                 ZipCode = "98765"
                             }}
             };
@@ -61,10 +61,10 @@ namespace UnitTests.Repositories.Profiles
                 Addresses =
                             new List<ProfileAddressUpdateDto>(){ new ProfileAddressUpdateDto() {
                                 AddressId = 11,
-                                Address1 = "My Updated Address 1",
-                                Address2 = "My Update Address 2",
+                                AddressName1 = "My Updated Address 1",
+                                AddressName2 = "My Update Address 2",
                                 City = "My Update City",
-                                StateAbrev = "CT", IsPrimary = true,
+                                StateAbreviated = "CT", IsPrimary = true,
                                 ZipCode = "98765"
                             }}
             };
@@ -82,10 +82,10 @@ namespace UnitTests.Repositories.Profiles
             Assert.AreEqual(actualResults.LastName, expectedProfile.LastName);
             Assert.AreEqual(actualResults.Active, expectedProfile.Active);
             Assert.AreEqual(actualResults.Addresses[0].AddressId, expectedProfile.Addresses[0].AddressId);
-            Assert.AreEqual(actualResults.Addresses[0].Address1, expectedProfile.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.Addresses[0].Address2, expectedProfile.Addresses[0].Address2);
+            Assert.AreEqual(actualResults.Addresses[0].AddressName1, expectedProfile.Addresses[0].AddressName1);
+            Assert.AreEqual(actualResults.Addresses[0].AddressName2, expectedProfile.Addresses[0].AddressName2);
             Assert.AreEqual(actualResults.Addresses[0].City, expectedProfile.Addresses[0].City);
-            Assert.AreEqual(actualResults.Addresses[0].StateAbrev, expectedProfile.Addresses[0].StateAbrev);
+            Assert.AreEqual(actualResults.Addresses[0].StateAbreviated, expectedProfile.Addresses[0].StateAbreviated);
             Assert.AreEqual(actualResults.Addresses[0].ZipCode, expectedProfile.Addresses[0].ZipCode);
         }
 

@@ -2,8 +2,8 @@
 using Models.States;
 using Profiles.Models.APIResponses;
 using Repositories.States;
+using Services.States.DataMapper;
 using Services.States.Interfaces;
-using Utilities.Converters.ObjectConverter; 
 
 namespace Services.States
 {
@@ -24,7 +24,7 @@ namespace Services.States
             {
                 var states = await _statesRepository.GetAllStatesAsync();
 
-                response.data = Convert<List<StateDto>, List<StateModel>>(states);
+                response.data = states.MapData();
 
                 response.Success = true;
             }
@@ -41,12 +41,5 @@ namespace Services.States
             }
             return response;
         }
-        private static TTarget Convert<TSource, TTarget>(TSource source)
-        {
-            var response = DataMapperConverter.Convert<TSource, TTarget>(source);
-
-            return response;
-        }
-
     }
 }

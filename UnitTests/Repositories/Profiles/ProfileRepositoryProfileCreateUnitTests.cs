@@ -37,10 +37,10 @@ namespace UnitTests.Repositories.Profiles
                 Active = true,
                 Addresses =
                             new List<ProfileAddressCreateDto>(){ new ProfileAddressCreateDto() {
-                                Address1 = "My Address 1",
-                                Address2 = "My Address 2",
+                                AddressName1 = "My Address 1",
+                                AddressName2 = "My Address 2",
                                 City = "My City",
-                                StateAbrev = "NY", IsPrimary = true,
+                                StateAbreviated = "NY", IsPrimary = true,
                                 ZipCode = "54321"
                             }}
             };
@@ -59,10 +59,10 @@ namespace UnitTests.Repositories.Profiles
             Assert.AreEqual(actualResults.Active, profileToCreate.Active);
 
             Assert.AreEqual(actualResults.Addresses[0].AddressId, 12);
-            Assert.AreEqual(actualResults.Addresses[0].Address1, profileToCreate.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.Addresses[0].Address2, profileToCreate.Addresses[0].Address2);
+            Assert.AreEqual(actualResults.Addresses[0].AddressName1, profileToCreate.Addresses[0].AddressName1);
+            Assert.AreEqual(actualResults.Addresses[0].AddressName2, profileToCreate.Addresses[0].AddressName2);
             Assert.AreEqual(actualResults.Addresses[0].City, profileToCreate.Addresses[0].City);
-            Assert.AreEqual(actualResults.Addresses[0].StateAbrev, profileToCreate.Addresses[0].StateAbrev);
+            Assert.AreEqual(actualResults.Addresses[0].StateAbreviated, profileToCreate.Addresses[0].StateAbreviated);
             Assert.AreEqual(actualResults.Addresses[0].ZipCode, profileToCreate.Addresses[0].ZipCode);
         }
 

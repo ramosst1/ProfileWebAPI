@@ -27,10 +27,10 @@ namespace UnitTests.Services.Profiles
                 Addresses =
                     new List<ProfileAddressDto>(){ new ProfileAddressDto() {
                         AddressId = 10,
-                        Address1 = "My Address 1",
-                        Address2 = "My Address 2",
+                        AddressName1 = "My Address 1",
+                        AddressName2 = "My Address 2",
                         City = "My City",
-                        StateAbrev = "CT", IsPrimary = true,
+                        StateAbreviated = "CT", IsPrimary = true,
                         ZipCode = "54321"
                     }}
             };

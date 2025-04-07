@@ -22,12 +22,12 @@ namespace UnitTests.Services.Profiles
                 LastName = "Update Last Name",
                 Active = true,
                 Addresses =
-                    new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                    new List<ProfileAddressDto>(){ new () {
                         AddressId = 10,
-                        Address1 = "Updated Address 1",
-                        Address2 = "Updated Address 2",
+                        AddressName1 = "Updated Address 1",
+                        AddressName2 = "Updated Address 2",
                         City = "Updated City",
-                        StateAbrev = "CT", IsPrimary = true,
+                        StateAbreviated = "CT", IsPrimary = true,
                         ZipCode = "54321"
                     }}
             };
@@ -39,7 +39,7 @@ namespace UnitTests.Services.Profiles
                 LastName = "Update Last Name",
                 Active = true,
                 Addresses =
-                    new List<ProfileAddressUpdateModel>(){ new ProfileAddressUpdateModel() {
+                    new List<ProfileAddressUpdateModel>(){ new () {
                         AddressId = 10,
                         Address1 = "Updated Address 1",
                         Address2 = "Updated Address 2",

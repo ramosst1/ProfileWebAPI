@@ -1,4 +1,4 @@
-﻿using Models.States;
+﻿using Repositories.Models.States;
 namespace Repositories.States
 {
     public interface IStatesDataSource

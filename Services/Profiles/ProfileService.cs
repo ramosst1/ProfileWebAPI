@@ -3,6 +3,7 @@ using Models.Profiles;
 using Profiles.Models.APIResponses;
 using Repositories.Models.Profiles;
 using Repositories.Profiles;
+using Services.Profiles.DataMapper;
 using Services.Profiles.Interfaces;
 using Utilities.Converters.ObjectConverter;
 
@@ -26,7 +27,7 @@ namespace Services.Profiles
             {
                 var profiles = await _profileRepository.GetProfilesAsync();
 
-                response.data = Convert<List<ProfileDto>, List<ProfileModel>>(profiles);
+                response.data = profiles.MapData();
 
                 response.Success = true;
             }
@@ -83,7 +84,7 @@ namespace Services.Profiles
             var response = new ApiResponse<ProfileModel>();
             try
             {
-                var newProfile = Convert<ProfileCreateModel, ProfileCreateDto>(aProfile);
+                var newProfile = aProfile.MapData();
 
                 var newProfileCreated = await _profileRepository.CreateProfileAsync(newProfile);
 
@@ -98,8 +99,7 @@ namespace Services.Profiles
                 }
                 else
                 {
-
-                    response.data = Convert<ProfileDto, ProfileModel>(newProfileCreated);
+                    response.data = newProfileCreated.MapData();
 
                     response.Success = true;
                 }
@@ -126,7 +126,7 @@ namespace Services.Profiles
 
             try
             {
-                var newProfile = Convert<ProfileUpdateModel, ProfileUpdateDto>(aProfile);
+                var newProfile = aProfile.MapData();
 
                 var updatedProfileCreated = await _profileRepository.UpdateProfileAsync(newProfile);
 
@@ -141,7 +141,7 @@ namespace Services.Profiles
                 }
                 else {
 
-                    response.data = Convert<ProfileDto, ProfileModel>(updatedProfileCreated);
+                    response.data = updatedProfileCreated.MapData();
 
                     response.Success = true;
                 }
