@@ -143,12 +143,16 @@ namespace UnitTests.Repositories.Profiles
             Assert.AreEqual(actualResults.LastName, expectedProfiles.LastName);
             Assert.AreEqual(actualResults.Active, expectedProfiles.Active);
 
-            Assert.AreEqual(actualResults.Addresses[0].AddressId, expectedProfiles.Addresses[0].AddressId);
-            Assert.AreEqual(actualResults.Addresses[0].Address1, expectedProfiles.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.Addresses[0].Address2, expectedProfiles.Addresses[0].Address2);
-            Assert.AreEqual(actualResults.Addresses[0].City, expectedProfiles.Addresses[0].City);
-            Assert.AreEqual(actualResults.Addresses[0].StateAbrev, expectedProfiles.Addresses[0].StateAbrev);
-            Assert.AreEqual(actualResults.Addresses[0].ZipCode, expectedProfiles.Addresses[0].ZipCode);
+            {
+                var (actualAddress, expectedAddress) = (actualResults.Addresses[0], expectedProfiles.Addresses[0]);
+
+                Assert.AreEqual(actualAddress.AddressId, expectedAddress.AddressId);
+                Assert.AreEqual(actualAddress.Address1, expectedAddress.Address1);
+                Assert.AreEqual(actualAddress.Address2, expectedAddress.Address2);
+                Assert.AreEqual(actualAddress.City, expectedAddress.City);
+                Assert.AreEqual(actualAddress.StateAbrev, expectedAddress.StateAbrev);
+                Assert.AreEqual(actualAddress.ZipCode, expectedAddress.ZipCode);
+            }
         }
 
         [TestMethod]

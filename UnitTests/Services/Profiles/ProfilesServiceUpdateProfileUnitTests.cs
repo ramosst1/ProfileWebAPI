@@ -65,13 +65,16 @@ namespace UnitTests.Services.Profiles
             Assert.AreEqual(actualResults.data.LastName, profileToUpdate.LastName);
             Assert.AreEqual(actualResults.data.Active, profileToUpdate.Active);
 
-            Assert.AreEqual(actualResults.data.Addresses[0].AddressId, profileToUpdate.Addresses[0].AddressId);
-            Assert.AreEqual(actualResults.data.Addresses[0].AddressName1, profileToUpdate.Addresses[0].AddressName1);
-            Assert.AreEqual(actualResults.data.Addresses[0].AddressName2, profileToUpdate.Addresses[0].AddressName2);
-            Assert.AreEqual(actualResults.data.Addresses[0].City, profileToUpdate.Addresses[0].City);
-            Assert.AreEqual(actualResults.data.Addresses[0].StateAbreviation, profileToUpdate.Addresses[0].StateAbreviation);
-            Assert.AreEqual(actualResults.data.Addresses[0].ZipCode, profileToUpdate.Addresses[0].ZipCode);
+            {
+                var (actualaddresses, expectedAddresses) = (actualResults.data.Addresses.FirstOrDefault(), profileToUpdate.Addresses[0]);
 
+                Assert.AreEqual(actualaddresses.AddressId, expectedAddresses.AddressId);
+                Assert.AreEqual(actualaddresses.AddressName1, expectedAddresses.AddressName1);
+                Assert.AreEqual(actualaddresses.AddressName2, expectedAddresses.AddressName2);
+                Assert.AreEqual(actualaddresses.City, expectedAddresses.City);
+                Assert.AreEqual(actualaddresses.StateAbreviation, expectedAddresses.StateAbreviation);
+                Assert.AreEqual(actualaddresses.ZipCode, expectedAddresses.ZipCode);
+            }
         }
 
         [TestMethod]

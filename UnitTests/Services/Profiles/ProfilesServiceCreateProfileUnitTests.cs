@@ -1,4 +1,5 @@
-﻿using Models.Profiles;
+﻿using Microsoft.AspNetCore.Hosting.Server.Features;
+using Models.Profiles;
 using Moq;
 using Repositories.Models.Profiles;
 using Repositories.Profiles;
@@ -66,12 +67,16 @@ namespace UnitTests.Services.Profiles
             Assert.AreEqual(actualResults.data.LastName, profileToCreate.LastName);
             Assert.AreEqual(actualResults.data.Active, profileToCreate.Active);
 
-            Assert.AreEqual(actualResults.data.Addresses[0].AddressId, 10);
-            Assert.AreEqual(actualResults.data.Addresses[0].AddressName1, profileToCreate.Addresses[0].AddressName1);
-            Assert.AreEqual(actualResults.data.Addresses[0].AddressName2, profileToCreate.Addresses[0].AddressName2);
-            Assert.AreEqual(actualResults.data.Addresses[0].City, profileToCreate.Addresses[0].City);
-            Assert.AreEqual(actualResults.data.Addresses[0].StateAbreviation, profileToCreate.Addresses[0].StateAbreviation);
-            Assert.AreEqual(actualResults.data.Addresses[0].ZipCode, profileToCreate.Addresses[0].ZipCode);
+            { 
+                var (actualaddresses, expectedAddresses) = (actualResults.data.Addresses.FirstOrDefault(), profileToCreate.Addresses[0]);
+
+                Assert.AreEqual(actualaddresses.AddressId, 10);
+                Assert.AreEqual(actualaddresses.AddressName1, expectedAddresses.AddressName1);
+                Assert.AreEqual(actualaddresses.AddressName2, expectedAddresses.AddressName2);
+                Assert.AreEqual(actualaddresses.City, expectedAddresses.City);
+                Assert.AreEqual(actualaddresses.StateAbreviation, expectedAddresses.StateAbreviation);
+                Assert.AreEqual(actualaddresses.ZipCode, expectedAddresses.ZipCode);
+            }
         }
 
         [TestMethod]

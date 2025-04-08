@@ -77,16 +77,24 @@ namespace UnitTests.Repositories.Profiles
 
             var actualResults = profileRepository.UpdateProfileAsync(profileToUpdate).Result;
 
+
+
+
             Assert.AreEqual(actualResults.ProfileId, expectedProfile.ProfileId);
             Assert.AreEqual(actualResults.FirstName, expectedProfile.FirstName);
             Assert.AreEqual(actualResults.LastName, expectedProfile.LastName);
             Assert.AreEqual(actualResults.Active, expectedProfile.Active);
-            Assert.AreEqual(actualResults.Addresses[0].AddressId, expectedProfile.Addresses[0].AddressId);
-            Assert.AreEqual(actualResults.Addresses[0].Address1, expectedProfile.Addresses[0].Address1);
-            Assert.AreEqual(actualResults.Addresses[0].Address2, expectedProfile.Addresses[0].Address2);
-            Assert.AreEqual(actualResults.Addresses[0].City, expectedProfile.Addresses[0].City);
-            Assert.AreEqual(actualResults.Addresses[0].StateAbrev, expectedProfile.Addresses[0].StateAbrev);
-            Assert.AreEqual(actualResults.Addresses[0].ZipCode, expectedProfile.Addresses[0].ZipCode);
+
+            { 
+                var (actualAddress, expectedAddress) = (actualResults.Addresses[0], expectedProfile.Addresses[0]);
+
+                Assert.AreEqual(actualAddress.AddressId, expectedAddress.AddressId);
+                Assert.AreEqual(actualAddress.Address1, expectedAddress.Address1);
+                Assert.AreEqual(actualAddress.Address2, expectedAddress.Address2);
+                Assert.AreEqual(actualAddress.City, expectedAddress.City);
+                Assert.AreEqual(actualAddress.StateAbrev, expectedAddress.StateAbrev);
+                Assert.AreEqual(actualAddress.ZipCode, expectedAddress.ZipCode);
+            }
         }
 
         [TestMethod]

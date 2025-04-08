@@ -69,16 +69,17 @@ namespace UnitTests.Services.Profiles.DataMapper
 
             for (int i = 0; i < expecting.Count; i++)
             {
-                Assert.AreEqual(actual[i].Address1, expecting[i].Address1);
-                Assert.AreEqual(actual[i].Address2, expecting[i].Address2);
-                Assert.AreEqual(actual[i].City, expecting[i].City);
-                Assert.AreEqual(actual[i].StateAbrev, expecting[i].StateAbrev);
-                Assert.AreEqual(actual[i].ZipCode, expecting[i].ZipCode);
-                Assert.AreEqual(actual[i].ProfileId, expecting[i].ProfileId);
-                Assert.AreEqual(actual[i].AddressId, expecting[i].AddressId);
-                Assert.AreEqual(actual[i].IsPrimary, expecting[i].IsPrimary);
-                Assert.AreEqual(actual[i].IsSecondary, expecting[i].IsSecondary);
+                var (actualResults, expectingResults) = (actual[i], expecting[i]);
 
+                Assert.AreEqual(actualResults.Address1, expectingResults.Address1);
+                Assert.AreEqual(actualResults.Address2, expectingResults.Address2);
+                Assert.AreEqual(actualResults.City, expectingResults.City);
+                Assert.AreEqual(actualResults.StateAbrev, expectingResults.StateAbrev);
+                Assert.AreEqual(actualResults.ZipCode, expectingResults.ZipCode);
+                Assert.AreEqual(actualResults.ProfileId, expectingResults.ProfileId);
+                Assert.AreEqual(actualResults.AddressId, expectingResults.AddressId);
+                Assert.AreEqual(actualResults.IsPrimary, expectingResults.IsPrimary);
+                Assert.AreEqual(actualResults.IsSecondary, expectingResults.IsSecondary);
             }
         }
 
