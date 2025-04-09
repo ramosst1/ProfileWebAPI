@@ -1,6 +1,6 @@
 ﻿using Repositories.Models.Profiles;
 
-namespace Repositories.Profiles
+namespace Repositories.Profiles.Interfaces
 {
     public interface IProfileDataSource
     {

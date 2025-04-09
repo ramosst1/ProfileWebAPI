@@ -2,7 +2,7 @@
 using Models.Profiles;
 using Profiles.Models.APIResponses;
 using Repositories.Models.Profiles;
-using Repositories.Profiles;
+using Repositories.Profiles.Interfaces;
 using Services.Profiles.DataMapper;
 using Services.Profiles.Interfaces;
 using Utilities.Converters.ObjectConverter;

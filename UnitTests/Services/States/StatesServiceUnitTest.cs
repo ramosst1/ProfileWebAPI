@@ -1,8 +1,8 @@
 using Moq;
 using Models.States;
-using Repositories.States;
 using Services.States;
 using Repositories.Models.States;
+using Repositories.States.Interfaces;
 
 namespace UnitTests.Services.States
 {

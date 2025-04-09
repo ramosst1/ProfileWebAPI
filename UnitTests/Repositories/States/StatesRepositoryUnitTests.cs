@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Repositories.Models.States;
 using Repositories.States;
+using Repositories.States.Interfaces;
 
 namespace UnitTests.Repositories.States
 {

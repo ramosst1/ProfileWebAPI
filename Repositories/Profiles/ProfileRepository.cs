@@ -1,4 +1,5 @@
 ﻿using Repositories.Models.Profiles;
+using Repositories.Profiles.Interfaces;
 using Utilities.Converters.JsonObjectConverter;
 using Utilities.Converters.ObjectConverter;
 

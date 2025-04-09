@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Repositories.Models.Profiles;
 using Repositories.Profiles;
+using Repositories.Profiles.Interfaces;
 
 namespace UnitTests.Repositories.Profiles
 {

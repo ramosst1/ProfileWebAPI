@@ -10,6 +10,8 @@ using WebAPI.Model;
 using System.Runtime.Serialization;
 using Services.Profiles.Interfaces;
 using Services.States.Interfaces;
+using Repositories.Profiles.Interfaces;
+using Repositories.States.Interfaces;
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);

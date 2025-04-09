@@ -1,4 +1,5 @@
 ﻿using Repositories.Models.States;
+using Repositories.States.Interfaces;
 
 namespace Repositories.States
 {

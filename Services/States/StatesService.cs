@@ -1,7 +1,7 @@
 ﻿using Models.APIResponses;
 using Models.States;
 using Profiles.Models.APIResponses;
-using Repositories.States;
+using Repositories.States.Interfaces;
 using Services.States.DataMapper;
 using Services.States.Interfaces;
 

@@ -1,5 +1,5 @@
 ﻿using Moq;
-using Repositories.Profiles;
+using Repositories.Profiles.Interfaces;
 using Services.Profiles;
 
 namespace UnitTests.Services.Profiles

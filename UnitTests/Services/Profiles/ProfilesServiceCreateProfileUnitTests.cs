@@ -2,7 +2,7 @@
 using Models.Profiles;
 using Moq;
 using Repositories.Models.Profiles;
-using Repositories.Profiles;
+using Repositories.Profiles.Interfaces;
 using Services.Profiles;
 
 namespace UnitTests.Services.Profiles

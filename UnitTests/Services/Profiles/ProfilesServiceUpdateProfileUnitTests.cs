@@ -1,7 +1,7 @@
 ﻿using Models.Profiles;
 using Moq;
 using Repositories.Models.Profiles;
-using Repositories.Profiles;
+using Repositories.Profiles.Interfaces;
 using Services.Profiles;
 
 namespace UnitTests.Services.Profiles
@@ -111,5 +111,7 @@ namespace UnitTests.Services.Profiles
             Assert.AreEqual(actualResults.ErrorMessages[0].InternalMessage, InternalErrorMessage);
             Assert.AreEqual(actualResults.ErrorMessages[0].ExternalMessage, ExternalErrorMessage);
         }
+
+
     }
 }
