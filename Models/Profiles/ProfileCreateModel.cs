@@ -1,5 +1,4 @@
-﻿
-namespace Models.Profiles
+﻿namespace Models.Profiles
 {
     public class ProfileCreateModel : ProfileModelBase
     {

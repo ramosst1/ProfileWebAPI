@@ -50,7 +50,7 @@ builder.Services.AddCors(policy =>
         }
     )
     );
-
+/*
 builder.Services.AddControllers()
                 .AddFluentValidation(options =>
                 {
@@ -61,6 +61,7 @@ builder.Services.AddControllers()
                     // Automatic registration of validators in assembly
                     options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 });
+*/
 
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();

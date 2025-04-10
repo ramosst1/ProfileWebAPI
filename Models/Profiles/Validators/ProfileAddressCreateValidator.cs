@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
 using Models.Common.Addresses.Validators;
-using Models.Profiles;
 
 namespace Models.Profiles.Validators
 {
