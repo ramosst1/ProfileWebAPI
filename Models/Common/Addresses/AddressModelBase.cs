@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace Models.Common.Addresses
 {
     public abstract class AddressModelBase
     {

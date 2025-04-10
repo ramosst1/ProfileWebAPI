@@ -1,7 +1,7 @@
 ﻿using Models.Profiles;
-using WebAPI.Validators;
+using Models.Profiles.Validators;
 
-namespace UnitTests.WebAPI.Validators.Profiles
+namespace UnitTests.Models.Validators.Profiles
 {
     [TestClass]
     public class ProfileModelValidatorCreateProfileUnitTest
@@ -11,8 +11,6 @@ namespace UnitTests.WebAPI.Validators.Profiles
         [DataRow("John", "Smith", false)]
         public void Should_TheProfileCreateModelValidatingHasInvalidData_ReturnsAValidInput(string firstName, string LastName, bool active)
         {
-            var validator = new ProfileCreateValidator();
-
             var input = new ProfileCreateModel
             {
                 FirstName = firstName,
@@ -20,9 +18,9 @@ namespace UnitTests.WebAPI.Validators.Profiles
                 Active = active
             };
 
-            var actualResults = validator.Validate(input);
+            var actualResults = input.Validate();
 
-            Assert.AreEqual(true, actualResults.IsValid);
+            Assert.AreEqual(false, actualResults.Any());
         }
 
         [TestMethod]
@@ -34,14 +32,13 @@ namespace UnitTests.WebAPI.Validators.Profiles
         [DataRow("John", "SmithXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", true, "Last Name must be between 2 and 50 characters.")]
         public void Should_TheProfileCreateModelValidatingHasInvalidData_ReturnsAnInValidInput(string firstName, string LastName, bool active, string expectedErrorMessage)
         {
-            var validator = new ProfileCreateValidator();
 
             var input = new ProfileCreateModel { FirstName = firstName, LastName = LastName, Active = active };
 
-            var actualResults = validator.Validate(input);
+            var actualResults = input.Validate();
 
-            Assert.AreEqual(false, actualResults.IsValid);
-            Assert.AreEqual(true, actualResults.Errors.Exists(aItem => aItem.ErrorMessage == expectedErrorMessage));
+            Assert.AreEqual(true, actualResults.Any());
+            Assert.AreEqual(true, actualResults.Exists(aItem => aItem.Message == expectedErrorMessage));
 
         }
 

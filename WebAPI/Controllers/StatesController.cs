@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models.States;
 using Services.States.Interfaces;
 
 namespace WebAPI.Controllers
@@ -15,6 +16,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(List<StateModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult> Get()
         {
 

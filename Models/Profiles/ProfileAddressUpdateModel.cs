@@ -1,4 +1,6 @@
-﻿namespace Models.Profiles
+﻿using Models.Common.Addresses;
+
+namespace Models.Profiles
 {
     public class ProfileAddressUpdateModel : AddressModelBase
     {

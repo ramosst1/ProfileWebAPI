@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using Models.Profiles;
 
-namespace WebAPI.Validators
+namespace Models.Profiles.Validators
 {
-    public class ProfileModelBaseValidator : AbstractValidator<ProfileModelBase>
+
+    public class ProfileModelBaseFluentValidator : AbstractValidator<ProfileModelBase>
     {
-        public ProfileModelBaseValidator()
+        public ProfileModelBaseFluentValidator()
         {
 
             RuleFor(field => field.FirstName).NotEmpty().WithMessage("{PropertyName} is required.")
@@ -15,4 +15,5 @@ namespace WebAPI.Validators
 
         }
     }
+
 }

@@ -1,4 +1,5 @@
-﻿
+﻿using Models.Common.Addresses;
+
 namespace Models.Profiles
 {
     public class ProfileAddressCreateModel : AddressModelBase

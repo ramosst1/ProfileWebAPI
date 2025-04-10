@@ -1,7 +1,7 @@
 ﻿using Models.Profiles;
-using WebAPI.Validators;
+using Models.Profiles.Validators;
 
-namespace UnitTests.WebAPI.Validators.Profiles
+namespace UnitTests.Models.Validators.Profiles
 {
     [TestClass]
     public class ProfileModelValidatorCreateProfileAddressUnitTest
@@ -13,7 +13,7 @@ namespace UnitTests.WebAPI.Validators.Profiles
         public void Should_TheProfileCreateAddressModelValidation_ReturnsAValidInputs(
             string address1, string address2, string city, string stateAbrev, string zipCode, bool isPrimary, bool isSecondary
         ){
-            var validator = new ProfileAddressCreateValidator();
+            var validator = new ProfileAddressCreateFluentValidator();
 
             var input = new ProfileAddressCreateModel
             {
@@ -26,9 +26,10 @@ namespace UnitTests.WebAPI.Validators.Profiles
                  IsSecondary = isSecondary
             };
 
-            var actualResults = validator.Validate(input);
+            var actualResults = input.Validate();
 
-            Assert.AreEqual(true, actualResults.IsValid);
+//            Assert.AreEqual(true, actualResults.IsValid);
+            Assert.AreEqual(false, actualResults.Any());
         }
 
         [TestMethod]
@@ -48,7 +49,7 @@ namespace UnitTests.WebAPI.Validators.Profiles
             string address1, string address2, string city, string stateAbrev, string zipCode, bool isPrimary, bool isSecondary, string expectedErrorMessage
         )
         {
-            var validator = new ProfileAddressCreateValidator();
+            var validator = new ProfileAddressCreateFluentValidator();
 
             var input = new ProfileAddressCreateModel
             {
@@ -61,10 +62,11 @@ namespace UnitTests.WebAPI.Validators.Profiles
                 IsSecondary = isSecondary
             };
 
-            var actualResults = validator.Validate(input);
+            var actualResults = input.Validate();
 
-            Assert.AreEqual(false, actualResults.IsValid);
-            Assert.AreEqual(true, actualResults.Errors.Exists(aItem => aItem.ErrorMessage == expectedErrorMessage));
+            Assert.AreEqual(true, actualResults.Any());
+            Assert.AreEqual(true, actualResults.Exists(aItem => aItem.Message == expectedErrorMessage));
+
         }
     }
 }

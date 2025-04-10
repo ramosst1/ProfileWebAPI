@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
-using Models;
 
-namespace WebAPI.Validators
+namespace Models.Common.Addresses.Validators
 {
-    public class AddressModelBaseValidator : AbstractValidator<AddressModelBase>
+    public class AddressModelBaseFluentValidator : AbstractValidator<AddressModelBase>
     {
 
-        public AddressModelBaseValidator()
+        public AddressModelBaseFluentValidator()
         {
             RuleFor(field => field.AddressName1).NotEmpty().WithMessage("{PropertyName} is required.");
             RuleFor(field => field.AddressName1)

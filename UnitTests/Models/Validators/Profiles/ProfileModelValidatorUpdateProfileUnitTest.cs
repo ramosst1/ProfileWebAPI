@@ -1,7 +1,7 @@
 ﻿using Models.Profiles;
-using WebAPI.Validators;
+using Models.Profiles.Validators;
 
-namespace UnitTests.WebAPI.Validators.Profiles
+namespace UnitTests.Models.Validators.Profiles
 {
     [TestClass]
     public class ProfileModelValidatorUpdateProfileUnitTest
@@ -12,8 +12,6 @@ namespace UnitTests.WebAPI.Validators.Profiles
         [DataRow(1, "John", "Smith", false)]
         public void Should_TheProfileCreateModelValidatingHasInvalidData_ReturnsAValidInput(int propfileId, string firstName, string LastName, bool active)
         {
-            var validator = new ProfileUpdateValidator();
-
             var input = new ProfileUpdateModel
             {   ProfileId = propfileId,
                 FirstName = firstName,
@@ -21,9 +19,9 @@ namespace UnitTests.WebAPI.Validators.Profiles
                 Active = active
             };
 
-            var actualResults = validator.Validate(input);
+            var actualResults = input.Validate();
 
-            Assert.AreEqual(true, actualResults.IsValid);
+            Assert.AreEqual(false, actualResults.Any());
         }
 
         [TestMethod]
@@ -37,14 +35,13 @@ namespace UnitTests.WebAPI.Validators.Profiles
         public void Should_TheProfileUpdateModelValidatingHasInvalidData_ReturnsAnInValidInput(
             int profileId, string firstName, string LastName, bool active, string expectedErrorMessage
          ){
-            var validator = new ProfileUpdateValidator();
 
             var input = new ProfileUpdateModel { ProfileId = profileId, FirstName = firstName, LastName = LastName, Active = active };
 
-            var actualResults = validator.Validate(input);
+            var actualResults = input.Validate();
 
-            Assert.AreEqual(false, actualResults.IsValid);
-            Assert.AreEqual(true, actualResults.Errors.Exists(aItem => aItem.ErrorMessage == expectedErrorMessage));
+            Assert.AreEqual(true, actualResults.Any());
+            Assert.AreEqual(true, actualResults.Exists(aItem => aItem.Message == expectedErrorMessage));
 
         }
 
