@@ -45,5 +45,29 @@ namespace UnitTests.Models.Validators.Profiles
 
         }
 
+        [TestMethod]
+        public void Should_TheProfileUpdateModelValidatingHasInvalidDataWithAddress_ReturnsAnInValidAddressInput() {
+
+            var input = new ProfileUpdateModel
+            {
+                ProfileId = 1,
+                FirstName = "Joe",
+                LastName = "Smith",
+                Active = true,
+                Addresses = {
+                    new ProfileAddressUpdateModel()
+                    {
+                        AddressId = -1,
+                    }
+                }
+            };
+
+            var actualResults = input.Validate();
+
+            Assert.AreEqual(true, actualResults.Exists(item => item.Message == "Address Id is not a proper id."));
+
+        }
+
+
     }
 }

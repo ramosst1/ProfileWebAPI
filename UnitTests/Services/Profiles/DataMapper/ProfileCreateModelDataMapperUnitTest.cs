@@ -44,7 +44,6 @@ namespace UnitTests.Services.Profiles.DataMapper
                         City = "My City 1",
                         StateAbreviation = "My StateAbrev 1",
                         ZipCode = "12345678",
-                        AddressId = 2,
                         IsPrimary = false,
                         IsSecondary = true
                     },

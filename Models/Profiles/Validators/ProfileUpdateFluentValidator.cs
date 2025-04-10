@@ -9,15 +9,23 @@ namespace Models.Profiles.Validators
         public static List<ValidationErrorMessage> Validate(this ProfileUpdateModel profileUpdateModel)
         {
 
-            var results = new ProfileUpdateFluentValidator().Validate(profileUpdateModel);
+            var results = ((ProfileModelBase)profileUpdateModel).Validate();
 
-            return results.Errors.Select(error => {
-                return new ValidationErrorMessage()
+            results.AddRange(new ProfileUpdateFluentValidator().Validate(profileUpdateModel)
+                .Errors.Select(error =>
                 {
-                    Message = error.ErrorMessage,
-                    StatusCode = "400"
-                };
-            }).ToList();
+                    return new ValidationErrorMessage()
+                    {
+                        Message = error.ErrorMessage,
+                        StatusCode = "400"
+                    };
+                }
+                )
+             );
+
+            results.AddRange(profileUpdateModel.Addresses.Validate());
+
+            return results;
         }
     }
 
@@ -25,12 +33,7 @@ namespace Models.Profiles.Validators
     {
         public ProfileUpdateFluentValidator()
         {
-            Include(new ProfileModelBaseFluentValidator());
-
             RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a valid id.");
-            RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressUpdateFluentValidator());
-
         }
     }
-
 }

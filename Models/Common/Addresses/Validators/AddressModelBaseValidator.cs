@@ -1,7 +1,41 @@
 ﻿using FluentValidation;
+using Models.APIResponses;
 
 namespace Models.Common.Addresses.Validators
 {
+
+    public static class AddressModelBaseValidator {
+
+        public static List<ValidationErrorMessage> Validate(this List<AddressModelBase> addressBase)
+        {
+
+            var results = new List<ValidationErrorMessage>();
+
+            foreach (var profileAddressCreateModel in addressBase)
+            {
+                results.AddRange(profileAddressCreateModel.Validate());
+            }
+
+            return results;
+        }
+
+        public static List<ValidationErrorMessage> Validate(this AddressModelBase addressBase)
+        {
+
+            var results = new AddressModelBaseFluentValidator().Validate(addressBase);
+
+            return results.Errors.Select(error => {
+                return new ValidationErrorMessage()
+                {
+                    Message = error.ErrorMessage,
+                    StatusCode = "400"
+                };
+            }).ToList();
+        }
+
+
+    }
+
     public class AddressModelBaseFluentValidator : AbstractValidator<AddressModelBase>
     {
 

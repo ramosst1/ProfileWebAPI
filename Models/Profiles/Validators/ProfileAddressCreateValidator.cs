@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
+using Models.Common.Addresses;
 using Models.Common.Addresses.Validators;
 
 namespace Models.Profiles.Validators
@@ -20,14 +21,21 @@ namespace Models.Profiles.Validators
 
         public static List<ValidationErrorMessage> Validate(this ProfileAddressCreateModel profileCreateModel) {
 
-            var results = new ProfileAddressCreateFluentValidator().Validate(profileCreateModel);
+            var results = ((AddressModelBase) profileCreateModel).Validate();
 
-            return results.Errors.Select(error => {
-                return new ValidationErrorMessage() { 
-                    Message = error.ErrorMessage, 
-                     StatusCode = "400"
-                };
-            }).ToList();
+            results.AddRange(new ProfileAddressCreateFluentValidator().Validate(profileCreateModel)
+                .Errors.Select(error =>
+                {
+                    return new ValidationErrorMessage()
+                    {
+                        Message = error.ErrorMessage,
+                        StatusCode = "400"
+                    };
+                }
+                )
+             );
+
+            return results;
         } 
     }
 
@@ -36,10 +44,7 @@ namespace Models.Profiles.Validators
 
         public ProfileAddressCreateFluentValidator()
         {
-            Include(new AddressModelBaseFluentValidator());
-
             RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
-
         }
 
         protected bool IsPrimaryOrSecondary(ProfileAddressCreateModel aAddress)

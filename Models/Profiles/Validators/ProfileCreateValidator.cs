@@ -8,16 +8,21 @@ namespace Models.Profiles.Validators
 
         public static List<ValidationErrorMessage> Validate(this ProfileCreateModel profileCreateModel)
         {
+            var results = ((ProfileModelBase)profileCreateModel).Validate();
 
-            var results = new ProfileCreateFluentValidator().Validate(profileCreateModel);
+            results.AddRange(new ProfileCreateFluentValidator().Validate(profileCreateModel)
+                .Errors.Select(error => {
+                    return new ValidationErrorMessage()
+                    {
+                        Message = error.ErrorMessage,
+                        StatusCode = "400"
+                    };
+                })
+             );
 
-            return results.Errors.Select(error => {
-                return new ValidationErrorMessage()
-                {
-                    Message = error.ErrorMessage,
-                    StatusCode = "400"
-                };
-            }).ToList();
+            results.AddRange(profileCreateModel.Addresses.Validate());
+
+            return results;
         }
     }
 
@@ -25,7 +30,6 @@ namespace Models.Profiles.Validators
     {
         public ProfileCreateFluentValidator()
         {
-            Include(new ProfileModelBaseFluentValidator());
             RuleForEach(x => x.Addresses).SetValidator(new ProfileAddressCreateFluentValidator());
         }
     }

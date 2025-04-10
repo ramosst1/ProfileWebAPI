@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
+using Models.Common.Addresses;
 using Models.Common.Addresses.Validators;
 
 namespace Models.Profiles.Validators
@@ -19,20 +20,24 @@ namespace Models.Profiles.Validators
             return results;
         }
 
-        public static List<ValidationErrorMessage> Validate(this ProfileAddressUpdateModel profileUpdateModel)
+        public static List<ValidationErrorMessage> Validate(this ProfileAddressUpdateModel profileAddressUpdateModel)
         {
 
-            var results = new ProfileAddressUpdateFluentValidator().Validate(profileUpdateModel);
+            var results = ((AddressModelBase) profileAddressUpdateModel).Validate();
 
-            return results.Errors.Select(error => {
-                return new ValidationErrorMessage()
-                {
-                    Message = error.ErrorMessage,
-                    StatusCode = "400"
-                };
-            }).ToList();
+
+            results.AddRange(new ProfileAddressUpdateFluentValidator().Validate(profileAddressUpdateModel)
+                .Errors.Select(error => {
+                    return new ValidationErrorMessage()
+                    {
+                        Message = error.ErrorMessage,
+                        StatusCode = "400"
+                    };
+                 })
+             );
+
+            return results;
         }
-
     }
 
     public class ProfileAddressUpdateFluentValidator : AbstractValidator<ProfileAddressUpdateModel>
@@ -40,12 +45,9 @@ namespace Models.Profiles.Validators
 
         public ProfileAddressUpdateFluentValidator()
         {
-            Include(new AddressModelBaseFluentValidator());
-
             RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper id.");
             RuleFor(field => field.AddressId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper id.");
             RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
-
         }
 
         protected bool IsPrimaryOrSecondary(ProfileAddressUpdateModel aAddress)
@@ -59,6 +61,4 @@ namespace Models.Profiles.Validators
             return true;
         }
     }
-
-
 }
