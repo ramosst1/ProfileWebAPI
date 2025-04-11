@@ -1,8 +1,8 @@
 ﻿using Models.States;
 using Repositories.Models.States;
-using Services.States.DataMapper;
+using Services.States.DataMapperExtensions;
 
-namespace UnitTests.Services.States.DataMapper
+namespace UnitTests.Services.States.DataMapperExtensions
 {
     [TestClass]
     public class StateModelDataMapperUnitTest

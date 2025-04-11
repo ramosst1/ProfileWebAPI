@@ -1,7 +1,7 @@
 ﻿using Models.Common.APIResponses;
 using Models.States;
 using Repositories.States.Interfaces;
-using Services.States.DataMapper;
+using Services.States.DataMapperExtensions;
 using Services.States.Interfaces;
 
 namespace Services.States

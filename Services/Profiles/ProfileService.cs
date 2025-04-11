@@ -1,7 +1,7 @@
 ﻿using Models.Common.APIResponses;
 using Models.Profiles;
 using Repositories.Profiles.Interfaces;
-using Services.Profiles.DataMapper;
+using Services.Profiles.DataMapperExtensions;
 using Services.Profiles.Interfaces;
 
 namespace Services.Profiles

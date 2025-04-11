@@ -1,9 +1,9 @@
 ﻿using Models.Profiles;
 using Repositories.Models.Profiles;
 
-namespace Services.Profiles.DataMapper
+namespace Services.Profiles.DataMapperExtensions
 {
-    public static class ProfileAddressUpdateModelDataMapper
+    public static class ProfileAddressUpdateModelDataMapperExtension
     {
 
         public static List<ProfileAddressUpdateDto> MapDataAsProfileAddressUpdateDto(this List<ProfileAddressUpdateModel> profileAddress)
@@ -11,7 +11,7 @@ namespace Services.Profiles.DataMapper
             var results = new List<ProfileAddressUpdateDto>();
 
             results.AddRange(
-                profileAddress.Select(item => MapDataAsProfileAddressUpdateDto(item))
+                profileAddress.Select(item => item.MapDataAsProfileAddressUpdateDto())
             );
 
             return results;

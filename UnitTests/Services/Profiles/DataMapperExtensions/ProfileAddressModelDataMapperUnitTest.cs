@@ -1,19 +1,19 @@
-﻿
-using Models.Profiles;
+﻿using Models.Profiles;
 using Repositories.Models.Profiles;
-using Services.Profiles.DataMapper;
+using Services.Profiles.DataMapperExtensions;
 
-namespace UnitTests.Services.Profiles.DataMapper
+namespace UnitTests.Services.Profiles.DataMapperExtensions
 {
+
     [TestClass]
-    public class ProfileAddressUpdateModelDataMapperUnitTest
+    public class ProfileAddressModelDataMapperUnitTest
     {
 
         [TestMethod]
-        public void Should_TheProfileAddressUpdateModelDataMapper_ReturnsASuccessfulProfileUpdateModelMapFromAProfileAddressUpdateDTO()
+        public void Should_TheProfileAddressModelDataMapper_ReturnsASuccessfulProfileModelMapFromAProfileAddressDTO()
         {
 
-            List<ProfileAddressUpdateModel> source = new() {
+            List<ProfileAddressModel> source = new() {
                 new (){
                     AddressName1 = "My Address1 1",
                     AddressName2 = "My Address2 1",
@@ -38,7 +38,7 @@ namespace UnitTests.Services.Profiles.DataMapper
                 }
             };
 
-            List<ProfileAddressUpdateDto> expecting = new() {
+            List<ProfileAddressDto> expecting = new() {
                 new (){
                     Address1 = "My Address1 1",
                     Address2 = "My Address2 1",
@@ -63,7 +63,7 @@ namespace UnitTests.Services.Profiles.DataMapper
                 }
             };
 
-            List<ProfileAddressUpdateDto> actual = source.MapDataAsProfileAddressUpdateDto();
+            List<ProfileAddressDto> actual = source.MapDataAsProfileAddressDto();
 
             Assert.AreEqual(expecting.Count, actual.Count);
 
@@ -80,8 +80,8 @@ namespace UnitTests.Services.Profiles.DataMapper
                 Assert.AreEqual(actualResults.AddressId, expectingResults.AddressId);
                 Assert.AreEqual(actualResults.IsPrimary, expectingResults.IsPrimary);
                 Assert.AreEqual(actualResults.IsSecondary, expectingResults.IsSecondary);
+
             }
         }
-
     }
 }

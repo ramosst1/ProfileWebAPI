@@ -1,16 +1,16 @@
 ﻿using Models.Profiles;
 using Repositories.Models.Profiles;
 
-namespace Services.Profiles.DataMapper
+namespace Services.Profiles.DataMapperExtensions
 {
-    public static class ProfileAddressCreateModelDataMapper
+    public static class ProfileAddressCreateModelDataMapperExtension
     {
 
         public static List<ProfileAddressCreateDto> MapDataAsProfileAddressCreateDto(this List<ProfileAddressCreateModel> profile)
         {
             var results = new List<ProfileAddressCreateDto>();
             results.AddRange(
-                profile.Select(item => MapDataAsProfileAddressCreateDto(item))
+                profile.Select(item => item.MapDataAsProfileAddressCreateDto())
             );
 
             return results;

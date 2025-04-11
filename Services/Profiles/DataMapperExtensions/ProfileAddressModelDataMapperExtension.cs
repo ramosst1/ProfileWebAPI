@@ -1,9 +1,9 @@
 ﻿using Models.Profiles;
 using Repositories.Models.Profiles;
 
-namespace Services.Profiles.DataMapper
+namespace Services.Profiles.DataMapperExtensions
 {
-    public static class ProfileAddressModelDataMapper
+    public static class ProfileAddressModelDataMapperExtension
     {
 
         public static  List<ProfileAddressModel> MapDataAsProfileAddressModel(this List<ProfileAddressDto> profileAddress)
@@ -11,7 +11,7 @@ namespace Services.Profiles.DataMapper
             var results = new List<ProfileAddressModel>();
 
             results.AddRange(
-                profileAddress.Select(item => MapDataAsProfileAddressModel(item))
+                profileAddress.Select(item => item.MapDataAsProfileAddressModel())
             );
 
             return results;
@@ -21,7 +21,7 @@ namespace Services.Profiles.DataMapper
         {
             var results = new List<ProfileAddressDto>();
             results.AddRange(
-                profileAddress.Select(item => MapDataAsProfileAddressDto(item))
+                profileAddress.Select(item => item.MapDataAsProfileAddressDto())
             );
 
             return results;

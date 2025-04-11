@@ -1,9 +1,9 @@
 ﻿using Models.Profiles;
 using Repositories.Models.Profiles;
 
-namespace Services.Profiles.DataMapper
+namespace Services.Profiles.DataMapperExtensions
 {
-    public static class ProfileUpdateModelDataMapper
+    public static class ProfileUpdateModelDataMapperExtension
     {
 
         public static ProfileUpdateDto MapDataAsProfileUpdateDto(this ProfileUpdateModel profile)

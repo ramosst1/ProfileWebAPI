@@ -1,8 +1,8 @@
 ﻿using Models.Profiles;
 using Repositories.Models.Profiles;
-using Services.Profiles.DataMapper;
+using Services.Profiles.DataMapperExtensions;
 
-namespace UnitTests.Services.Profiles.DataMapper
+namespace UnitTests.Services.Profiles.DataMapperExtensions
 {
     [TestClass]
     public class ProfileModelDataMapperUnitTest

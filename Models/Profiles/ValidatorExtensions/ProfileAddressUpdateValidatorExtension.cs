@@ -5,7 +5,7 @@ using Models.Common.APIResponses;
 
 namespace Models.Profiles.ValidatorExtensions
 {
-    public static class ProfileAddressUpdateValidatorExtentions
+    public static class ProfileAddressUpdateValidatorExtension
     {
         public static List<ValidationErrorMessage> Validate(this List<ProfileAddressUpdateModel> profileAddressUpdateModes)
         {

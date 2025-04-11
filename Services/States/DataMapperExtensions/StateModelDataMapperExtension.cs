@@ -1,15 +1,15 @@
 ﻿using Models.States;
 using Repositories.Models.States;
 
-namespace Services.States.DataMapper
+namespace Services.States.DataMapperExtensions
 {
-    public static class StateModelDataMapper
+    public static class StateModelDataMapperExtension
     {
         public static List<StateModel> MapDataAsStateModel(this List<StateDto> list)
         {
             var results = new List<StateModel>();
             results.AddRange(
-                list.Select(item => MapDataAsStateModel(item))
+                list.Select(item => item.MapDataAsStateModel())
             );
 
             return results;

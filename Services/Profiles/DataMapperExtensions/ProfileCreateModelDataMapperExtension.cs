@@ -1,9 +1,9 @@
 ﻿using Models.Profiles;
 using Repositories.Models.Profiles;
 
-namespace Services.Profiles.DataMapper
+namespace Services.Profiles.DataMapperExtensions
 {
-    public static class ProfileCreateModelDataMapper
+    public static class ProfileCreateModelDataMapperExtension
     {
 
         public static ProfileCreateDto MapDataAsProfileCreateDto(this ProfileCreateModel profile)

@@ -1,4 +1,5 @@
 ﻿using Repositories.Models.Profiles;
+using Repositories.Models.Profiles.DataMapperExtensions;
 using Repositories.Profiles.Interfaces;
 using Utilities.Converters.JsonObjectConverter;
 using Utilities.Converters.ObjectConverter;
@@ -33,28 +34,20 @@ namespace Repositories.Profiles
         {
             var profileList = await _profileDataSource.GetProfilesAsync();
 
-            var profileId = profileList.Max(aItem => aItem.ProfileId) + 1;
+            var profileIdMax = profileList.Max(aItem => aItem.ProfileId) + 1;
+            var addressIdMax = GetMaxAddressId(profileList);
 
-            var newProfile = new ProfileDto();
+            var newProfile = aProfile.MapDataAsProfileDto();
 
-            newProfile.ProfileId = profileId;
-            newProfile.FirstName = aProfile.FirstName;
-            newProfile.LastName = aProfile.LastName;
-            newProfile.Active = aProfile.Active;
+            newProfile.ProfileId = profileIdMax;
 
-            var newAddresses = Convert<List<ProfileAddressCreateDto>, List<ProfileAddressDto>>(aProfile.Addresses);
-
-            var addressMaxId = GetMaxAddressId(profileList);
-
-            newAddresses.ForEach(delegate (ProfileAddressDto aAddress)
+            newProfile.Addresses.ForEach(delegate (ProfileAddressDto aAddress)
             {
-                aAddress.ProfileId = profileId;
-                aAddress.AddressId = addressMaxId;
-                addressMaxId++;
+                aAddress.ProfileId = profileIdMax;
+                aAddress.AddressId = addressIdMax;
+
+                addressIdMax++;
             });
-
-
-            newProfile.Addresses = newAddresses;
 
             profileList.Add(newProfile);
 
