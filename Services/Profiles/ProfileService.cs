@@ -1,11 +1,8 @@
-﻿using Models.APIResponses;
+﻿using Models.Common.APIResponses;
 using Models.Profiles;
-using Profiles.Models.APIResponses;
-using Repositories.Models.Profiles;
 using Repositories.Profiles.Interfaces;
 using Services.Profiles.DataMapper;
 using Services.Profiles.Interfaces;
-using Utilities.Converters.ObjectConverter;
 
 namespace Services.Profiles
 {

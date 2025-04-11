@@ -1,6 +1,4 @@
-﻿using Models.APIResponses;
-
-namespace Profiles.Models.APIResponses
+﻿namespace Models.Common.APIResponses
 {
     public class ApiResponse
     {

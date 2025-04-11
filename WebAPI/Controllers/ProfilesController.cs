@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Models.APIResponses;
+using Models.Common.APIResponses;
 using Models.Profiles;
 using Models.Profiles.ValidatorExtensions;
-using Profiles.Models.APIResponses;
 using Services.Profiles.Interfaces;
 
 namespace WebAPI.Controllers
@@ -22,31 +21,26 @@ namespace WebAPI.Controllers
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(typeof(List<ProfileModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse<List<ProfileModel>>), StatusCodes.Status200OK)]
         public async Task<ActionResult> ProfilesAsync()
         {
 
             var response = await _profileService.GetProfilesAsync();
 
-            if(response.Success)
-                return Ok(response.data);
+            return Ok(response);
 
-            return BadRequest(response.ErrorMessages);
         }
 
         // GET api/v1/profiles/5
         [HttpGet("{profileId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(typeof(ProfileModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse<ProfileModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAsync(int profileId)
         {
             var response = await _profileService.GetProfileByIdAsync(profileId);
 
-            if (response.Success)
-                return Ok(response.data);
-
-            return BadRequest(response.ErrorMessages);
+            return Ok(response);
         }
 
         // POST api/v1/profiles
@@ -63,10 +57,8 @@ namespace WebAPI.Controllers
 
             var response = await _profileService.CreateProfileAsync(profile);
 
-            if (response.Success)
-                return Ok(response.data);
+            return Ok(response);
 
-            return Ok(response.ErrorMessages);
         }
 
         // PUT api/v1/profile/Profile
@@ -83,9 +75,6 @@ namespace WebAPI.Controllers
 
             var response = await _profileService.UpdateProfileAsync(profile);
 
-            if (response.Success)
-                return Ok(response.data);
-
             return Ok(response);
         }
 
@@ -95,10 +84,8 @@ namespace WebAPI.Controllers
         {
             var response = await _profileService.DeleteProfilesAsync(profileId);
 
-            if (response.Success)
-                return Ok(response);
+            return Ok(response);
 
-            return BadRequest(response.ErrorMessages);
         }
 
     }

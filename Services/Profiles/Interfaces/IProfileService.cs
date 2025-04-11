@@ -1,5 +1,5 @@
-﻿using Models.Profiles;
-using Profiles.Models.APIResponses;
+﻿using Models.Common.APIResponses;
+using Models.Profiles;
 
 namespace Services.Profiles.Interfaces
 {

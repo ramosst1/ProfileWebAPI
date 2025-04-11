@@ -1,4 +1,4 @@
-﻿namespace Models.APIResponses
+﻿namespace Models.Common.APIResponses
 {
     public class ValidationErrorMessage
     {

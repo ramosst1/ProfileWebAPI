@@ -1,4 +1,4 @@
-﻿using Models.APIResponses;
+﻿using Models.Common.APIResponses;
 
 namespace Models.Profiles.ValidatorExtensions
 {
