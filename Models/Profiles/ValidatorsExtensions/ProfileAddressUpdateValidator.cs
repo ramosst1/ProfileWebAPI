@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
 using Models.Common.Addresses;
-using Models.Common.Addresses.Validators;
+using Models.Common.Addresses.ValidatorsExtensions;
+using Models.Profiles.ValidatorsExtensions;
 
-namespace Models.Profiles.Validators
+namespace Models.Profiles.ValidatorsExtensions
 {
     public static class ProfileAddressUpdateValidator
     {
@@ -14,7 +15,7 @@ namespace Models.Profiles.Validators
 
             foreach (var profileAddressUpdateModel in profileAddressUpdateModes)
             {
-                results.AddRange(Validate(profileAddressUpdateModel));
+                results.AddRange(profileAddressUpdateModel.Validate());
             }
 
             return results;
@@ -38,27 +39,27 @@ namespace Models.Profiles.Validators
 
             return results;
         }
-    }
 
-    public class ProfileAddressUpdateFluentValidator : AbstractValidator<ProfileAddressUpdateModel>
-    {
-
-        public ProfileAddressUpdateFluentValidator()
-        {
-            RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper id.");
-            RuleFor(field => field.AddressId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper id.");
-            RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
-        }
-
-        protected bool IsPrimaryOrSecondary(ProfileAddressUpdateModel aAddress)
+        public class ProfileAddressUpdateFluentValidator : AbstractValidator<ProfileAddressUpdateModel>
         {
 
-            if (aAddress.IsPrimary == aAddress.IsSecondary)
+            public ProfileAddressUpdateFluentValidator()
             {
-                return false;
+                RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper id.");
+                RuleFor(field => field.AddressId).Must(x => x > 0).WithMessage("{PropertyName} is not a proper id.");
+                RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
             }
 
-            return true;
+            protected bool IsPrimaryOrSecondary(ProfileAddressUpdateModel aAddress)
+            {
+
+                if (aAddress.IsPrimary == aAddress.IsSecondary)
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
-    }
+   }
 }

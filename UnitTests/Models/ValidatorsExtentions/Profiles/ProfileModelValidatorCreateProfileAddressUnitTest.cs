@@ -1,7 +1,7 @@
 ﻿using Models.Profiles;
-using Models.Profiles.Validators;
+using Models.Profiles.ValidatorsExtensions;
 
-namespace UnitTests.Models.Validators.Profiles
+namespace UnitTests.Models.ValidatorsExtentions.Profiles
 {
     [TestClass]
     public class ProfileModelValidatorCreateProfileAddressUnitTest
@@ -13,7 +13,6 @@ namespace UnitTests.Models.Validators.Profiles
         public void Should_TheProfileCreateAddressModelValidation_ReturnsAValidInputs(
             string address1, string address2, string city, string stateAbrev, string zipCode, bool isPrimary, bool isSecondary
         ){
-            var validator = new ProfileAddressCreateFluentValidator();
 
             var input = new ProfileAddressCreateModel
             {
@@ -28,7 +27,6 @@ namespace UnitTests.Models.Validators.Profiles
 
             var actualResults = input.Validate();
 
-//            Assert.AreEqual(true, actualResults.IsValid);
             Assert.AreEqual(false, actualResults.Any());
         }
 
@@ -49,7 +47,6 @@ namespace UnitTests.Models.Validators.Profiles
             string address1, string address2, string city, string stateAbrev, string zipCode, bool isPrimary, bool isSecondary, string expectedErrorMessage
         )
         {
-            var validator = new ProfileAddressCreateFluentValidator();
 
             var input = new ProfileAddressCreateModel
             {
@@ -66,7 +63,6 @@ namespace UnitTests.Models.Validators.Profiles
 
             Assert.AreEqual(true, actualResults.Any());
             Assert.AreEqual(true, actualResults.Exists(aItem => aItem.Message == expectedErrorMessage));
-
         }
     }
 }

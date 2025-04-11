@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models.APIResponses;
 using Models.Profiles;
-using Models.Profiles.Validators;
+using Models.Profiles.ValidatorsExtensions;
 using Profiles.Models.APIResponses;
 using Services.Profiles.Interfaces;
 

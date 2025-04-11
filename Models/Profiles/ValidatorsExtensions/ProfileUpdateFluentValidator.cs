@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
 
-namespace Models.Profiles.Validators
+namespace Models.Profiles.ValidatorsExtensions
 {
 
     public static class ProfileUpdateValidator  {
@@ -27,13 +27,13 @@ namespace Models.Profiles.Validators
 
             return results;
         }
-    }
 
-    public class ProfileUpdateFluentValidator : AbstractValidator<ProfileUpdateModel>
-    {
-        public ProfileUpdateFluentValidator()
+        public class ProfileUpdateFluentValidator : AbstractValidator<ProfileUpdateModel>
         {
-            RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a valid id.");
+            public ProfileUpdateFluentValidator()
+            {
+                RuleFor(field => field.ProfileId).Must(x => x > 0).WithMessage("{PropertyName} is not a valid id.");
+            }
         }
     }
 }

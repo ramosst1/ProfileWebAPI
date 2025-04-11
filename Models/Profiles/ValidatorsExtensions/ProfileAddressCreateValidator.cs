@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
 using Models.Common.Addresses;
-using Models.Common.Addresses.Validators;
+using Models.Common.Addresses.ValidatorsExtensions;
 
-namespace Models.Profiles.Validators
+namespace Models.Profiles.ValidatorsExtensions
 {
 
     public static class ProfileAddressCreateValidator {
@@ -37,26 +37,28 @@ namespace Models.Profiles.Validators
 
             return results;
         } 
-    }
-
-    public class ProfileAddressCreateFluentValidator: AbstractValidator<ProfileAddressCreateModel>
-    {
-
-        public ProfileAddressCreateFluentValidator()
-        {
-            RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
-        }
-
-        protected bool IsPrimaryOrSecondary(ProfileAddressCreateModel aAddress)
+ 
+        public class ProfileAddressCreateFluentValidator: AbstractValidator<ProfileAddressCreateModel>
         {
 
-            if (aAddress.IsPrimary == aAddress.IsSecondary)
+            public ProfileAddressCreateFluentValidator()
             {
-                return false;
+                RuleFor(field => field).Must(IsPrimaryOrSecondary).WithMessage("Select either a primary or a secondary address type.");
             }
 
-            return true;
+            protected bool IsPrimaryOrSecondary(ProfileAddressCreateModel aAddress)
+            {
+
+                if (aAddress.IsPrimary == aAddress.IsSecondary)
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
+
     }
+
 
 }

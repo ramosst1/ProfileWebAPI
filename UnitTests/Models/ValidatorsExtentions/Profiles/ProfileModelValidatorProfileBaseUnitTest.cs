@@ -1,7 +1,7 @@
 ﻿using Models.Profiles;
-using Models.Profiles.Validators;
+using Models.Profiles.ValidatorsExtensions;
 
-namespace UnitTests.Models.Validators.Profiles
+namespace UnitTests.Models.ValidatorsExtentions.Profiles
 {
     [TestClass]
     public class ProfileModelValidatorProfileBaseUnitTest
