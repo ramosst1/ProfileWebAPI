@@ -1,5 +1,6 @@
 ﻿using Models.Common.APIResponses;
 using Models.Profiles;
+using Repositories.Models.Profiles;
 using Repositories.Profiles.Interfaces;
 using Services.Profiles.DataMapperExtensions;
 using Services.Profiles.Interfaces;
@@ -22,21 +23,14 @@ namespace Services.Profiles
 
             try
             {
-                var profiles = await _profileRepository.GetProfilesAsync();
+                List<ProfileDto> profiles = await _profileRepository.GetProfilesAsync();
 
                 response.data = profiles.MapDataAsProfileModel();
 
                 response.Success = true;
             }
             catch (Exception ex) {
-
-                response.Success = false;
-                response.ErrorMessages.Add(new ErrorMessageModel()
-                {
-                    ExternalMessage = ex.Message,
-                    InternalMessage = ex.Message // Can be used for logging the error for troublshooting
-                });
-
+                return ErrorResponse<List<ProfileModel>> (ex);
             }
 
             return response;
@@ -50,7 +44,7 @@ namespace Services.Profiles
             try
             {
 
-                var profile = await _profileRepository.GetProfileByIdAsync(profileId);
+                ProfileDto profile = await _profileRepository.GetProfileByIdAsync(profileId);
 
                 if (profile == null)
                 {
@@ -65,12 +59,7 @@ namespace Services.Profiles
             }
             catch (Exception ex)
             {
-                response.Success = false;
-                response.ErrorMessages.Add(new ErrorMessageModel()
-                {
-                    ExternalMessage = ex.Message,
-                    InternalMessage = ex.Message // Can be used for logging the error for troublshooting
-                });
+                return ErrorResponse<ProfileModel>(ex);
             }
 
             return response;
@@ -81,78 +70,46 @@ namespace Services.Profiles
             var response = new ApiResponse<ProfileModel>();
             try
             {
-                var newProfile = aProfile.MapDataAsProfileCreateDto();
+                ProfileCreateDto newProfile = aProfile.MapDataAsProfileCreateDto();
 
                 var newProfileCreated = await _profileRepository.CreateProfileAsync(newProfile);
 
-                if (newProfileCreated == null)
-                {
-                    response.Success = false;
-                    response.ErrorMessages.Add(new ErrorMessageModel()
-                    {
-                        ExternalMessage = "Unable to create the profile",
-                        InternalMessage = "Unable to create the profile"
-                    });
-                }
-                else
-                {
-                    response.data = newProfileCreated.MapDataAsProfileModel();
+                if (newProfileCreated == null) 
+                    return ErrorResponse<ProfileModel>("Unable to create the profile", "Unable to create the profile");
 
-                    response.Success = true;
-                }
+                response.data = newProfileCreated.MapDataAsProfileModel();
+
+                response.Success = true;
             }
             catch (Exception ex)
             {
-
-                response.Success = false;
-                response.ErrorMessages.Add(new ErrorMessageModel()
-                {
-                    ExternalMessage = ex.Message,
-                    InternalMessage = ex.Message // Can be used for logging the error for troublshooting
-                });
-
+                return ErrorResponse<ProfileModel>(ex);
             }
 
             return response;
         }
 
-        public async Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfile)
+        public async Task<ApiResponse<ProfileModel>> UpdateProfileAsync(ProfileUpdateModel aProfileModel)
         {
 
             var response = new ApiResponse<ProfileModel>();
 
             try
             {
-                var newProfile = aProfile.MapDataAsProfileUpdateDto();
+                ProfileUpdateDto profileToUpdate = aProfileModel.MapDataAsProfileUpdateDto();
 
-                var updatedProfileCreated = await _profileRepository.UpdateProfileAsync(newProfile);
+                var updatedProfileDto = await _profileRepository.UpdateProfileAsync(profileToUpdate);
 
-                if (updatedProfileCreated == null)
-                {
-                    response.Success = false;
-                    response.ErrorMessages.Add(new ErrorMessageModel()
-                    {
-                        ExternalMessage = "Unable to update the profile",
-                        InternalMessage = "Unable to update the profile"
-                    });
-                }
-                else {
+                if (updatedProfileDto == null) 
+                    return ErrorResponse<ProfileModel>("Unable to update the profile", "Unable to update the profile");
 
-                    response.data = updatedProfileCreated.MapDataAsProfileModel();
+                response.data = updatedProfileDto.MapDataAsProfileModel();
 
-                    response.Success = true;
-                }
+                response.Success = true;
             }
             catch (Exception ex)
             {
-
-                response.Success = false;
-                response.ErrorMessages.Add(new ErrorMessageModel()
-                {
-                    ExternalMessage = ex.Message,
-                    InternalMessage = ex.Message // Can be used for logging the error for troublshooting
-                });
-
+                return ErrorResponse<ProfileModel>(ex);
             }
 
             return response;
@@ -164,15 +121,12 @@ namespace Services.Profiles
 
             try
             {
-                var result = await _profileRepository.DeleteProfileAsync(profileId);
+                bool result = await _profileRepository.DeleteProfileAsync(profileId);
+
                 response.Success = result;
 
                 if (!result) {
-                    response.ErrorMessages.Add(new ErrorMessageModel()
-                    {
-                        ExternalMessage = "Unable to delete the profile",
-                        InternalMessage = "Unable to delete the profile"
-                    });
+                    return ErrorResponse("Unable to delete the profile", "Unable to delete the profile");
                 }
 
             }
@@ -190,5 +144,51 @@ namespace Services.Profiles
 
             return response;
         }
+
+        private static ApiResponse<TResponse> ErrorResponse<TResponse>(Exception ex)
+        {
+
+            var response = new ApiResponse<TResponse>();
+
+            response.Success = false;
+            response.ErrorMessages.Add(new ErrorMessageModel()
+            {
+                ExternalMessage = ex.Message,
+                InternalMessage = ex.Message // Can be used for logging the error for troublshooting
+            });
+
+            return response;
+        }
+
+        private static ApiResponse<TResponse> ErrorResponse<TResponse>(string internalMessage, string externalMessage)
+        {
+
+            var response = new ApiResponse<TResponse>();
+
+            response.Success = false;
+            response.ErrorMessages.Add(new ErrorMessageModel()
+            {
+                ExternalMessage = externalMessage,
+                InternalMessage = internalMessage // Can be used for logging the error for troublshooting
+            });
+
+            return response;
+        }
+
+        private static ApiResponse ErrorResponse(string internalMessage, string externalMessage)
+        {
+
+            var response = new ApiResponse();
+
+            response.Success = false;
+            response.ErrorMessages.Add(new ErrorMessageModel()
+            {
+                ExternalMessage = externalMessage,
+                InternalMessage = internalMessage // Can be used for logging the error for troublshooting
+            });
+
+            return response;
+        }
     }
 }
+
