@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using Models.APIResponses;
 
-namespace Models.Profiles.ValidatorsExtensions
+namespace Models.Profiles.ValidatorExtensions
 {
 
-    public static class ProfileUpdateValidator  {
+    public static class ProfileUpdateValidatorExtentions  {
 
         public static List<ValidationErrorMessage> Validate(this ProfileUpdateModel profileUpdateModel)
         {

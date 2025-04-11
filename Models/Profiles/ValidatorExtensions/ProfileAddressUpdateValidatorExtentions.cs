@@ -2,11 +2,10 @@
 using Models.APIResponses;
 using Models.Common.Addresses;
 using Models.Common.Addresses.ValidatorsExtensions;
-using Models.Profiles.ValidatorsExtensions;
 
-namespace Models.Profiles.ValidatorsExtensions
+namespace Models.Profiles.ValidatorExtensions
 {
-    public static class ProfileAddressUpdateValidator
+    public static class ProfileAddressUpdateValidatorExtentions
     {
         public static List<ValidationErrorMessage> Validate(this List<ProfileAddressUpdateModel> profileAddressUpdateModes)
         {

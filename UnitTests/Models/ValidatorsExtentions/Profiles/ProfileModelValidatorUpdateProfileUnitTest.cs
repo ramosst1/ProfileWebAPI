@@ -1,5 +1,5 @@
 ﻿using Models.Profiles;
-using Models.Profiles.ValidatorsExtensions;
+using Models.Profiles.ValidatorExtensions;
 
 namespace UnitTests.Models.ValidatorsExtentions.Profiles
 {

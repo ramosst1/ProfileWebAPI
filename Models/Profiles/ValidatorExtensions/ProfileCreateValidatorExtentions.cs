@@ -1,9 +1,9 @@
 ﻿using Models.APIResponses;
 
-namespace Models.Profiles.ValidatorsExtensions
+namespace Models.Profiles.ValidatorExtensions
 {
 
-    public static class ProfileCreateValidator {
+    public static class ProfileCreateValidatorExtentions {
 
         public static List<ValidationErrorMessage> Validate(this ProfileCreateModel profileCreateModel)
         {

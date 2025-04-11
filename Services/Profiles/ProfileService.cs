@@ -60,7 +60,7 @@ namespace Services.Profiles
                     response.Success = false;
                 }
                 else {
-                    response.data = Convert<ProfileDto, ProfileModel>(profile);
+                    response.data = profile.MapDataAsProfileModel();
 
                     response.Success = true;
                 }
@@ -190,13 +190,6 @@ namespace Services.Profiles
                     InternalMessage = ex.Message // Can be used for logging the error for troublshooting
                 });
             }
-
-            return response;
-        }
-
-        private static TTarget Convert<TSource, TTarget>(TSource source)
-        {
-            var response = DataMapperConverter.Convert<TSource, TTarget>(source);
 
             return response;
         }

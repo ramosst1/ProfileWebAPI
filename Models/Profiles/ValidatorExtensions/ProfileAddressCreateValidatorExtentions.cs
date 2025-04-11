@@ -3,10 +3,10 @@ using Models.APIResponses;
 using Models.Common.Addresses;
 using Models.Common.Addresses.ValidatorsExtensions;
 
-namespace Models.Profiles.ValidatorsExtensions
+namespace Models.Profiles.ValidatorExtensions
 {
 
-    public static class ProfileAddressCreateValidator {
+    public static class ProfileAddressCreateValidatorExtentions {
 
         public static List<ValidationErrorMessage> Validate(this List<ProfileAddressCreateModel> profileAddressCreateModes) {
 
