@@ -25,14 +25,14 @@ namespace Repositories.Profiles
 
         public async Task<ProfileDto> GetProfileByIdAsync(int profileId)
         {
-            var result = await _profileDataSource.GetProfilesAsync();
+            List<ProfileDto> result = await _profileDataSource.GetProfilesAsync();
 
             return result.FirstOrDefault(aItem => aItem.ProfileId == profileId);
 
         }
         public async Task<ProfileDto> CreateProfileAsync(ProfileCreateDto aProfile)
         {
-            var profileList = await _profileDataSource.GetProfilesAsync();
+            List<ProfileDto> profileList = await _profileDataSource.GetProfilesAsync();
 
             var profileIdMax = profileList.Max(aItem => aItem.ProfileId) + 1;
             var addressIdMax = GetMaxAddressId(profileList);
@@ -51,7 +51,7 @@ namespace Repositories.Profiles
 
             profileList.Add(newProfile);
 
-            var profileNewList = ConvertToJson<List<ProfileDto>>(profileList);
+            string profileNewList = ConvertToJson<List<ProfileDto>>(profileList);
 
             await _profileDataSource.WriteJsonToFileAsync(profileNewList);
 
@@ -60,7 +60,7 @@ namespace Repositories.Profiles
 
         public async Task<bool> DeleteProfileAsync(int profileId)
         {
-            var profilesList = await _profileDataSource.GetProfilesAsync();
+            List<ProfileDto> profilesList = await _profileDataSource.GetProfilesAsync();
 
             var profileListNew = profilesList.Where(existProfile => profileId != existProfile.ProfileId)
                 .ToList();
@@ -73,17 +73,13 @@ namespace Repositories.Profiles
         public async Task<ProfileDto> UpdateProfileAsync(ProfileUpdateDto profile)
         {
 
-            var profileList = await _profileDataSource.GetProfilesAsync();
+            List<ProfileDto> profileList = await _profileDataSource.GetProfilesAsync();
 
             var currentProfile = profileList.Where(aItem => aItem.ProfileId == profile.ProfileId).FirstOrDefault();
 
             if (currentProfile == null) return null;
 
-            currentProfile.FirstName = profile.FirstName;
-            currentProfile.LastName = profile.LastName;
-            currentProfile.Active = profile.Active;
-
-            currentProfile.Addresses = Convert<List<ProfileAddressUpdateDto>, List<ProfileAddressDto>>(profile.Addresses);
+            currentProfile = profile.MapDataAsProfileDto();
 
             var profileUpdateList = ConvertToJson<List<ProfileDto>>(profileList);
 
@@ -97,13 +93,6 @@ namespace Repositories.Profiles
             var nextAddressId = profiles.SelectMany(aItem => aItem.Addresses).Max(aItem => aItem.AddressId) + 1;
                 
             return nextAddressId;
-        }
-
-        private static TTarget Convert<TSource, TTarget>(TSource source)
-        {
-            var response = DataMapperConverter.Convert<TSource, TTarget>(source);
-
-            return response;
         }
 
         private static string ConvertToJson<TObject>(TObject source)

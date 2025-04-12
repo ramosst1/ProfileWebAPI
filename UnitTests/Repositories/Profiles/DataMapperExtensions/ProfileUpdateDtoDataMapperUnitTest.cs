@@ -4,19 +4,20 @@ using Repositories.Models.Profiles.DataMapperExtensions;
 namespace UnitTests.Repositories.Profiles.DataMapperExtensions
 {
     [TestClass]
-    public class ProfileCreateDtoDataMapperUnitTest
+    public class ProfileUpdateDtoDataMapperUnitTest
     {
         [TestMethod]
-        public void Should_TheProfileCreateDtoDataMapper_ReturnsASuccessfulProfileDtoMapFromAProfileWithAddressesDTO()
+        public void Should_TheProfileUpdateDtoDataMapper_ReturnsASuccessfulProfileDtoMapFromAProfileWithAddressesDTO()
         {
 
-            ProfileCreateDto source = new()
+            ProfileUpdateDto source = new()
             {
                 FirstName = "Joe",
                 LastName = "Smith",
                 Active = true,
-                Addresses = new List<ProfileAddressCreateDto>{
+                Addresses = new List<ProfileAddressUpdateDto>{
                     new (){
+                        AddressId=1,
                         Address1 = "My Address1 1",
                         Address2 = "My Address2 1",
                         City = "My City 1",
@@ -26,6 +27,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
                         IsSecondary = true
                     },
                     new (){
+                        AddressId = 2,
                         Address1 = "My Address1 2",
                         Address2 = "My Address2 2",
                         City = "My City 2",
@@ -40,6 +42,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
 
             List<ProfileAddressDto> expectedAddresses1 = new(){
                 new (){
+                    AddressId = 1,
                     Address1 = "My Address1 1",
                     Address2 = "My Address2 1",
                     City = "My City 1",
@@ -49,6 +52,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
                     IsSecondary = true
                 },
                 new (){
+                    AddressId = 2,
                     Address1 = "My Address1 2",
                     Address2 = "My Address2 2",
                     City = "My City 2",
@@ -62,6 +66,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
             ProfileDto expecting =
                 new()
                 {
+                    ProfileId = 1,
                     FirstName = "Joe",
                     LastName = "Smith",
                     Active = true,
@@ -70,6 +75,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
 
             ProfileDto actual = source.MapDataAsProfileDto();
 
+            Assert.AreEqual(actual.ProfileId, expecting.ProfileId);
             Assert.AreEqual(actual.FirstName, expecting.FirstName);
             Assert.AreEqual(actual.LastName, expecting.LastName);
             Assert.AreEqual(actual.Active, expecting.Active);
@@ -79,6 +85,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
 
                 var (actualAddress, expectingAddress) = (actual.Addresses[i], expecting.Addresses[i]);
 
+                Assert.AreEqual(actualAddress.AddressId, expectingAddress.AddressId);
                 Assert.AreEqual(actualAddress.Address1, expectingAddress.Address1);
                 Assert.AreEqual(actualAddress.Address2, expectingAddress.Address2);
                 Assert.AreEqual(actualAddress.City, expectingAddress.City);
@@ -88,7 +95,5 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
                 Assert.AreEqual(actualAddress.IsSecondary, expectingAddress.IsSecondary);
             }
         }
-
-
     }
 }

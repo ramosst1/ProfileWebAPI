@@ -12,7 +12,7 @@ namespace UnitTests.Repositories.Profiles
         const string ExceptionErrorMessage = "One or more errors occurred. (Exception of type 'System.Exception' was thrown.)";
 
         [TestMethod]
-        public void Should_TheDeleteAsync_ReturnsASuccessfulDelete() {
+        public void Should_TheDeleteProfileAsync_ReturnsASuccessfulDelete() {
 
             var expectedProfiles = new List<ProfileDto>() {
                 new ProfileDto{ ProfileId = 1},
@@ -32,7 +32,7 @@ namespace UnitTests.Repositories.Profiles
         }
 
         [TestMethod]
-        public void Should_TheDeleteAsync_ReturnsAnException()
+        public void Should_TheProfileDeleteAsync_ReturnsAnException()
         {
 
             var expectedProfiles = new List<ProfileDto>() {

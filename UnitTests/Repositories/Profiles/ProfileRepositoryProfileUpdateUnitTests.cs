@@ -15,7 +15,7 @@ namespace UnitTests.Repositories.Profiles
         public void Should_TheUpdateAProfileAsync_ReturnsAProfile()
         {
 
-            var profilesList = new List<ProfileDto>() {
+            var sourceProfilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1,
                         Addresses =
                             new List<ProfileAddressDto>(){ new ProfileAddressDto() {
@@ -36,6 +36,23 @@ namespace UnitTests.Repositories.Profiles
                     },
             };
 
+            var sourceProfileToUpdate = new ProfileUpdateDto
+            {
+                ProfileId = 2,
+                FirstName = "Joe2",
+                LastName = "Smith2",
+                Active = true,
+                Addresses =
+                            new List<ProfileAddressUpdateDto>(){ new ProfileAddressUpdateDto() {
+                                AddressId = 11,
+                                Address1 = "My Updated Address 1",
+                                Address2 = "My Update Address 2",
+                                City = "My Update City",
+                                StateAbrev = "CT", IsPrimary = true,
+                                ZipCode = "98765"
+                            }}
+            };
+
             var expectedProfile = new ProfileDto
             {
                 ProfileId = 2,
@@ -53,30 +70,13 @@ namespace UnitTests.Repositories.Profiles
                             }}
             };
 
-            var profileToUpdate = new ProfileUpdateDto
-            {
-                ProfileId = 2,
-                FirstName = "Joe2",
-                LastName = "Smith2",
-                Active = true,
-                Addresses =
-                            new List<ProfileAddressUpdateDto>(){ new ProfileAddressUpdateDto() {
-                                AddressId = 11,
-                                Address1 = "My Updated Address 1",
-                                Address2 = "My Update Address 2",
-                                City = "My Update City",
-                                StateAbrev = "CT", IsPrimary = true,
-                                ZipCode = "98765"
-                            }}
-            };
-
             var mockProfileDataSource = new Mock<IProfileDataSource>();
 
-            mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(profilesList);
+            mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(sourceProfilesList);
 
             var profileRepository = new ProfileRepository(mockProfileDataSource.Object);
 
-            var actualResults = profileRepository.UpdateProfileAsync(profileToUpdate).Result;
+            var actualResults = profileRepository.UpdateProfileAsync(sourceProfileToUpdate).Result;
 
 
 

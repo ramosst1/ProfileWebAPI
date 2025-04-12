@@ -13,6 +13,8 @@ namespace UnitTests.Repositories.Profiles
         [TestMethod]
         public void Should_TheGetAllProfilesAsync_ReturnsAListOfProfiles() {
 
+            var mockProfileDataSource = new Mock<IProfileDataSource>();
+
             var expectedProfiles = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1, FirstName = "Joe", LastName="Smith",
                         Addresses =
@@ -36,8 +38,6 @@ namespace UnitTests.Repositories.Profiles
 
                     },
             };
-
-            var mockProfileDataSource = new Mock<IProfileDataSource>();
 
             mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(expectedProfiles);
 
@@ -88,7 +88,8 @@ namespace UnitTests.Repositories.Profiles
         [TestMethod]
         public void Should_TheGetAProfileAsync_ReturnsAProfile()
         {
-            var profilesList = new List<ProfileDto>() {
+
+            var sourceProfilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1, FirstName = "Joe", LastName="Smith", Active = false,
                         Addresses =
                             new List<ProfileAddressDto>(){ new ProfileAddressDto() {
@@ -133,7 +134,7 @@ namespace UnitTests.Repositories.Profiles
 
             var mockProfileDataSource = new Mock<IProfileDataSource>();
 
-            mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(profilesList);
+            mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(sourceProfilesList);
 
             var profileRepository = new ProfileRepository(mockProfileDataSource.Object);
 
@@ -159,7 +160,7 @@ namespace UnitTests.Repositories.Profiles
         [TestMethod]
         public void Should_TheGetAProfileAsync_ReturnsNoProfile()
         {
-            var profilesList = new List<ProfileDto>() {
+            var sourceProfilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1, FirstName = "Joe", LastName="Smith",
                         Addresses =
                             new List<ProfileAddressDto>(){ new ProfileAddressDto() {
@@ -187,7 +188,7 @@ namespace UnitTests.Repositories.Profiles
 
             var mockProfileDataSource = new Mock<IProfileDataSource>();
 
-            mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(profilesList);
+            mockProfileDataSource.Setup(x => x.GetProfilesAsync()).ReturnsAsync(sourceProfilesList);
 
             var profileRepository = new ProfileRepository(mockProfileDataSource.Object);
 
