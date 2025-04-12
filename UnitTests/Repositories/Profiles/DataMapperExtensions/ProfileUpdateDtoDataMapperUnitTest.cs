@@ -12,6 +12,7 @@ namespace UnitTests.Repositories.Profiles.DataMapperExtensions
 
             ProfileUpdateDto source = new()
             {
+                ProfileId = 1,
                 FirstName = "Joe",
                 LastName = "Smith",
                 Active = true,

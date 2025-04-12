@@ -31,7 +31,7 @@ namespace UnitTests.Repositories.Profiles
                     },
             };
 
-            var profileToCreate = new ProfileCreateDto
+            var sourceProfileToCreate = new ProfileCreateDto
             {
                 FirstName = "Joe",
                 LastName = "Smith",
@@ -52,15 +52,15 @@ namespace UnitTests.Repositories.Profiles
 
             var profileRepository = new ProfileRepository(mockProfileDataSource.Object);
 
-            var actualResults = profileRepository.CreateProfileAsync(profileToCreate).Result;
+            var actualResults = profileRepository.CreateProfileAsync(sourceProfileToCreate).Result;
 
-            Assert.AreEqual(actualResults.LastName, profileToCreate.LastName);
+            Assert.AreEqual(actualResults.LastName, sourceProfileToCreate.LastName);
             Assert.AreEqual(actualResults.ProfileId, 3);
-            Assert.AreEqual(actualResults.FirstName, profileToCreate.FirstName);
-            Assert.AreEqual(actualResults.Active, profileToCreate.Active);
+            Assert.AreEqual(actualResults.FirstName, sourceProfileToCreate.FirstName);
+            Assert.AreEqual(actualResults.Active, sourceProfileToCreate.Active);
 
             {
-                var (actualAddress, expectedAddress) = (actualResults.Addresses[0], profileToCreate.Addresses[0]);
+                var (actualAddress, expectedAddress) = (actualResults.Addresses[0], sourceProfileToCreate.Addresses[0]);
 
                 Assert.AreEqual(actualAddress.AddressId, 12);
                 Assert.AreEqual(actualAddress.Address1, expectedAddress.Address1);
