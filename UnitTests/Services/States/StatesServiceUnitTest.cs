@@ -16,17 +16,17 @@ namespace UnitTests.Services.States
         public void Should_TheGetAllStatesAsync_ReturnsAListOfStates()
         {
             var expectedStates = new List<StateModel>() { 
-                new StateModel{ StateName = "New York", StateAbreviation = "NY" },
-                new StateModel{ StateName = "New Jersey", StateAbreviation = "NJ" },
-                new StateModel{ StateName = "Connecticut", StateAbreviation = "CT" },
-                new StateModel{ StateName = "Main", StateAbreviation = "ME" }
+                new (){ StateName = "New York", StateAbreviation = "NY" },
+                new (){ StateName = "New Jersey", StateAbreviation = "NJ" },
+                new (){ StateName = "Connecticut", StateAbreviation = "CT" },
+                new (){ StateName = "Main", StateAbreviation = "ME" }
             };
 
             var actualStates = new List<StateDto>() {
-                new StateDto{ StateName = "New York", StateAbrev = "NY" },
-                new StateDto{ StateName = "New Jersey", StateAbrev = "NJ" },
-                new StateDto{ StateName = "Connecticut", StateAbrev = "CT" },
-                new StateDto{ StateName = "Main", StateAbrev = "ME" }
+                new (){ StateName = "New York", StateAbrev = "NY" },
+                new (){ StateName = "New Jersey", StateAbrev = "NJ" },
+                new (){ StateName = "Connecticut", StateAbrev = "CT" },
+                new (){ StateName = "Main", StateAbrev = "ME" }
             };
 
             var statesRepository = new Mock<IStatesRepository>();
@@ -50,13 +50,13 @@ namespace UnitTests.Services.States
         [TestMethod]
         public void Should_TheGetAllStatesAsync_ReturnsNoStates()
         {
-            var statesRepository = new Mock<IStatesRepository>();
+            var mockStatesRepository = new Mock<IStatesRepository>();
 
-            var statesServices = new StatesService(statesRepository.Object);
+            var mockStatesServices = new StatesService(mockStatesRepository.Object);
 
-            statesRepository.Setup(x => x.GetAllStatesAsync()).ReturnsAsync(new List<StateDto>());
+            mockStatesRepository.Setup(x => x.GetAllStatesAsync()).ReturnsAsync(new List<StateDto>());
 
-            var actualResults = statesServices.GetAllStatesAsync().Result;
+            var actualResults = mockStatesServices.GetAllStatesAsync().Result;
 
 
             Assert.AreEqual(actualResults.ErrorMessages.Any(), false);
@@ -68,14 +68,14 @@ namespace UnitTests.Services.States
         [TestMethod]
         public void Should_TheGetAllStatesAsync_ReturnsNoStatesBecauseExceptionThrown()
         {
-            var statesRepository = new Mock<IStatesRepository>();
+            var mockStatesRepository = new Mock<IStatesRepository>();
 
-            var statesServices = new StatesService(statesRepository.Object);
+            var mockStatesServices = new StatesService(mockStatesRepository.Object);
 
-            statesRepository.Setup(x => x.GetAllStatesAsync())
+            mockStatesRepository.Setup(x => x.GetAllStatesAsync())
                 .Throws<Exception>();
 
-            var actualResults = statesServices.GetAllStatesAsync().Result;
+            var actualResults = mockStatesServices.GetAllStatesAsync().Result;
 
             Assert.AreEqual(actualResults.Success, false);
             Assert.AreEqual(actualResults.data, null);

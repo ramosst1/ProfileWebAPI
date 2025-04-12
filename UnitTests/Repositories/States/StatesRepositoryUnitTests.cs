@@ -14,17 +14,17 @@ namespace UnitTests.Repositories.States
         public void Should_TheGetAllStatesAsync_ReturnsAListOfStates()
         {
             var expectedStates = new List<StateDto>() {
-                new StateDto{ StateName = "New York", StateAbrev = "NY" },
-                new StateDto{ StateName = "New Jersey", StateAbrev = "NJ" },
-                new StateDto{ StateName = "Connecticut", StateAbrev = "CT" },
-                new StateDto{ StateName = "Main", StateAbrev = "ME" }
+                new (){ StateName = "New York", StateAbrev = "NY" },
+                new (){ StateName = "New Jersey", StateAbrev = "NJ" },
+                new (){ StateName = "Connecticut", StateAbrev = "CT" },
+                new (){ StateName = "Main", StateAbrev = "ME" }
             };
 
             var actualStates = new List<StateDto>() {
-                new StateDto{ StateName = "New York", StateAbrev = "NY" },
-                new StateDto{ StateName = "New Jersey", StateAbrev = "NJ" },
-                new StateDto{ StateName = "Connecticut", StateAbrev = "CT" },
-                new StateDto{ StateName = "Main", StateAbrev = "ME" }
+                new (){ StateName = "New York", StateAbrev = "NY" },
+                new (){ StateName = "New Jersey", StateAbrev = "NJ" },
+                new (){ StateName = "Connecticut", StateAbrev = "CT" },
+                new (){ StateName = "Main", StateAbrev = "ME" }
             };
 
             var mockStatesJsonDataSource = new Mock<IStatesDataSource>();

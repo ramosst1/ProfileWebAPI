@@ -16,19 +16,19 @@ namespace UnitTests.Repositories.Profiles
         {
 
             var sourceProfilesList = new List<ProfileDto>() {
-                    new ProfileDto{ ProfileId = 1,
-                        Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
-                                AddressId = 10
-                            }}
-                    },
-                    new ProfileDto{ ProfileId = 2,
-                        Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
-                                AddressId = 11
-                            }}
+                new (){ ProfileId = 1,
+                    Addresses =
+                        new List<ProfileAddressDto>(){ new () {
+                            AddressId = 10
+                        }}
+                },
+                new (){ ProfileId = 2,
+                    Addresses =
+                        new List<ProfileAddressDto>(){ new () {
+                            AddressId = 11
+                        }}
 
-                    },
+                },
             };
 
             var sourceProfileToCreate = new ProfileCreateDto
@@ -37,7 +37,7 @@ namespace UnitTests.Repositories.Profiles
                 LastName = "Smith",
                 Active = true,
                 Addresses =
-                            new List<ProfileAddressCreateDto>(){ new ProfileAddressCreateDto() {
+                            new List<ProfileAddressCreateDto>(){ new () {
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
                                 City = "My City",

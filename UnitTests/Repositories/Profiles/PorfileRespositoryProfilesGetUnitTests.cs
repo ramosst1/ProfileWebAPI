@@ -18,7 +18,7 @@ namespace UnitTests.Repositories.Profiles
             var expectedProfiles = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1, FirstName = "Joe", LastName="Smith",
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 10,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -28,7 +28,7 @@ namespace UnitTests.Repositories.Profiles
                     },
                     new ProfileDto{ ProfileId = 2, FirstName = "Jill", LastName="Jones",
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -92,7 +92,7 @@ namespace UnitTests.Repositories.Profiles
             var sourceProfilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1, FirstName = "Joe", LastName="Smith", Active = false,
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 10,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -103,7 +103,7 @@ namespace UnitTests.Repositories.Profiles
                     },
                     new ProfileDto{ ProfileId = 2, FirstName = "Jill", LastName="Jones", Active = true,
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -122,7 +122,7 @@ namespace UnitTests.Repositories.Profiles
                 LastName = "Jones",
                 Active = true,
                 Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -163,7 +163,7 @@ namespace UnitTests.Repositories.Profiles
             var sourceProfilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1, FirstName = "Joe", LastName="Smith",
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 10,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -174,7 +174,7 @@ namespace UnitTests.Repositories.Profiles
                     },
                     new ProfileDto{ ProfileId = 2, FirstName = "Jill", LastName="Jones",
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",

@@ -18,13 +18,13 @@ namespace UnitTests.Repositories.Profiles
             var sourceProfilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1,
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 10
                             }}
                     },
                     new ProfileDto{ ProfileId = 2,
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Address 1",
                                 Address2 = "My Address 2",
@@ -43,7 +43,7 @@ namespace UnitTests.Repositories.Profiles
                 LastName = "Smith2",
                 Active = true,
                 Addresses =
-                            new List<ProfileAddressUpdateDto>(){ new ProfileAddressUpdateDto() {
+                            new List<ProfileAddressUpdateDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Updated Address 1",
                                 Address2 = "My Update Address 2",
@@ -60,7 +60,7 @@ namespace UnitTests.Repositories.Profiles
                 LastName = "Smith2",
                 Active = true,
                 Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11,
                                 Address1 = "My Updated Address 1",
                                 Address2 = "My Update Address 2",
@@ -105,13 +105,13 @@ namespace UnitTests.Repositories.Profiles
             var profilesList = new List<ProfileDto>() {
                     new ProfileDto{ ProfileId = 1,
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 10
                             }}
                     },
                     new ProfileDto{ ProfileId = 2,
                         Addresses =
-                            new List<ProfileAddressDto>(){ new ProfileAddressDto() {
+                            new List<ProfileAddressDto>(){ new () {
                                 AddressId = 11
                             }}
 
