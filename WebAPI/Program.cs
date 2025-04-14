@@ -1,17 +1,7 @@
-using System.Reflection;
-using FluentValidation.AspNetCore;
-using Repositories.Profiles;
-using Repositories.States;
-using Services.Profiles;
-using Services.States;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using WebAPI.Model;
-using System.Runtime.Serialization;
-using Services.Profiles.Interfaces;
-using Services.States.Interfaces;
-using Repositories.Profiles.Interfaces;
-using Repositories.States.Interfaces;
+using Models.Common.ValidationResponses;
+using Services;
+using Repositories;
 //using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +21,7 @@ builder.Services.AddControllers()
         {
             var errors = context.ModelState.Values
                 .SelectMany(v => v.Errors)
-                .Select(e =>  new ErrorMessageModel() { 
+                .Select(e =>  new ValidationErrorMessage() { 
                     Message = e.ErrorMessage,
                     StatusCode = "400"
                 });
@@ -63,12 +53,8 @@ builder.Services.AddControllers()
                 });
 */
 
-builder.Services.AddScoped<IProfileService, ProfileService>();
-builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
-builder.Services.AddScoped<IStatesServices, StatesService>();
-builder.Services.AddScoped<IStatesRepository, StatesRepository>();
-builder.Services.AddScoped<IStatesDataSource, StatesJsonDataSource>();
-builder.Services.AddScoped<IProfileDataSource, ProfileDataJsonSource>();
+builder.Services.AddApplicationDIServices();
+builder.Services.AddApplicationDIRespositories();
 
 var app = builder.Build();
 
