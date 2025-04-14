@@ -53,8 +53,8 @@ builder.Services.AddControllers()
                 });
 */
 
-builder.Services.AddApplicationDIServices();
-builder.Services.AddApplicationDIRespositories();
+builder.Services.AddApplicationServices();
+builder.Services.AddApplicationRespositories();
 
 var app = builder.Build();
 
