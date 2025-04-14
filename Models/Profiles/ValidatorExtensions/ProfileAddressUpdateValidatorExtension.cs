@@ -2,6 +2,7 @@
 using Models.Common.Addresses;
 using Models.Common.Addresses.ValidatorsExtensions;
 using Models.Common.ValidationResponses;
+using Models.Common.ValidationResponses.Converters;
 
 namespace Models.Profiles.ValidatorExtensions
 {

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Models.Common.ValidationResponses;
+using Models.Common.ValidationResponses.Converters;
 
 namespace Models.Profiles.ValidatorExtensions
 {

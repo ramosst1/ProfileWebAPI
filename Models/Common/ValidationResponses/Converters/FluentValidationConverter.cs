@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace Models.Common.ValidationResponses
+namespace Models.Common.ValidationResponses.Converters
 {
     public class FluentValidationConverter
     {
