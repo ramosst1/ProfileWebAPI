@@ -48,8 +48,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(typeof(List<ValidationErrorMessage>),StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProfileModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ValidationErrorMessageModel>),StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse<ProfileModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult> PostAsync([FromBody] ProfileCreateModel profile)
         {
 
@@ -65,8 +65,8 @@ namespace WebAPI.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(typeof(List<ValidationErrorMessage>), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProfileModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ValidationErrorMessageModel>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse<ProfileModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult> PutAsync(ProfileUpdateModel profile)
         {
 
@@ -80,6 +80,9 @@ namespace WebAPI.Controllers
 
         // Delete api/v1/profiles/5
         [HttpDelete("{profileId}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         public async Task<ActionResult<ApiResponse>> DeleteAsync(int profileId)
         {
             var response = await _profileService.DeleteProfilesAsync(profileId);

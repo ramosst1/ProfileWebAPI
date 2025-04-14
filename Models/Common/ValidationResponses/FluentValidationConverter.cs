@@ -6,11 +6,11 @@ namespace Models.Common.ValidationResponses
     {
         private FluentValidationConverter(){}
 
-        public static List<ValidationErrorMessage> ConvertToValidationErrors(List<ValidationFailure> validationFailures)
+        public static List<ValidationErrorMessageModel> ConvertToValidationErrors(List<ValidationFailure> validationFailures)
         {
 
             return validationFailures.Select(error => {
-                return new ValidationErrorMessage()
+                return new ValidationErrorMessageModel()
                 {
                     Message = error.ErrorMessage,
                     StatusCode = "400"

@@ -1,6 +1,6 @@
-﻿namespace WebAPI.Model
+﻿namespace Models.Common.ValidationResponses
 {
-    public class ErrorMessageModel
+    public class ValidationErrorMessageModel
     {
         public string Message { get; set; } = string.Empty;
         public string StatusCode { get; set; } = string.Empty;

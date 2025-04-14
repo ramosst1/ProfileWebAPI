@@ -21,7 +21,7 @@ builder.Services.AddControllers()
         {
             var errors = context.ModelState.Values
                 .SelectMany(v => v.Errors)
-                .Select(e =>  new ValidationErrorMessage() { 
+                .Select(e =>  new ValidationErrorMessageModel() { 
                     Message = e.ErrorMessage,
                     StatusCode = "400"
                 });

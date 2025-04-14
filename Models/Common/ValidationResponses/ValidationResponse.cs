@@ -6,7 +6,7 @@ namespace Models.Common.ValidationResponses
         
         public bool IsValid { get { return !Messages.Any(); } }
         
-        public List<ValidationErrorMessage> Messages { get; set; } = new ();
+        public List<ValidationErrorMessageModel> Messages { get; set; } = new ();
 
     }
 }
