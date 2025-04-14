@@ -9,7 +9,7 @@ namespace Services
     public static class ServiceCollectionExtensions
     {
 
-        public static IServiceCollection AddApplicationRespositories(
+        public static IServiceCollection AddApplicationServices(
             this IServiceCollection services)
         {
             services.AddScoped<IProfileService, ProfileService>();
