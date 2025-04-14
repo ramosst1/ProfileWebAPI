@@ -32,7 +32,8 @@ namespace UnitTests.Models.ValidatorsExtentions.Common.Addresses
 
                 var actualResults = input.Validate();
 
-                Assert.AreEqual(false, actualResults.Any());
+                Assert.AreEqual(true, actualResults.IsValid);
+                Assert.AreEqual(false, actualResults.Messages.Any());
             }
 
             [TestMethod]
@@ -62,8 +63,9 @@ namespace UnitTests.Models.ValidatorsExtentions.Common.Addresses
 
                 var actualResults = input.Validate();
 
-                Assert.AreEqual(true, actualResults.Any());
-                Assert.AreEqual(true, actualResults.Exists(aItem => aItem.Message == expectedErrorMessage));
+                Assert.AreEqual(false, actualResults.IsValid);
+                Assert.AreEqual(true, actualResults.Messages.Any());
+                Assert.AreEqual(true, actualResults.Messages.Exists(aItem => aItem.Message == expectedErrorMessage));
             }
         }
 

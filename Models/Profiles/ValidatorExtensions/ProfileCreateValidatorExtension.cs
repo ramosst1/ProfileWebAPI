@@ -1,18 +1,19 @@
-﻿using Models.Common.APIResponses;
+﻿using Models.Common.ValidationResponses;
 
 namespace Models.Profiles.ValidatorExtensions
 {
 
     public static class ProfileCreateValidatorExtension {
 
-        public static List<ValidationErrorMessage> Validate(this ProfileCreateModel profileCreateModel)
+        public static ValidationResponse Validate(this ProfileCreateModel profileCreateModel)
         {
-            var results = ((ProfileModelBase)profileCreateModel).Validate();
 
+            var response = new ValidationResponse();
 
-            results.AddRange(profileCreateModel.Addresses.Validate());
+            response.Messages.AddRange(((ProfileModelBase)profileCreateModel).Validate().Messages);
 
-            return results;
+            response.Messages.AddRange(profileCreateModel.Addresses.Validate().Messages);
+            return response;
         }
     }
 

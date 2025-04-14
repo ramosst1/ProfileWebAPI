@@ -1,26 +1,21 @@
 ﻿using FluentValidation;
-using Models.Common.APIResponses;
+using Models.Common.ValidationResponses;
 
 namespace Models.Profiles.ValidatorExtensions
 {
 
     public static class ProfileModelBaseValidatorExtension {
 
-        public static List<ValidationErrorMessage> Validate(this ProfileModelBase profileUpdateModel)
+        public static ValidationResponse Validate(this ProfileModelBase profileUpdateModel)
         {
 
-            var results = new ProfileModelBaseFluentValidator().Validate(profileUpdateModel)
-                .Errors.Select(error =>
-                {
-                    return new ValidationErrorMessage()
-                    {
-                        Message = error.ErrorMessage,
-                        StatusCode = "400"
-                    };
-                }
-             ).ToList();
+            var response = new ValidationResponse();
 
-            return results;
+            var validationResponse = new ProfileModelBaseFluentValidator().Validate(profileUpdateModel);
+
+            response.Messages.AddRange(FluentValidationConverter.ConvertToValidationErrors(validationResponse.Errors));
+
+            return response;
         }
 
         public class ProfileModelBaseFluentValidator : AbstractValidator<ProfileModelBase>

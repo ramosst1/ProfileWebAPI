@@ -1,41 +1,38 @@
 ﻿using FluentValidation;
 using Models.Common.Addresses;
 using Models.Common.Addresses.ValidatorsExtensions;
-using Models.Common.APIResponses;
+using Models.Common.ValidationResponses;
+using static Models.Profiles.ValidatorExtensions.ProfileAddressUpdateValidatorExtension;
 
 namespace Models.Profiles.ValidatorExtensions
 {
 
     public static class ProfileAddressCreateValidatorExtension {
 
-        public static List<ValidationErrorMessage> Validate(this List<ProfileAddressCreateModel> profileAddressCreateModes) {
+        public static ValidationResponse Validate(this List<ProfileAddressCreateModel> profileAddressCreateModes) {
 
-            var results = new List<ValidationErrorMessage>();
+            var response = new ValidationResponse();
 
-            foreach (var profileAddressCreateModel in profileAddressCreateModes) {
-                results.AddRange(profileAddressCreateModel.Validate());
+            foreach (var profileAddressCreateModel in profileAddressCreateModes)
+            {
+                response.Messages.AddRange(profileAddressCreateModel.Validate().Messages);
             }
 
-            return results;
+            return response;
         }
 
-        public static List<ValidationErrorMessage> Validate(this ProfileAddressCreateModel profileCreateModel) {
+        public static ValidationResponse Validate(this ProfileAddressCreateModel profileCreateModel) {
 
-            var results = ((AddressModelBase) profileCreateModel).Validate();
+            var response = new ValidationResponse();
 
-            results.AddRange(new ProfileAddressCreateFluentValidator().Validate(profileCreateModel)
-                .Errors.Select(error =>
-                {
-                    return new ValidationErrorMessage()
-                    {
-                        Message = error.ErrorMessage,
-                        StatusCode = "400"
-                    };
-                }
-                )
-             );
+            response.Messages.AddRange(((AddressModelBase)profileCreateModel).Validate().Messages);
 
-            return results;
+            var validationResponse = new ProfileAddressCreateFluentValidator().Validate(profileCreateModel);
+
+            response.Messages.AddRange(FluentValidationConverter.ConvertToValidationErrors(validationResponse.Errors));
+
+            return response;
+
         } 
  
         public class ProfileAddressCreateFluentValidator: AbstractValidator<ProfileAddressCreateModel>

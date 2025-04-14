@@ -1,42 +1,37 @@
 ﻿using FluentValidation;
 using Models.Common.Addresses;
 using Models.Common.Addresses.ValidatorsExtensions;
-using Models.Common.APIResponses;
+using Models.Common.ValidationResponses;
 
 namespace Models.Profiles.ValidatorExtensions
 {
     public static class ProfileAddressUpdateValidatorExtension
     {
-        public static List<ValidationErrorMessage> Validate(this List<ProfileAddressUpdateModel> profileAddressUpdateModes)
+        public static ValidationResponse Validate(this List<ProfileAddressUpdateModel> profileAddressUpdateModes)
         {
 
-            var results = new List<ValidationErrorMessage>();
+            var response = new ValidationResponse();
 
             foreach (var profileAddressUpdateModel in profileAddressUpdateModes)
             {
-                results.AddRange(profileAddressUpdateModel.Validate());
+                response.Messages.AddRange(profileAddressUpdateModel.Validate().Messages);
             }
 
-            return results;
+            return response;
         }
 
-        public static List<ValidationErrorMessage> Validate(this ProfileAddressUpdateModel profileAddressUpdateModel)
+        public static ValidationResponse Validate(this ProfileAddressUpdateModel profileAddressUpdateModel)
         {
 
-            var results = ((AddressModelBase) profileAddressUpdateModel).Validate();
+            var response = new ValidationResponse();
 
+            response.Messages.AddRange(((AddressModelBase)profileAddressUpdateModel).Validate().Messages);
 
-            results.AddRange(new ProfileAddressUpdateFluentValidator().Validate(profileAddressUpdateModel)
-                .Errors.Select(error => {
-                    return new ValidationErrorMessage()
-                    {
-                        Message = error.ErrorMessage,
-                        StatusCode = "400"
-                    };
-                 })
-             );
+            var validationResponse = new ProfileAddressUpdateFluentValidator().Validate(profileAddressUpdateModel);
 
-            return results;
+            response.Messages.AddRange(FluentValidationConverter.ConvertToValidationErrors(validationResponse.Errors));
+
+            return response;
         }
 
         public class ProfileAddressUpdateFluentValidator : AbstractValidator<ProfileAddressUpdateModel>

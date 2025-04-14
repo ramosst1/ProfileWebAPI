@@ -1,23 +1,21 @@
 ﻿using FluentValidation;
-using Models.Common.APIResponses;
+using Models.Common.ValidationResponses;
 
 namespace Models.Common.Addresses.ValidatorsExtensions
 {
 
     public static class AddressModelBaseValidatorExtension {
 
-        public static List<ValidationErrorMessage> Validate(this AddressModelBase addressBase)
+        public static ValidationResponse Validate(this AddressModelBase addressBase)
         {
 
-            var results = new AddressModelBaseFluentValidator().Validate(addressBase);
+            var response = new ValidationResponse();
 
-            return results.Errors.Select(error => {
-                return new ValidationErrorMessage()
-                {
-                    Message = error.ErrorMessage,
-                    StatusCode = "400"
-                };
-            }).ToList();
+            var validationResponse = new AddressModelBaseFluentValidator().Validate(addressBase);
+
+            response.Messages.AddRange(FluentValidationConverter.ConvertToValidationErrors(validationResponse.Errors));
+
+            return response;
         }
 
         public class AddressModelBaseFluentValidator : AbstractValidator<AddressModelBase>
@@ -65,5 +63,4 @@ namespace Models.Common.Addresses.ValidatorsExtensions
         }
 
     }
-
 }

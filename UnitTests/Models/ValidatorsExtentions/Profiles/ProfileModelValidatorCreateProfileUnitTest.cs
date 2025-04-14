@@ -20,7 +20,8 @@ namespace UnitTests.Models.ValidatorsExtentions.Profiles
 
             var actualResults = input.Validate();
 
-            Assert.AreEqual(false, actualResults.Any());
+            Assert.AreEqual(true, actualResults.IsValid);
+            Assert.AreEqual(false, actualResults.Messages.Any());
         }
 
         [TestMethod]
@@ -37,9 +38,9 @@ namespace UnitTests.Models.ValidatorsExtentions.Profiles
 
             var actualResults = input.Validate();
 
-            Assert.AreEqual(true, actualResults.Any());
-            Assert.AreEqual(true, actualResults.Exists(aItem => aItem.Message == expectedErrorMessage));
-
+            Assert.AreEqual(false, actualResults.IsValid);
+            Assert.AreEqual(true, actualResults.Messages.Any());
+            Assert.AreEqual(true, actualResults.Messages.Exists(aItem => aItem.Message == expectedErrorMessage));
         }
 
         [TestMethod]
@@ -58,7 +59,8 @@ namespace UnitTests.Models.ValidatorsExtentions.Profiles
 
             var actualResults = input.Validate();
 
-            Assert.AreEqual(true, actualResults.Exists(item => item.Message == "City is required."));
+            Assert.AreEqual(false, actualResults.IsValid);
+            Assert.AreEqual(true, actualResults.Messages.Exists(item => item.Message == "City is required."));
 
         }
 

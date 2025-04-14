@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models.Common.APIResponses;
+using Models.Common.ValidationResponses;
 using Models.Profiles;
 using Models.Profiles.ValidatorExtensions;
 using Services.Profiles.Interfaces;
@@ -53,12 +54,11 @@ namespace WebAPI.Controllers
         {
 
             var validation = profile.Validate();
-            if (validation.Any()) return BadRequest(validation);
+            if (!validation.IsValid) return BadRequest(validation.Messages);
 
             var response = await _profileService.CreateProfileAsync(profile);
 
             return Ok(response);
-
         }
 
         // PUT api/v1/profile/Profile
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
         {
 
             var validation = profile.Validate();
-            if (validation.Any()) return BadRequest(validation);
+            if (!validation.IsValid) return BadRequest(validation.Messages);
 
             var response = await _profileService.UpdateProfileAsync(profile);
 
